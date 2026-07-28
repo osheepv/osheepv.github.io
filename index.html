@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>欧阳威 — 机械工程 × 数据建模</title>
+<style>
+  /* ===== Reset & Base ===== */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;font-size:16px}
+  body{
+    font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
+    background:#1a1d23;color:#c8ccd4;line-height:1.7;
+    overflow-x:hidden;
+  }
+  a{color:#4a9eff;text-decoration:none;transition:.2s}
+  a:hover{color:#7bb8ff}
+
+  /* ===== Typography ===== */
+  h1,h2,h3{font-weight:600;color:#e8eaed}
+  h1{font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-0.02em}
+  h2{font-size:clamp(1.4rem,3vw,1.8rem)}
+  h3{font-size:1.1rem}
+
+  /* ===== Layout ===== */
+  .container{max-width:960px;margin:0 auto;padding:0 24px}
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:100px 0 60px;text-align:center;
+    background:linear-gradient(180deg,rgba(74,158,255,0.06) 0%,transparent 100%);
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .hero-name{color:#fff;margin-bottom:8px}
+  .hero-tagline{
+    font-size:1.2rem;color:#ff6b35;font-weight:500;
+    font-family:'JetBrains Mono','Cascadia Code','Fira Code',monospace;
+  }
+  .hero-contact{
+    display:flex;justify-content:center;gap:24px;flex-wrap:wrap;
+    margin-top:24px;font-size:0.92rem;color:#8899aa;
+  }
+  .hero-contact span{display:flex;align-items:center;gap:6px}
+
+  /* ===== Section ===== */
+  section{padding:64px 0}
+  section+section{border-top:1px solid rgba(255,255,255,0.06)}
+  .section-title{
+    display:flex;align-items:center;gap:12px;margin-bottom:36px;
+  }
+  .section-title::before{
+    content:'';display:block;width:4px;height:28px;
+    background:#ff6b35;border-radius:2px;
+  }
+
+  /* ===== About ===== */
+  .about-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:32px;
+  }
+  .about-card{
+    background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+    border-radius:12px;padding:28px;
+  }
+  .about-card h3{margin-bottom:12px;color:#4a9eff}
+  .edu-meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:8px;font-size:0.88rem;color:#8899aa}
+
+  /* ===== Skills ===== */
+  .skills-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  }
+  .skill-category{
+    background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+    border-radius:12px;padding:28px;
+  }
+  .skill-category h3{
+    margin-bottom:16px;color:#4a9eff;font-size:1rem;
+    font-family:'JetBrains Mono','Cascadia Code','Fira Code',monospace;
+  }
+  .skill-tags{display:flex;flex-wrap:wrap;gap:8px}
+  .skill-tag{
+    background:rgba(74,158,255,0.1);color:#7bb8ff;
+    padding:4px 12px;border-radius:6px;font-size:0.85rem;
+    border:1px solid rgba(74,158,255,0.15);
+  }
+
+  /* ===== Competition Timeline ===== */
+  .award-list{display:flex;flex-direction:column;gap:12px}
+  .award-item{
+    display:flex;align-items:flex-start;gap:16px;
+    background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+    border-radius:10px;padding:18px 22px;transition:.2s;
+  }
+  .award-item:hover{border-color:rgba(255,107,53,0.3)}
+  .award-level{
+    flex-shrink:0;width:56px;height:56px;
+    border-radius:12px;display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:0.78rem;text-align:center;line-height:1.2;
+    font-family:'JetBrains Mono','Cascadia Code','Fira Code',monospace;
+  }
+  .award-level.gold{background:rgba(255,107,53,0.18);color:#ff6b35}
+  .award-level.silver{background:rgba(74,158,255,0.15);color:#4a9eff}
+  .award-level.bronze{background:rgba(255,193,7,0.12);color:#ffc107}
+  .award-info h4{font-size:0.98rem;color:#e8eaed;margin-bottom:4px}
+  .award-info p{font-size:0.85rem;color:#8899aa}
+
+  /* ===== Experience ===== */
+  .exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .exp-card{
+    background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+    border-radius:12px;padding:28px;
+  }
+  .exp-card h3{color:#ff6b35;margin-bottom:6px}
+  .exp-date{font-size:0.85rem;color:#8899aa;margin-bottom:14px;
+    font-family:'JetBrains Mono','Cascadia Code','Fira Code',monospace;
+  }
+  .exp-card ul{list-style:none;padding:0}
+  .exp-card li{
+    position:relative;padding-left:18px;margin-bottom:10px;
+    font-size:0.92rem;color:#b8bfc8;
+  }
+  .exp-card li::before{
+    content:'▸';position:absolute;left:0;color:#4a9eff;
+  }
+
+  /* ===== Footer ===== */
+  footer{
+    text-align:center;padding:48px 24px;
+    border-top:1px solid rgba(255,255,255,0.06);
+    color:#556;font-size:0.85rem;
+  }
+  footer .deco{
+    font-family:'JetBrains Mono','Cascadia Code','Fira Code',monospace;
+    color:#ff6b35;font-size:0.9rem;margin-bottom:8px;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width:768px){
+    .hero{padding:60px 0 40px}
+    .about-grid,.skills-grid,.exp-grid{grid-template-columns:1fr}
+    .award-item{flex-direction:column}
+    section{padding:40px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="container">
+    <h1 class="hero-name">欧阳威</h1>
+    <p class="hero-tagline">Mechanical Engineering × Data Modeling</p>
+    <div class="hero-contact">
+      <span>&#9993; 3402685368@qq.com</span>
+      <span>&#9742; 19858807815</span>
+      <span>&#127968; 衢州 · 浙江</span>
+    </div>
+  </div>
+</header>
+
+<!-- 教育 + 自我评价 -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">教育背景 &amp; 自我定位</h2>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>教育经历</h3>
+        <p style="font-size:1.05rem;color:#e8eaed">衢州学院 &middot; 机械设计制造及其自动化</p>
+        <div class="edu-meta">
+          <span>本科</span><span>2023.09 – 2026.05</span><span>GPA 3.8</span>
+        </div>
+      </div>
+      <div class="about-card">
+        <h3>自我定位</h3>
+        <p style="font-size:0.92rem">
+          扎实的机械工程理论基础 + 数学建模与数据驱动的工程问题求解能力。
+          熟练掌握 SolidWorks/Creo/ANSYS 等工业软件及 Python/Matlab 编程工具，
+          具备跨部门协同与快速技术学习能力，适配研发类项目快节奏迭代。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 技能 -->
+<section id="skills">
+  <div class="container">
+    <h2 class="section-title">技术栈</h2>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3>3D 建模</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">SolidWorks</span>
+          <span class="skill-tag">Creo</span>
+          <span class="skill-tag">CATIA</span>
+          <span class="skill-tag">装配干涉检查</span>
+          <span class="skill-tag">工程图输出</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>仿真分析</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">ANSYS</span>
+          <span class="skill-tag">LS-DYNA</span>
+          <span class="skill-tag">ADAMS</span>
+          <span class="skill-tag">结构静力学</span>
+          <span class="skill-tag">碰撞冲击仿真</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>编程 &amp; 数据</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Matlab</span>
+          <span class="skill-tag">Simulink</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">数据可视化</span>
+          <span class="skill-tag">数值计算</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 竞赛 -->
+<section id="competitions">
+  <div class="container">
+    <h2 class="section-title">竞赛荣誉</h2>
+    <div class="award-list">
+      <div class="award-item">
+        <div class="award-level gold">省一</div>
+        <div class="award-info">
+          <h4>2025 全国大学生数学建模竞赛 · 浙江赛区一等奖</h4>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-level silver">国三</div>
+        <div class="award-info">
+          <h4>2025 第六届"华数杯"全国大学生数学建模 · 本科生组三等奖</h4>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-level silver">三奖</div>
+        <div class="award-info">
+          <h4>2025 第十五届 MathorCup 数学应用挑战赛 · 本科生组三等奖</h4>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-level bronze">三奖</div>
+        <div class="award-info">
+          <h4>2024 第四届 &middot; 2025 第五届 长三角高校数学建模竞赛 · 三等奖</h4>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:0.88rem;color:#8899aa">
+      + 衢州学院建模竞赛一等奖 ×2、Word 排版特等奖、Excel 数据处理二等奖 等校级荣誉
+    </p>
+  </div>
+</section>
+
+<!-- 经历 -->
+<section id="experience">
+  <div class="container">
+    <h2 class="section-title">实习 &amp; 校园</h2>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <h3>企业走访实习</h3>
+        <p class="exp-date">2024.11 — 2024.12</p>
+        <ul>
+          <li>实地走访 4 家机械制造标杆企业（永利达、上洋机械、红五环、金沃精工）</li>
+          <li>深入生产车间与研发中心学习零部件加工工艺及流程管控</li>
+          <li>对比分析各企业技术优势与管理特色，形成实习总结报告</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <h3>KAB 创业联盟副部长</h3>
+        <p class="exp-date">2023.10 — 2025.02</p>
+        <ul>
+          <li>协同核心成员筹办两届校园淘宝街活动（摊主招募、场地规划、现场管控）</li>
+          <li>梳理 3 项常见应急处理方案，两届活动期间零重大秩序问题</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <h3>数学建模社团 · 核心成员</h3>
+        <p class="exp-date">2023.10 — 2025.12</p>
+        <ul>
+          <li>累计参与 6 场省级及以上数学建模竞赛，收获 6 项奖项</li>
+          <li>熟练运用 Python/Matlab 完成数据清洗、数值计算、模型验证与可视化</li>
+          <li>梳理的建模逻辑框架与方法已同步至社团共享知识库</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <h3>荣誉 &amp; 奖学金</h3>
+        <p class="exp-date">2024 — 2025</p>
+        <ul>
+          <li>2024–2025 学年 · 三等奖学金</li>
+          <li>2024–2025 学年 · 优秀学生干部</li>
+          <li>累计 10+ 项校级及以上竞赛证书</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="deco">[ OUYANG WEI ]</div>
+  <p>Built by Ouyang Wei &amp; Claude Code · Hosted on GitHub Pages</p>
+</footer>
+
+</body>
+</html>
