@@ -123,6 +123,8 @@
     padding:2px 0;border-bottom:1px solid transparent;
   }
   .nav-link:hover{color:var(--color-fg-bold);border-bottom-color:var(--color-accent-underline)}
+  .nav-link.active{color:var(--color-fg-bold);border-bottom-color:var(--color-accent-underline);font-weight:600}
+  .mobile-menu a.active{color:var(--color-accent);font-weight:600}
   .header-spacer{flex:1}
   .theme-toggle{
     border:1px solid var(--color-border);background:transparent;
@@ -175,6 +177,20 @@
     font-size:5.5rem;line-height:1;user-select:none;
   }
   .portrait-ring{position:absolute;inset:-10px;border-radius:50%;border:1px dashed var(--color-accent-underline)}
+
+  /* ===== 页内快速跳转 ===== */
+  .inpage-nav{
+    max-width:1000px;margin:0 auto;padding:24px 28px 0;
+    display:flex;gap:12px;flex-wrap:wrap;
+  }
+  .inpage-nav a{
+    color:var(--color-fg-light);font-size:.88rem;font-weight:500;
+    padding:7px 16px;border-radius:999px;border:1px solid var(--color-border);
+    background:var(--glass-bg);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    transition:color .15s,border-color .15s,transform .15s;
+  }
+  .inpage-nav a:hover{color:var(--color-accent);border-color:color-mix(in srgb,var(--color-accent) 40%,transparent);transform:translateY(-1px)}
 
   /* ===== Section ===== */
   section{padding:56px 0}
@@ -336,13 +352,11 @@
 <!-- Header -->
 <header class="site-header">
   <div class="header-inner">
-    <a class="site-logo" href="#" aria-label="欧阳威 — 返回首页">OYW</a>
+    <a class="site-logo" href="index.html" aria-label="欧阳威 — 首页">OYW</a>
     <nav class="nav-links" aria-label="主导航">
-      <a class="nav-link" href="#about">关于</a>
-      <a class="nav-link" href="#skills">技术栈</a>
-      <a class="nav-link" href="#competitions">竞赛荣誉</a>
-      <a class="nav-link" href="#experience">经历</a>
-      <a class="nav-link" href="#contact">联系</a>
+      <a class="nav-link active" href="index.html">个人简历</a>
+      <a class="nav-link" href="ai-assistant.html">AI助手</a>
+      <a class="nav-link" href="other.html">其他</a>
     </nav>
     <div class="header-spacer"></div>
     <button class="theme-toggle" type="button" aria-label="切换明暗主题">◐ 主题</button>
@@ -351,11 +365,9 @@
     </button>
   </div>
   <nav class="mobile-menu" id="mobile-menu" aria-label="移动端导航">
-    <a href="#about">关于</a>
-    <a href="#skills">技术栈</a>
-    <a href="#competitions">竞赛荣誉</a>
-    <a href="#experience">经历</a>
-    <a href="#contact">联系</a>
+    <a href="index.html">个人简历</a>
+    <a href="ai-assistant.html">AI助手</a>
+    <a href="other.html">其他</a>
   </nav>
 </header>
 
@@ -383,6 +395,15 @@
         </div>
       </div>
     </section>
+
+    <!-- 页内快速跳转 -->
+    <nav class="inpage-nav" aria-label="简历页内导航">
+      <a href="#about">教育背景</a>
+      <a href="#skills">技术栈</a>
+      <a href="#competitions">竞赛荣誉</a>
+      <a href="#experience">经历</a>
+      <a href="#contact">联系我</a>
+    </nav>
 
     <!-- 关于 -->
     <section id="about">
