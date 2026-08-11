@@ -192,6 +192,12 @@
   }
   .inpage-nav a:hover{color:var(--color-accent);border-color:color-mix(in srgb,var(--color-accent) 40%,transparent);transform:translateY(-1px)}
 
+  /* 链接卡片：去掉默认链接样式，保留玻璃感 */
+  a.award-item,a.exp-card{color:inherit;display:flex;text-decoration:none;cursor:pointer}
+  a.exp-card{flex-direction:column}
+  a.award-item:hover,a.exp-card:hover{transform:translateY(-3px)}
+  .award-extra,.exp-arrow{color:var(--color-accent);font-size:.82rem}
+
   /* ===== Section ===== */
   section{padding:56px 0}
   section+section{border-top:1px solid var(--color-border)}
@@ -478,31 +484,34 @@
         <h2 class="section-title">竞赛荣誉</h2>
       </div>
       <div class="award-list">
-        <div class="award-item">
+        <a class="award-item" href="detail.html?id=award-1">
           <div class="award-level gold">省一</div>
           <div class="award-info">
             <h4>2025 全国大学生数学建模竞赛 · 浙江赛区一等奖</h4>
+            <p class="award-extra">点击查看详情 →</p>
           </div>
-        </div>
-        <div class="award-item">
+        </a>
+        <a class="award-item" href="detail.html?id=award-2">
           <div class="award-level silver">国三</div>
           <div class="award-info">
             <h4>2025 第六届"华数杯"全国大学生数学建模 · 本科生组三等奖</h4>
+            <p class="award-extra">点击查看详情 →</p>
           </div>
-        </div>
-        <div class="award-item">
+        </a>
+        <a class="award-item" href="detail.html?id=award-3">
           <div class="award-level silver">三奖</div>
           <div class="award-info">
             <h4>2025 第十五届 MathorCup 数学应用挑战赛 · 本科生组三等奖</h4>
+            <p class="award-extra">点击查看详情 →</p>
           </div>
-        </div>
-        <div class="award-item">
+        </a>
+        <a class="award-item" href="detail.html?id=award-4">
           <div class="award-level bronze">三奖</div>
           <div class="award-info">
             <h4>2024 第四届 · 2025 第五届 长三角高校数学建模竞赛 · 三等奖</h4>
-            <p class="award-extra">连续两届获奖 · 建模思路与论文排版持续迭代</p>
+            <p class="award-extra">连续两届获奖 · 点击查看详情 →</p>
           </div>
-        </div>
+        </a>
       </div>
       <p class="award-notes">+ 衢州学院建模竞赛一等奖 ×2、Word 排版特等奖、Excel 数据处理二等奖 等校级荣誉</p>
     </section>
@@ -514,7 +523,7 @@
         <h2 class="section-title">实习 &amp; 校园</h2>
       </div>
       <div class="exp-grid">
-        <div class="exp-card">
+        <a class="exp-card" href="detail.html?id=exp-1">
           <h3>企业走访实习</h3>
           <span class="exp-date">2024.11 — 2024.12</span>
           <ul>
@@ -522,16 +531,16 @@
             <li>深入生产车间与研发中心学习零部件加工工艺及流程管控</li>
             <li>对比分析各企业技术优势与管理特色，形成实习总结报告</li>
           </ul>
-        </div>
-        <div class="exp-card">
+        </a>
+        <a class="exp-card" href="detail.html?id=exp-2">
           <h3>KAB 创业联盟副部长</h3>
           <span class="exp-date">2023.10 — 2025.02</span>
           <ul>
             <li>协同核心成员筹办两届校园淘宝街活动（摊主招募、场地规划、现场管控）</li>
             <li>梳理 3 项常见应急处理方案，两届活动期间零重大秩序问题</li>
           </ul>
-        </div>
-        <div class="exp-card">
+        </a>
+        <a class="exp-card" href="detail.html?id=exp-3">
           <h3>数学建模社团 · 核心成员</h3>
           <span class="exp-date">2023.10 — 2025.12</span>
           <ul>
@@ -539,8 +548,8 @@
             <li>熟练运用 Python / Matlab 完成数据清洗、数值计算、模型验证与可视化</li>
             <li>梳理的建模逻辑框架与方法已同步至社团共享知识库</li>
           </ul>
-        </div>
-        <div class="exp-card">
+        </a>
+        <a class="exp-card" href="detail.html?id=exp-4">
           <h3>荣誉 &amp; 奖学金</h3>
           <span class="exp-date">2024 — 2025</span>
           <ul>
@@ -548,7 +557,7 @@
             <li>2024–2025 学年 · 优秀学生干部</li>
             <li>累计 10+ 项校级及以上竞赛证书</li>
           </ul>
-        </div>
+        </a>
       </div>
     </section>
 
