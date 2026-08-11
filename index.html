@@ -624,6 +624,26 @@ document.addEventListener('click',function(e){
   });
 })();
 
+// 点详情卡片时保存滚动位置，返回时恢复
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a[href^="detail.html"]');
+  if(!a)return;
+  try{sessionStorage.setItem('ow-resume-scroll',String(window.scrollY))}catch(err){}
+});
+
+// 从详情页返回时恢复之前的滚动位置
+(function(){
+  var saved=null;
+  try{saved=sessionStorage.getItem('ow-resume-scroll')}catch(err){}
+  if(saved!==null){
+    try{sessionStorage.removeItem('ow-resume-scroll')}catch(err){}
+    var pos=parseInt(saved,10);
+    if(!isNaN(pos)&&pos>0){
+      setTimeout(function(){window.scrollTo(0,pos)},60);
+    }
+  }
+})();
+
 (function(){
   var btn=document.querySelector('.theme-toggle');
   function current(){return document.documentElement.dataset.theme==='dark'?'dark':'light'}
