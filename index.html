@@ -29,6 +29,12 @@
     --color-surface-hover:#23272e0f;
     --color-on-accent:#fff;
     --color-success:#1a7f37;
+    /* 玻璃质感 */
+    --glass-bg:linear-gradient(135deg,rgba(255,255,255,.78),rgba(255,255,255,.38));
+    --glass-border:rgba(255,255,255,.85);
+    --glass-inner-highlight:inset 0 1px 0 rgba(255,255,255,.75);
+    --glass-shadow:0 8px 32px rgba(20,23,28,.10),0 2px 8px rgba(20,23,28,.06);
+    --glass-hover-shadow:0 16px 48px rgba(20,23,28,.16),0 4px 16px rgba(20,23,28,.10);
   }
   html[data-theme="dark"]{
     --color-bg:#14171c;
@@ -47,6 +53,12 @@
     --color-surface-hover:#ffffff12;
     --color-on-accent:#14171c;
     --color-success:#3fb950;
+    /* 玻璃质感（深色） */
+    --glass-bg:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.03));
+    --glass-border:rgba(255,255,255,.22);
+    --glass-inner-highlight:inset 0 1px 0 rgba(255,255,255,.18);
+    --glass-shadow:0 8px 32px rgba(0,0,0,.35),0 2px 8px rgba(0,0,0,.20);
+    --glass-hover-shadow:0 16px 48px rgba(0,0,0,.50),0 4px 16px rgba(0,0,0,.28);
   }
 
   /* ===== Reset & base ===== */
@@ -159,11 +171,29 @@
   }
   .section-title{font-size:1.6rem;font-weight:700;color:var(--color-fg-bold);letter-spacing:-.01em}
 
+  /* ===== 玻璃卡片通用 ===== */
+  .card,.skill-cat,.award-item,.exp-card{
+    position:relative;
+    background:var(--glass-bg);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);
+    border:1px solid var(--glass-border);
+    box-shadow:var(--glass-inner-highlight),var(--glass-shadow);
+    transition:box-shadow .25s ease,transform .25s ease,border-color .2s ease;
+  }
+  .card:hover,.skill-cat:hover,.exp-card:hover{
+    box-shadow:var(--glass-inner-highlight),var(--glass-hover-shadow);
+    transform:translateY(-3px);
+  }
+
   /* ===== About ===== */
   .about-cards{display:grid;grid-template-columns:1fr 1fr;gap:22px}
   .card{
-    background:var(--color-bg-alt);border:1px solid var(--color-border);
-    border-radius:14px;padding:26px 28px;
+    border-radius:18px;padding:26px 28px;
+  }
+  .card::before,.skill-cat::before,.award-item::before,.exp-card::before{
+    content:'';position:absolute;top:0;left:12%;right:12%;height:1px;
+    background:linear-gradient(90deg,transparent,var(--glass-border),transparent);
+    border-radius:50%;
   }
   .card h3{font-size:1.02rem;font-weight:600;color:var(--color-fg-bold);margin-bottom:12px}
   .card p{font-size:.95rem;color:var(--color-fg)}
@@ -173,7 +203,7 @@
 
   /* ===== Skills ===== */
   .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .skill-cat{background:var(--color-bg-alt);border:1px solid var(--color-border);border-radius:14px;padding:24px 26px}
+  .skill-cat{border-radius:18px;padding:24px 26px}
   .skill-cat h3{
     font-family:var(--font-mono);font-size:.82rem;letter-spacing:.04em;
     color:var(--color-accent);margin-bottom:14px;
@@ -188,10 +218,9 @@
   .award-list{display:flex;flex-direction:column;gap:12px}
   .award-item{
     display:flex;align-items:center;gap:18px;
-    background:var(--color-bg-alt);border:1px solid var(--color-border);
-    border-radius:12px;padding:16px 22px;transition:border-color .15s,background .15s;
+    border-radius:16px;padding:16px 22px;
   }
-  .award-item:hover{border-color:var(--color-accent-underline);background:var(--color-surface-hover)}
+  .award-item:hover{border-color:color-mix(in srgb,var(--color-accent) 40%,transparent)}
   .award-level{
     flex-shrink:0;min-width:52px;height:52px;padding:0 8px;
     border-radius:12px;display:flex;align-items:center;justify-content:center;
@@ -206,7 +235,7 @@
 
   /* ===== Experience ===== */
   .exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-  .exp-card{background:var(--color-bg-alt);border:1px solid var(--color-border);border-radius:14px;padding:26px 28px}
+  .exp-card{border-radius:18px;padding:26px 28px}
   .exp-card h3{font-size:1.02rem;font-weight:600;color:var(--color-fg-bold);margin-bottom:4px}
   .exp-date{
     font-family:var(--font-mono);font-size:.8rem;color:var(--color-fg-light);
