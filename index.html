@@ -290,6 +290,31 @@
   .footer-social-col a:hover svg{fill:var(--color-accent)}
 
   /* ===== Responsive ===== */
+  /* 汉堡菜单按钮（仅移动端显示） */
+  .hamburger{
+    display:none;background:transparent;border:1px solid var(--color-border);
+    border-radius:8px;width:40px;height:40px;cursor:pointer;
+    align-items:center;justify-content:center;flex-direction:column;gap:4px;
+  }
+  .hamburger span{
+    display:block;width:18px;height:2px;border-radius:1px;
+    background:var(--color-fg-light);transition:transform .25s ease,opacity .2s ease;
+  }
+  .hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .hamburger.open span:nth-child(2){opacity:0}
+  .hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+  .mobile-menu{
+    display:none;flex-direction:column;
+    background:var(--color-bg);border-bottom:1px solid var(--color-border);
+    padding:12px 24px 20px;gap:4px;
+  }
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{
+    color:var(--color-fg-light);font-size:1rem;font-weight:500;
+    padding:12px 8px;border-bottom:1px solid var(--color-border);border-radius:6px;
+  }
+  .mobile-menu a:hover{color:var(--color-accent);background:var(--color-surface-hover)}
+
   @media (max-width:820px){
     .hero-grid{grid-template-columns:1fr;gap:36px;text-align:center;padding:56px 28px 48px}
     .hero-tagline{margin-left:auto;margin-right:auto}
@@ -297,6 +322,7 @@
     .about-cards,.skills-grid,.exp-grid{grid-template-columns:1fr}
     .footer-content{flex-direction:column;gap:32px}
     .nav-links{display:none}
+    .hamburger{display:flex}
     .site-logo{margin-right:auto}
   }
   @media (max-width:480px){
@@ -320,7 +346,17 @@
     </nav>
     <div class="header-spacer"></div>
     <button class="theme-toggle" type="button" aria-label="切换明暗主题">◐ 主题</button>
+    <button class="hamburger" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="移动端导航">
+    <a href="#about">关于</a>
+    <a href="#skills">技术栈</a>
+    <a href="#competitions">竞赛荣誉</a>
+    <a href="#experience">经历</a>
+    <a href="#contact">联系</a>
+  </nav>
 </header>
 
 <div class="page-container">
@@ -561,7 +597,22 @@ document.addEventListener('click',function(e){
   document.documentElement.style.setProperty('scroll-padding-top',offset+'px');
   target.scrollIntoView({behavior:'smooth',block:'start'});
   history.replaceState(null,'','#'+id);
+  // 点击移动端菜单项后收起菜单
+  var mm=document.getElementById('mobile-menu'),hb=document.querySelector('.hamburger');
+  if(mm&&mm.classList.contains('open')){mm.classList.remove('open');if(hb)hb.classList.remove('open');if(hb)hb.setAttribute('aria-expanded','false')}
 });
+
+(function(){
+  var hb=document.querySelector('.hamburger');
+  if(!hb)return;
+  var mm=document.getElementById('mobile-menu');
+  hb.addEventListener('click',function(){
+    var open=mm.classList.toggle('open');
+    hb.classList.toggle('open',open);
+    hb.setAttribute('aria-expanded',open?'true':'false');
+    hb.setAttribute('aria-label',open?'关闭菜单':'打开菜单');
+  });
+})();
 
 (function(){
   var btn=document.querySelector('.theme-toggle');
