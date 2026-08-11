@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>其他 — 欧阳威</title>
-<meta name="description" content="欧阳威的其他内容。">
+<title>联系我 — 欧阳威</title>
+<meta name="description" content="联系欧阳威：邮箱、电话、所在地。">
 <script>
 (function(){try{var t=localStorage.getItem('ow-theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t}else if(window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.dataset.theme='dark'}else{document.documentElement.dataset.theme='light'}}catch(e){document.documentElement.dataset.theme='light'}})();
 </script>
@@ -22,6 +22,7 @@
     --glass-border:rgba(255,255,255,.9);
     --glass-inner-highlight:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -1px 0 rgba(255,255,255,.25);
     --glass-shadow:0 10px 36px rgba(20,23,28,.14),0 3px 10px rgba(20,23,28,.08);
+    --glass-hover-shadow:0 20px 52px rgba(20,23,28,.20),0 5px 18px rgba(20,23,28,.12);
   }
   html[data-theme="dark"]{
     --color-bg:#14171c;--color-bg-alt:#0d1015;--color-fg:#d8dbe0;--color-fg-bold:#f2f4f7;
@@ -33,6 +34,7 @@
     --glass-border:rgba(255,255,255,.22);
     --glass-inner-highlight:inset 0 1px 0 rgba(255,255,255,.18);
     --glass-shadow:0 8px 32px rgba(0,0,0,.35),0 2px 8px rgba(0,0,0,.20);
+    --glass-hover-shadow:0 16px 48px rgba(0,0,0,.50),0 4px 16px rgba(0,0,0,.28);
   }
   html{scroll-behavior:auto}
   body{
@@ -116,7 +118,7 @@
   .page-main{
     max-width:1000px;margin:0 auto;padding:64px 28px;width:100%;flex:1;
   }
-  .section-head{text-align:center;margin-bottom:36px}
+  .section-head{text-align:center;margin-bottom:40px}
   .section-kicker{
     display:block;font-family:var(--font-mono);font-size:.76rem;font-weight:600;
     letter-spacing:.14em;text-transform:uppercase;
@@ -124,17 +126,42 @@
   }
   .section-title{font-size:1.7rem;font-weight:700;color:var(--color-fg-bold);letter-spacing:-.01em}
   .section-sub{font-size:.95rem;color:var(--color-fg-light);margin-top:8px}
-  .placeholder-card{
-    max-width:640px;margin:0 auto;text-align:center;
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:760px;margin:0 auto}
+  .contact-card{
     background:var(--glass-bg);
     -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
     border:1px solid var(--glass-border);
     box-shadow:var(--glass-inner-highlight),var(--glass-shadow);
-    border-radius:22px;padding:56px 40px;
+    border-radius:18px;padding:30px 28px;text-align:center;
+    transition:box-shadow .25s ease,transform .25s ease;
+    transform:translateZ(0);will-change:transform;
   }
-  .placeholder-card .big{font-size:2.4rem;margin-bottom:12px}
-  .placeholder-card h2{font-size:1.3rem;color:var(--color-fg-bold);margin-bottom:10px}
-  .placeholder-card p{font-size:.94rem;color:var(--color-fg-light)}
+  .contact-card:hover{box-shadow:var(--glass-inner-highlight),var(--glass-hover-shadow);transform:translateY(-3px)}
+  .contact-icon{
+    width:52px;height:52px;margin:0 auto 14px;border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-mono);font-weight:700;font-size:1.1rem;
+    background:var(--color-accent-light);color:var(--color-accent);
+  }
+  .contact-card h3{font-size:1rem;font-weight:600;color:var(--color-fg-bold);margin-bottom:6px}
+  .contact-card a{font-size:1.02rem;font-weight:500;color:var(--color-accent);word-break:break-all}
+  .contact-card a:hover{text-decoration:underline}
+  .contact-card .sub{font-size:.82rem;color:var(--color-fg-muted);margin-top:6px}
+  .resume-box{
+    max-width:760px;margin:28px auto 0;text-align:center;
+    background:var(--glass-bg);
+    -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+    border:1px solid var(--glass-border);
+    box-shadow:var(--glass-inner-highlight),var(--glass-shadow);
+    border-radius:18px;padding:26px 28px;
+  }
+  .resume-box p{font-size:.92rem;color:var(--color-fg-light);margin-bottom:14px}
+  .button{
+    display:inline-block;background:var(--color-accent);color:var(--color-on-accent);
+    font-weight:600;font-size:.95rem;padding:11px 26px;border-radius:12px;
+    transition:background .15s,transform .15s;
+  }
+  .button:hover{background:var(--color-accent-hover);color:var(--color-on-accent);transform:translateY(-1px)}
 
   .site-footer{
     border-top:1px solid var(--color-border);
@@ -154,6 +181,7 @@
     .hamburger{display:flex}
     .site-logo{margin-right:auto}
     .page-main{padding:40px 16px}
+    .contact-grid{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -165,8 +193,8 @@
     <nav class="nav-links" aria-label="主导航">
       <a class="nav-link" href="index.html">个人简历</a>
       <a class="nav-link" href="ai-assistant.html">AI助手</a>
-      <a class="nav-link active" href="other.html">其他</a>
-      <a class="nav-link" href="contact.html">联系我</a>
+      <a class="nav-link" href="other.html">其他</a>
+      <a class="nav-link active" href="contact.html">联系我</a>
     </nav>
     <div class="header-spacer"></div>
     <button class="theme-toggle" type="button" aria-label="切换明暗主题">◐ 主题</button>
@@ -184,14 +212,29 @@
 
 <main class="page-main">
   <div class="section-head">
-    <span class="section-kicker">More</span>
-    <h1 class="section-title">其他</h1>
-    <p class="section-sub">欧阳威的其他内容与链接</p>
+    <span class="section-kicker">Contact</span>
+    <h1 class="section-title">联系我</h1>
+    <p class="section-sub">有任何问题或合作意向，欢迎随时联系</p>
   </div>
-  <div class="placeholder-card">
-    <div class="big">🚧</div>
-    <h2>内容建设中</h2>
-    <p>这里将展示欧阳威的更多内容 —— 博客文章、项目细节、学习笔记等。敬请期待。</p>
+
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-icon">✉</div>
+      <h3>Email</h3>
+      <a href="mailto:3402685368@qq.com">3402685368@qq.com</a>
+      <p class="sub">工作 / 合作 / 咨询</p>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">☏</div>
+      <h3>电话</h3>
+      <a href="tel:19858807815">198 5880 7815</a>
+      <p class="sub">工作日 9:00 – 21:00</p>
+    </div>
+  </div>
+
+  <div class="resume-box">
+    <p>需要我的简历？点击下载 PDF 原件</p>
+    <a class="button" href="resume.pdf" target="_blank" rel="noopener">下载个人简历 PDF</a>
   </div>
 </main>
 
@@ -202,6 +245,7 @@
       <a href="index.html">个人简历</a>
       <a href="ai-assistant.html">AI助手</a>
       <a href="other.html">其他</a>
+      <a href="contact.html">联系我</a>
     </nav>
   </div>
 </footer>
