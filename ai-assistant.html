@@ -68,7 +68,7 @@
     background:var(--color-bg);color:var(--color-fg);
     line-height:1.7;-webkit-font-smoothing:antialiased;
     transition:background .3s ease,color .3s ease;
-    display:flex;flex-direction:column;min-height:100vh;
+    display:flex;flex-direction:column;height:100vh;overflow:hidden;
   }
   body::before{
     content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
@@ -148,6 +148,7 @@
   .chat-page{
     max-width:860px;margin:0 auto;padding:40px 28px 24px;width:100%;
     display:flex;flex-direction:column;flex:1;
+    min-height:0;
   }
   .chat-header{text-align:center;margin-bottom:28px}
   .chat-kicker{
@@ -158,9 +159,10 @@
   .chat-title{font-size:1.6rem;font-weight:700;color:var(--color-fg-bold);letter-spacing:-.01em}
   .chat-sub{font-size:.92rem;color:var(--color-fg-light);margin-top:6px}
 
-  /* 聊天窗口玻璃容器 */
+  /* 聊天窗口玻璃容器：固定高度，内部滚动 */
   .chat-window{
-    display:flex;flex-direction:column;flex:1;min-height:480px;
+    display:flex;flex-direction:column;
+    height:calc(100vh - 260px);min-height:420px;max-height:720px;
     background:var(--glass-bg);
     -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
     border:1px solid var(--glass-border);
@@ -192,7 +194,9 @@
   .chat-messages{
     flex:1;overflow-y:auto;padding:24px 22px;
     display:flex;flex-direction:column;gap:18px;
+    scrollbar-width:none;-ms-overflow-style:none;
   }
+  .chat-messages::-webkit-scrollbar{display:none;width:0;height:0}
   .msg{display:flex;gap:12px;max-width:85%}
   .msg-avatar{
     width:32px;height:32px;border-radius:50%;flex-shrink:0;
@@ -283,7 +287,7 @@
     .hamburger{display:flex}
     .site-logo{margin-right:auto}
     .chat-page{padding:24px 16px 16px}
-    .chat-window{min-height:420px;border-radius:18px}
+    .chat-window{height:calc(100vh - 200px);min-height:380px;max-height:640px;border-radius:18px}
     .chat-messages{padding:18px 14px}
     .msg{max-width:92%}
   }
@@ -397,8 +401,11 @@
   var text=document.getElementById('chat-text');
   var send=document.getElementById('chat-send');
 
-  // 后端接口地址：预留。后端就绪后把 /api/chat 换成真实地址。
-  var API_URL='https://osheepv.github.io/api/chat';
+  // 会话 ID：每次打开页面生成新会话，避免不同用户对话串记忆
+  var sessionId=Date.now()+'-'+Math.random().toString(36).slice(2,10);
+
+  // 后端接口地址：本地 n8n（cpolar 穿透后再换公网地址）
+  var API_URL='http://localhost:5678/webhook/resume-agent-chat';
 
   function appendMsg(role,content){
     var isUser=role==='user';
@@ -447,7 +454,7 @@
       var resp=await fetch(API_URL,{
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({message:content})
+        body:JSON.stringify({message:content,sessionId:sessionId})
       });
       if(!resp.ok)throw new Error('HTTP '+resp.status);
       var data=await resp.json();
