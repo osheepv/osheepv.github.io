@@ -498,7 +498,7 @@
       appendMsg('bot',data.reply||'（未收到回复）');
     }catch(e){
       removeTyping();
-      appendMsg('bot','AI 助手暂时无法连接。后端接口尚未就绪，功能开发中，敬请期待。');
+      appendMsg('bot','AI 助手当前离线，暂时无法回复。请稍后再试。');
     }
     send.disabled=false;
     text.focus();
