@@ -185,9 +185,17 @@
   .chat-window-name{font-weight:700;color:var(--color-fg-bold);font-size:.98rem}
   .chat-window-status{font-size:.78rem;color:var(--color-fg-light);display:flex;align-items:center;gap:6px}
   .chat-window-status::before{
-    content:'';width:8px;height:8px;border-radius:50%;background:var(--color-success);
-    box-shadow:0 0 6px var(--color-success);
-    transition:background .3s ease,box-shadow .3s ease;
+    content:'';width:8px;height:8px;border-radius:50%;background:var(--color-fg-muted);
+    box-shadow:none;transition:background .3s ease,box-shadow .3s ease;
+  }
+  .chat-window-status.connecting{color:var(--color-fg-light)}
+  .chat-window-status.connecting::before{
+    background:var(--color-signal);box-shadow:0 0 6px var(--color-signal);
+    animation:pulse 1.2s infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .chat-window-status.online::before{
+    background:var(--color-success);box-shadow:0 0 6px var(--color-success);
   }
   .chat-window-status.offline{color:var(--color-fg-muted)}
   .chat-window-status.offline::before,.chat-window-status.offline::after{
@@ -335,7 +343,7 @@
       <div class="chat-avatar">AI</div>
       <div>
         <div class="chat-window-name">欧阳威 · AI 助手</div>
-        <div class="chat-window-status" id="chat-status">在线 · 了解欧阳威的一切</div>
+        <div class="chat-window-status connecting" id="chat-status">连接中…</div>
       </div>
       <div class="header-spacer"></div>
     </div>
@@ -452,13 +460,16 @@
   var checkTimer=null;
   // health 端点：n8n 单独工作流，GET 立即返回 200，不调 DeepSeek，毫秒级判定
   var HEALTH_URL=API_URL.replace('/webhook/resume-agent-chat','/webhook/health');
-  function setOnline(on){
+  // 三态：connecting(默认) / online / offline
+  function setStatus(state){
     if(!statusEl)return;
-    statusEl.classList.toggle('offline',!on);
-    statusEl.textContent=on?'在线 · 了解欧阳威的一切':'离线 · 服务暂不可用';
+    statusEl.classList.remove('connecting','online','offline');
+    statusEl.classList.add(state);
+    if(state==='connecting'){statusEl.textContent='连接中…'}
+    else if(state==='online'){statusEl.textContent='在线 · 了解欧阳威的一切'}
+    else{statusEl.textContent='离线 · 服务暂不可用'}
   }
   async function checkStatus(){
-    // 初始显示"检测中…"避免白屏等待；请求失败/超时即判离线
     var controller=new AbortController();
     var timer=setTimeout(function(){controller.abort()},4000);
     try{
@@ -467,14 +478,15 @@
         signal:controller.signal,
         cache:'no-store'
       });
-      setOnline(resp.ok);
+      setStatus(resp.ok?'online':'offline');
     }catch(e){
-      setOnline(false);
+      setStatus('offline');
     }finally{
       clearTimeout(timer);
     }
   }
-  // 首次检测 + 每 15 秒刷新
+  // 初始为连接中，首次检测 + 每 15 秒刷新
+  setStatus('connecting');
   checkStatus();
   checkTimer=setInterval(checkStatus,15000);
 
