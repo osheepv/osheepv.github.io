@@ -447,36 +447,36 @@
   }
   function removeTyping(){var r=document.getElementById('typing-row');if(r)r.remove()}
 
-  // ===== 在线状态检测：定期探测后端，在线绿/离线灰 =====
+  // ===== 在线状态检测：探测轻量 health 端点，在线绿/离线灰 =====
   var statusEl=document.getElementById('chat-status');
   var checkTimer=null;
+  // health 端点：n8n 单独工作流，GET 立即返回 200，不调 DeepSeek，毫秒级判定
+  var HEALTH_URL=API_URL.replace('/webhook/resume-agent-chat','/webhook/health');
   function setOnline(on){
     if(!statusEl)return;
     statusEl.classList.toggle('offline',!on);
     statusEl.textContent=on?'在线 · 了解欧阳威的一切':'离线 · 服务暂不可用';
   }
   async function checkStatus(){
-    // 用轻量请求探测后端；n8n 无专用 health 接口，用一个短消息触发（超时即视为离线）
+    // 初始显示"检测中…"避免白屏等待；请求失败/超时即判离线
     var controller=new AbortController();
-    var timer=setTimeout(function(){controller.abort()},8000);
+    var timer=setTimeout(function(){controller.abort()},4000);
     try{
-      var resp=await fetch(API_URL,{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({message:'__ping__',sessionId:sessionId}),
-        signal:controller.signal
+      var resp=await fetch(HEALTH_URL,{
+        method:'GET',
+        signal:controller.signal,
+        cache:'no-store'
       });
-      if(resp.ok){setOnline(true)}
-      else{setOnline(false)}
+      setOnline(resp.ok);
     }catch(e){
       setOnline(false);
     }finally{
       clearTimeout(timer);
     }
   }
-  // 首次检测 + 每 30 秒刷新
+  // 首次检测 + 每 15 秒刷新
   checkStatus();
-  checkTimer=setInterval(checkStatus,30000);
+  checkTimer=setInterval(checkStatus,15000);
 
   async function sendMessage(){
     var content=text.value.trim();
