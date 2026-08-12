@@ -187,6 +187,11 @@
   .chat-window-status::before{
     content:'';width:8px;height:8px;border-radius:50%;background:var(--color-success);
     box-shadow:0 0 6px var(--color-success);
+    transition:background .3s ease,box-shadow .3s ease;
+  }
+  .chat-window-status.offline{color:var(--color-fg-muted)}
+  .chat-window-status.offline::before,.chat-window-status.offline::after{
+    background:var(--color-fg-muted)!important;box-shadow:none!important;
   }
   .chat-window-head .header-spacer{flex:1}
 
@@ -330,7 +335,7 @@
       <div class="chat-avatar">AI</div>
       <div>
         <div class="chat-window-name">欧阳威 · AI 助手</div>
-        <div class="chat-window-status">在线 · 了解欧阳威的一切</div>
+        <div class="chat-window-status" id="chat-status">在线 · 了解欧阳威的一切</div>
       </div>
       <div class="header-spacer"></div>
     </div>
@@ -441,6 +446,37 @@
     messages.scrollTop=messages.scrollHeight;
   }
   function removeTyping(){var r=document.getElementById('typing-row');if(r)r.remove()}
+
+  // ===== 在线状态检测：定期探测后端，在线绿/离线灰 =====
+  var statusEl=document.getElementById('chat-status');
+  var checkTimer=null;
+  function setOnline(on){
+    if(!statusEl)return;
+    statusEl.classList.toggle('offline',!on);
+    statusEl.textContent=on?'在线 · 了解欧阳威的一切':'离线 · 服务暂不可用';
+  }
+  async function checkStatus(){
+    // 用轻量请求探测后端；n8n 无专用 health 接口，用一个短消息触发（超时即视为离线）
+    var controller=new AbortController();
+    var timer=setTimeout(function(){controller.abort()},8000);
+    try{
+      var resp=await fetch(API_URL,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({message:'__ping__',sessionId:sessionId}),
+        signal:controller.signal
+      });
+      if(resp.ok){setOnline(true)}
+      else{setOnline(false)}
+    }catch(e){
+      setOnline(false);
+    }finally{
+      clearTimeout(timer);
+    }
+  }
+  // 首次检测 + 每 30 秒刷新
+  checkStatus();
+  checkTimer=setInterval(checkStatus,30000);
 
   async function sendMessage(){
     var content=text.value.trim();
