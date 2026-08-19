@@ -2419,8 +2419,18 @@ html[data-theme="dark"] .form-success {
   }
 
   .stats-inner {
-    flex-direction: column;
-    gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 16px;
+    justify-items: center;
+  }
+
+  .stat-number {
+    font-size: clamp(2rem, 9vw, 2.75rem);
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
   }
 
   .quote-text {
