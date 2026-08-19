@@ -1,235 +1,108 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>其他 — 欧阳威</title>
-<meta name="description" content="欧阳威的其他内容。">
-<script>
-(function(){try{var t=localStorage.getItem('ow-theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t}else if(window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.dataset.theme='dark'}else{document.documentElement.dataset.theme='light'}}catch(e){document.documentElement.dataset.theme='light'}})();
-</script>
-<style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
-    --font-mono:"JetBrains Mono","Cascadia Code","SF Mono",ui-monospace,monospace;
-    --color-bg:#fcfbf9;--color-bg-alt:#f2f1ec;--color-fg:#23272e;--color-fg-bold:#0e1116;
-    --color-fg-light:#545a63;--color-fg-muted:#23272e8c;--color-accent:#1b2fbf;
-    --color-accent-hover:#16249c;--color-accent-light:#1b2fbf1f;--color-accent-underline:#1b2fbf52;
-    --color-signal:#9a5600;--color-signal-mark:#e8930c;--color-border:#23272e24;
-    --color-surface-hover:#23272e0f;--color-on-accent:#fff;
-    --glass-bg:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,.22));
-    --glass-border:rgba(255,255,255,.9);
-    --glass-inner-highlight:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -1px 0 rgba(255,255,255,.25);
-    --glass-shadow:0 10px 36px rgba(20,23,28,.14),0 3px 10px rgba(20,23,28,.08);
-  }
-  html[data-theme="dark"]{
-    --color-bg:#14171c;--color-bg-alt:#0d1015;--color-fg:#d8dbe0;--color-fg-bold:#f2f4f7;
-    --color-fg-light:#949aa4;--color-fg-muted:#ffffff80;--color-accent:#8098ff;
-    --color-accent-hover:#a3b3ff;--color-accent-light:#8098ff1f;--color-accent-underline:#8098ff52;
-    --color-signal:#f0a202;--color-signal-mark:#f0a202;--color-border:#ffffff1f;
-    --color-surface-hover:#ffffff12;--color-on-accent:#14171c;
-    --glass-bg:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.03));
-    --glass-border:rgba(255,255,255,.22);
-    --glass-inner-highlight:inset 0 1px 0 rgba(255,255,255,.18);
-    --glass-shadow:0 8px 32px rgba(0,0,0,.35),0 2px 8px rgba(0,0,0,.20);
-  }
-  html{scroll-behavior:auto}
-  body{
-    font-family:var(--font-sans);background:var(--color-bg);color:var(--color-fg);
-    line-height:1.7;-webkit-font-smoothing:antialiased;
-    transition:background .3s ease,color .3s ease;
-    display:flex;flex-direction:column;min-height:100vh;
-  }
-  body::before{
-    content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
-    background:
-      radial-gradient(600px 400px at 12% 8%,rgba(27,47,191,.10),transparent 65%),
-      radial-gradient(700px 460px at 88% 22%,rgba(128,152,255,.14),transparent 65%),
-      radial-gradient(560px 400px at 20% 62%,rgba(240,162,2,.10),transparent 65%),
-      radial-gradient(640px 420px at 80% 78%,rgba(27,47,191,.08),transparent 65%);
-  }
-  html[data-theme="dark"] body::before{
-    background:
-      radial-gradient(600px 400px at 12% 8%,rgba(128,152,255,.16),transparent 65%),
-      radial-gradient(700px 460px at 88% 22%,rgba(240,162,2,.12),transparent 65%),
-      radial-gradient(560px 400px at 20% 62%,rgba(128,152,255,.10),transparent 65%),
-      radial-gradient(640px 420px at 80% 78%,rgba(240,162,2,.08),transparent 65%);
-  }
-  a{color:var(--color-accent);text-decoration:none;transition:color .15s}
-  a:hover{color:var(--color-accent-hover)}
-  .site-header{
-    position:sticky;top:0;z-index:50;
-    background:color-mix(in srgb,var(--color-bg) 82%,transparent);
-    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--color-border);
-  }
-  .header-inner{
-    max-width:1000px;margin:0 auto;padding:16px 28px;
-    display:flex;align-items:center;gap:32px;
-  }
-  .site-logo{
-    font-family:var(--font-mono);font-weight:700;font-size:1.05rem;
-    color:var(--color-fg-bold);letter-spacing:.02em;white-space:nowrap;
-  }
-  .site-logo:hover{color:var(--color-accent)}
-  .nav-links{display:flex;gap:26px;align-items:center}
-  .nav-link{
-    color:var(--color-fg-light);font-size:.95rem;font-weight:500;
-    padding:2px 0;border-bottom:1px solid transparent;
-  }
-  .nav-link:hover{color:var(--color-fg-bold);border-bottom-color:var(--color-accent-underline)}
-  .nav-link.active{color:var(--color-fg-bold);border-bottom-color:var(--color-accent-underline);font-weight:600}
-  .mobile-menu a.active{color:var(--color-accent);font-weight:600}
-  .header-spacer{flex:1}
-  .theme-toggle{
-    border:1px solid var(--color-border);background:transparent;
-    color:var(--color-fg-light);font-size:.85rem;
-    padding:5px 12px;border-radius:999px;cursor:pointer;
-    font-family:var(--font-mono);transition:.2s;
-  }
-  .theme-toggle:hover{color:var(--color-fg-bold);border-color:var(--color-accent-underline)}
-  .hamburger{
-    display:none;background:transparent;border:1px solid var(--color-border);
-    border-radius:8px;width:40px;height:40px;cursor:pointer;
-    align-items:center;justify-content:center;flex-direction:column;gap:4px;
-  }
-  .hamburger span{
-    display:block;width:18px;height:2px;border-radius:1px;
-    background:var(--color-fg-light);transition:transform .25s ease,opacity .2s ease;
-  }
-  .hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
-  .hamburger.open span:nth-child(2){opacity:0}
-  .hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-  .mobile-menu{
-    display:none;flex-direction:column;
-    background:var(--color-bg);border-bottom:1px solid var(--color-border);
-    padding:12px 24px 20px;gap:4px;
-  }
-  .mobile-menu.open{display:flex}
-  .mobile-menu a{
-    color:var(--color-fg-light);font-size:1rem;font-weight:500;
-    padding:12px 8px;border-bottom:1px solid var(--color-border);border-radius:6px;
-  }
-  .mobile-menu a:hover{color:var(--color-accent);background:var(--color-surface-hover)}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>其他 — 欧阳威</title>
+  <meta name="description" content="欧阳威的其他内容与链接。">
 
-  .page-main{
-    max-width:1000px;margin:0 auto;padding:64px 28px;width:100%;flex:1;
-  }
-  .section-head{text-align:center;margin-bottom:36px}
-  .section-kicker{
-    display:block;font-family:var(--font-mono);font-size:.76rem;font-weight:600;
-    letter-spacing:.14em;text-transform:uppercase;
-    color:var(--color-signal);margin-bottom:8px;
-  }
-  .section-title{font-size:1.7rem;font-weight:700;color:var(--color-fg-bold);letter-spacing:-.01em}
-  .section-sub{font-size:.95rem;color:var(--color-fg-light);margin-top:8px}
-  .placeholder-card{
-    max-width:640px;margin:0 auto;text-align:center;
-    background:var(--glass-bg);
-    -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
-    border:1px solid var(--glass-border);
-    box-shadow:var(--glass-inner-highlight),var(--glass-shadow);
-    border-radius:22px;padding:56px 40px;
-  }
-  .placeholder-card .big{font-size:2.4rem;margin-bottom:12px}
-  .placeholder-card h2{font-size:1.3rem;color:var(--color-fg-bold);margin-bottom:10px}
-  .placeholder-card p{font-size:.94rem;color:var(--color-fg-light)}
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('ow-theme');
+        if (t === 'dark' || t === 'light') {
+          document.documentElement.dataset.theme = t;
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      } catch(e) {}
+    })();
+  </script>
 
-  .site-footer{
-    border-top:1px solid var(--color-border);
-    background:var(--color-bg-alt);margin-top:auto;
-  }
-  .footer-content{
-    max-width:1000px;margin:0 auto;padding:28px;
-    display:flex;justify-content:center;gap:28px;flex-wrap:wrap;
-  }
-  .footer-copy{font-size:.82rem;color:var(--color-fg-muted)}
-  .footer-links-col{display:flex;gap:20px}
-  .footer-links-col a{color:var(--color-fg-light);font-size:.9rem}
-  .footer-links-col a:hover{color:var(--color-accent)}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  @media (max-width:820px){
-    .nav-links{display:none}
-    .hamburger{display:flex}
-    .site-logo{margin-right:auto}
-    .page-main{padding:40px 16px}
-  }
-</style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header class="site-header">
-  <div class="header-inner">
-    <a class="site-logo" href="index.html" aria-label="欧阳威 — 首页">OYW</a>
-    <nav class="nav-links" aria-label="主导航">
-      <a class="nav-link" href="index.html">个人简历</a>
-      <a class="nav-link" href="ai-assistant.html">AI助手</a>
-      <a class="nav-link active" href="other.html">其他</a>
-      <a class="nav-link" href="contact.html">联系我</a>
-    </nav>
-    <div class="header-spacer"></div>
-    <button class="theme-toggle" type="button" aria-label="切换明暗主题">◐ 主题</button>
-    <button class="hamburger" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <nav class="mobile-menu" id="mobile-menu" aria-label="移动端导航">
-    <a href="index.html">个人简历</a>
-    <a href="ai-assistant.html">AI助手</a>
-    <a href="other.html">其他</a>
-    <a href="contact.html">联系我</a>
-  </nav>
-</header>
+  <a href="#main-content" class="skip-link">跳到主要内容</a>
 
-<main class="page-main">
-  <div class="section-head">
-    <span class="section-kicker">More</span>
-    <h1 class="section-title">其他</h1>
-    <p class="section-sub">欧阳威的其他内容与链接</p>
-  </div>
-  <div class="placeholder-card">
-    <div class="big">🚧</div>
-    <h2>内容建设中</h2>
-    <p>这里将展示欧阳威的更多内容 —— 博客文章、项目细节、学习笔记等。敬请期待。</p>
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="footer-content">
-    <div class="footer-copy">© 2026 欧阳威 · Built with Claude Code</div>
-    <nav class="footer-links-col" aria-label="页脚导航">
+  <!-- ===== Header ===== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a class="site-logo" href="index.html" aria-label="欧阳威 — 首页">OYW</a>
+      <nav class="nav-links" aria-label="主导航">
+        <a class="nav-link" href="index.html">个人简历</a>
+        <a class="nav-link" href="ai-assistant.html">AI助手</a>
+        <a class="nav-link active" href="other.html">其他</a>
+        <a class="nav-link" href="contact.html">联系我</a>
+      </nav>
+      <div class="header-spacer"></div>
+      <button class="theme-toggle" type="button" aria-label="切换明暗主题">◐ 主题</button>
+      <button class="hamburger" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="移动端导航">
       <a href="index.html">个人简历</a>
       <a href="ai-assistant.html">AI助手</a>
-      <a href="other.html">其他</a>
+      <a href="other.html" class="active">其他</a>
+      <a href="contact.html">联系我</a>
     </nav>
-  </div>
-</footer>
+  </header>
 
-<script>
-(function(){
-  var btn=document.querySelector('.theme-toggle');
-  function current(){return document.documentElement.dataset.theme==='dark'?'dark':'light'}
-  function syncBtn(){btn.textContent=current()==='dark'?'◐ 深色':'◐ 浅色'}
-  btn.addEventListener('click',function(){
-    var next=current()==='dark'?'light':'dark';
-    document.documentElement.dataset.theme=next;
-    try{localStorage.setItem('ow-theme',next)}catch(e){}
-    syncBtn();
-  });
-  syncBtn();
-})();
-(function(){
-  var hb=document.querySelector('.hamburger');
-  if(!hb)return;
-  var mm=document.getElementById('mobile-menu');
-  hb.addEventListener('click',function(){
-    var open=mm.classList.toggle('open');
-    hb.classList.toggle('open',open);
-    hb.setAttribute('aria-expanded',open?'true':'false');
-    hb.setAttribute('aria-label',open?'关闭菜单':'打开菜单');
-  });
-})();
-</script>
+  <main class="page-main" id="main-content">
+    <div class="section-head reveal" style="text-align:center; margin-bottom:40px;">
+      <span class="section-kicker">More</span>
+      <h1 class="section-title">其他</h1>
+      <p class="section-sub">欧阳威的其他内容与链接</p>
+    </div>
+
+    <div class="placeholder-card reveal reveal-delay-1">
+      <div class="big">🚧</div>
+      <h2>内容建设中</h2>
+      <p>这里将展示欧阳威的更多内容 —— 博客文章、项目细节、学习笔记等。敬请期待。</p>
+    </div>
+
+    <!-- Quick links -->
+    <div style="max-width:640px; margin:40px auto 0; display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;">
+      <a href="index.html" class="btn btn-ghost" style="justify-content:center;">← 返回简历</a>
+      <a href="contact.html" class="btn btn-ghost" style="justify-content:center;">联系我 →</a>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">OYW</div>
+        <p>欧阳威的个人简历网站。机械设计制造及其自动化专业，数学建模竞赛获奖者。</p>
+      </div>
+      <div class="footer-col">
+        <h4>探索</h4>
+        <ul>
+          <li><a href="index.html">个人简历</a></li>
+          <li><a href="ai-assistant.html">AI助手</a></li>
+          <li><a href="other.html">其他</a></li>
+          <li><a href="contact.html">联系我</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>联系</h4>
+        <ul>
+          <li><a href="mailto:3402685368@qq.com">3402685368@qq.com</a></li>
+          <li><a href="mailto:oyw20041015@gmail.com">oyw20041015@gmail.com</a></li>
+          <li><a href="tel:19858807815">19858807815</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 欧阳威 · Built with passion</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
