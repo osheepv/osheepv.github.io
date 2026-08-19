@@ -1,535 +1,241 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI助手 — 欧阳威</title>
-<meta name="description" content="和欧阳威的 AI 助手对话，了解他的经历、技能与作品。">
-<script>
-(function(){try{var t=localStorage.getItem('ow-theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t}else if(window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.dataset.theme='dark'}else{document.documentElement.dataset.theme='light'}}catch(e){document.documentElement.dataset.theme='light'}})();
-</script>
-<style>
-  /* ===== Design tokens（与简历页一致） ===== */
-  :root{
-    --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
-    --font-mono:"JetBrains Mono","Cascadia Code","SF Mono",ui-monospace,monospace;
-    --color-bg:#fcfbf9;
-    --color-bg-alt:#f2f1ec;
-    --color-fg:#23272e;
-    --color-fg-bold:#0e1116;
-    --color-fg-light:#545a63;
-    --color-fg-muted:#23272e8c;
-    --color-accent:#1b2fbf;
-    --color-accent-hover:#16249c;
-    --color-accent-light:#1b2fbf1f;
-    --color-accent-underline:#1b2fbf52;
-    --color-signal:#9a5600;
-    --color-signal-mark:#e8930c;
-    --color-border:#23272e24;
-    --color-surface-hover:#23272e0f;
-    --color-on-accent:#fff;
-    --color-success:#1a7f37;
-    /* 玻璃质感 */
-    --glass-bg:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,.22));
-    --glass-border:rgba(255,255,255,.9);
-    --glass-inner-highlight:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -1px 0 rgba(255,255,255,.25);
-    --glass-shadow:0 10px 36px rgba(20,23,28,.14),0 3px 10px rgba(20,23,28,.08);
-    --glass-hover-shadow:0 20px 52px rgba(20,23,28,.20),0 5px 18px rgba(20,23,28,.12);
-  }
-  html[data-theme="dark"]{
-    --color-bg:#14171c;
-    --color-bg-alt:#0d1015;
-    --color-fg:#d8dbe0;
-    --color-fg-bold:#f2f4f7;
-    --color-fg-light:#949aa4;
-    --color-fg-muted:#ffffff80;
-    --color-accent:#8098ff;
-    --color-accent-hover:#a3b3ff;
-    --color-accent-light:#8098ff1f;
-    --color-accent-underline:#8098ff52;
-    --color-signal:#f0a202;
-    --color-signal-mark:#f0a202;
-    --color-border:#ffffff1f;
-    --color-surface-hover:#ffffff12;
-    --color-on-accent:#14171c;
-    --color-success:#3fb950;
-    --glass-bg:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.03));
-    --glass-border:rgba(255,255,255,.22);
-    --glass-inner-highlight:inset 0 1px 0 rgba(255,255,255,.18);
-    --glass-shadow:0 8px 32px rgba(0,0,0,.35),0 2px 8px rgba(0,0,0,.20);
-    --glass-hover-shadow:0 16px 48px rgba(0,0,0,.50),0 4px 16px rgba(0,0,0,.28);
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI助手 — 欧阳威</title>
+  <meta name="description" content="和欧阳威的 AI 助手对话，了解他的经历、技能与作品。">
 
-  /* ===== Reset & base ===== */
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:auto}
-  body{
-    font-family:var(--font-sans);
-    background:var(--color-bg);color:var(--color-fg);
-    line-height:1.7;-webkit-font-smoothing:antialiased;
-    transition:background .3s ease,color .3s ease;
-    display:flex;flex-direction:column;height:100vh;overflow:hidden;
-  }
-  body::before{
-    content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
-    background:
-      radial-gradient(600px 400px at 12% 8%,rgba(27,47,191,.10),transparent 65%),
-      radial-gradient(700px 460px at 88% 22%,rgba(128,152,255,.14),transparent 65%),
-      radial-gradient(560px 400px at 20% 62%,rgba(240,162,2,.10),transparent 65%),
-      radial-gradient(640px 420px at 80% 78%,rgba(27,47,191,.08),transparent 65%);
-  }
-  html[data-theme="dark"] body::before{
-    background:
-      radial-gradient(600px 400px at 12% 8%,rgba(128,152,255,.16),transparent 65%),
-      radial-gradient(700px 460px at 88% 22%,rgba(240,162,2,.12),transparent 65%),
-      radial-gradient(560px 400px at 20% 62%,rgba(128,152,255,.10),transparent 65%),
-      radial-gradient(640px 420px at 80% 78%,rgba(240,162,2,.08),transparent 65%);
-  }
-  a{color:var(--color-accent);text-decoration:none;transition:color .15s}
-  a:hover{color:var(--color-accent-hover)}
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('ow-theme');
+        if (t === 'dark' || t === 'light') {
+          document.documentElement.dataset.theme = t;
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      } catch(e) {}
+    })();
+  </script>
 
-  /* ===== Header（与简历页一致） ===== */
-  .site-header{
-    position:sticky;top:0;z-index:50;
-    background:color-mix(in srgb,var(--color-bg) 82%,transparent);
-    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--color-border);
-  }
-  .header-inner{
-    max-width:1000px;margin:0 auto;padding:16px 28px;
-    display:flex;align-items:center;gap:32px;
-  }
-  .site-logo{
-    font-family:var(--font-mono);font-weight:700;font-size:1.05rem;
-    color:var(--color-fg-bold);letter-spacing:.02em;white-space:nowrap;
-  }
-  .site-logo:hover{color:var(--color-accent)}
-  .nav-links{display:flex;gap:26px;align-items:center}
-  .nav-link{
-    color:var(--color-fg-light);font-size:.95rem;font-weight:500;
-    padding:2px 0;border-bottom:1px solid transparent;
-  }
-  .nav-link:hover{color:var(--color-fg-bold);border-bottom-color:var(--color-accent-underline)}
-  .nav-link.active{color:var(--color-fg-bold);border-bottom-color:var(--color-accent-underline);font-weight:600}
-  .mobile-menu a.active{color:var(--color-accent);font-weight:600}
-  .header-spacer{flex:1}
-  .theme-toggle{
-    border:1px solid var(--color-border);background:transparent;
-    color:var(--color-fg-light);font-size:.85rem;
-    padding:5px 12px;border-radius:999px;cursor:pointer;
-    font-family:var(--font-mono);transition:.2s;
-  }
-  .theme-toggle:hover{color:var(--color-fg-bold);border-color:var(--color-accent-underline)}
-  .hamburger{
-    display:none;background:transparent;border:1px solid var(--color-border);
-    border-radius:8px;width:40px;height:40px;cursor:pointer;
-    align-items:center;justify-content:center;flex-direction:column;gap:4px;
-  }
-  .hamburger span{
-    display:block;width:18px;height:2px;border-radius:1px;
-    background:var(--color-fg-light);transition:transform .25s ease,opacity .2s ease;
-  }
-  .hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
-  .hamburger.open span:nth-child(2){opacity:0}
-  .hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-  .mobile-menu{
-    display:none;flex-direction:column;
-    background:var(--color-bg);border-bottom:1px solid var(--color-border);
-    padding:12px 24px 20px;gap:4px;
-  }
-  .mobile-menu.open{display:flex}
-  .mobile-menu a{
-    color:var(--color-fg-light);font-size:1rem;font-weight:500;
-    padding:12px 8px;border-bottom:1px solid var(--color-border);border-radius:6px;
-  }
-  .mobile-menu a:hover{color:var(--color-accent);background:var(--color-surface-hover)}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  /* ===== 聊天页主体 ===== */
-  .chat-page{
-    max-width:860px;margin:0 auto;padding:40px 28px 24px;width:100%;
-    display:flex;flex-direction:column;flex:1;
-    min-height:0;
-  }
-  .chat-header{text-align:center;margin-bottom:28px}
-  .chat-kicker{
-    display:block;font-family:var(--font-mono);font-size:.76rem;font-weight:600;
-    letter-spacing:.14em;text-transform:uppercase;
-    color:var(--color-signal);margin-bottom:8px;
-  }
-  .chat-title{font-size:1.6rem;font-weight:700;color:var(--color-fg-bold);letter-spacing:-.01em}
-  .chat-sub{font-size:.92rem;color:var(--color-fg-light);margin-top:6px}
-
-  /* 聊天窗口玻璃容器：固定高度，内部滚动 */
-  .chat-window{
-    display:flex;flex-direction:column;
-    height:calc(100vh - 260px);min-height:420px;max-height:720px;
-    background:var(--glass-bg);
-    -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
-    border:1px solid var(--glass-border);
-    box-shadow:var(--glass-inner-highlight),var(--glass-shadow);
-    border-radius:22px;overflow:hidden;
-    transform:translateZ(0);will-change:transform;
-  }
-  /* 顶部信息条 */
-  .chat-window-head{
-    display:flex;align-items:center;gap:12px;
-    padding:16px 22px;border-bottom:1px solid var(--glass-border);
-  }
-  .chat-avatar{
-    width:40px;height:40px;border-radius:50%;flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(135deg,var(--color-accent-light),color-mix(in srgb,var(--color-signal) 12%,transparent));
-    border:1px solid var(--glass-border);
-    font-family:var(--font-mono);font-weight:800;color:var(--color-accent);font-size:1rem;
-  }
-  .chat-window-name{font-weight:700;color:var(--color-fg-bold);font-size:.98rem}
-  .chat-window-status{font-size:.78rem;color:var(--color-fg-light);display:flex;align-items:center;gap:6px}
-  .chat-window-status::before{
-    content:'';width:8px;height:8px;border-radius:50%;background:var(--color-fg-muted);
-    box-shadow:none;transition:background .3s ease,box-shadow .3s ease;
-  }
-  .chat-window-status.connecting{color:var(--color-fg-light)}
-  .chat-window-status.connecting::before{
-    background:var(--color-signal);box-shadow:0 0 6px var(--color-signal);
-    animation:pulse 1.2s infinite;
-  }
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  .chat-window-status.online::before{
-    background:var(--color-success);box-shadow:0 0 6px var(--color-success);
-  }
-  .chat-window-status.offline{color:var(--color-fg-muted)}
-  .chat-window-status.offline::before,.chat-window-status.offline::after{
-    background:var(--color-fg-muted)!important;box-shadow:none!important;
-  }
-  .chat-window-head .header-spacer{flex:1}
-
-  /* 消息区 */
-  .chat-messages{
-    flex:1;overflow-y:auto;padding:24px 22px;
-    display:flex;flex-direction:column;gap:18px;
-    scrollbar-width:none;-ms-overflow-style:none;
-  }
-  .chat-messages::-webkit-scrollbar{display:none;width:0;height:0}
-  .msg{display:flex;gap:12px;max-width:85%}
-  .msg-avatar{
-    width:32px;height:32px;border-radius:50%;flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--font-mono);font-weight:700;font-size:.78rem;
-    border:1px solid var(--glass-border);
-  }
-  .msg.bot .msg-avatar{background:var(--color-accent-light);color:var(--color-accent)}
-  .msg.user .msg-avatar{background:color-mix(in srgb,var(--color-signal) 14%,transparent);color:var(--color-signal-mark)}
-  .msg-bubble{
-    padding:12px 16px;border-radius:16px;font-size:.94rem;line-height:1.65;
-  }
-  .msg.bot .msg-bubble{
-    background:var(--glass-bg);border:1px solid var(--glass-border);
-    box-shadow:var(--glass-inner-highlight),0 2px 8px rgba(20,23,28,.06);
-    border-top-left-radius:4px;
-  }
-  .msg.user{
-    flex-direction:row-reverse;margin-left:auto;
-  }
-  .msg.user .msg-bubble{
-    background:linear-gradient(135deg,var(--color-accent),var(--color-accent-hover));
-    color:var(--color-on-accent);border:none;border-top-right-radius:4px;
-    box-shadow:0 4px 14px color-mix(in srgb,var(--color-accent) 30%,transparent);
-  }
-  .msg-time{font-size:.72rem;color:var(--color-fg-muted);margin-top:4px;font-family:var(--font-mono)}
-  .msg.user .msg-time{text-align:right}
-  .typing{display:flex;gap:5px;padding:4px 2px}
-  .typing span{
-    width:7px;height:7px;border-radius:50%;background:var(--color-fg-light);
-    animation:blink 1.2s infinite;
-  }
-  .typing span:nth-child(2){animation-delay:.2s}
-  .typing span:nth-child(3){animation-delay:.4s}
-  @keyframes blink{0%,80%,100%{opacity:.3}40%{opacity:1}}
-
-  /* 输入区 */
-  .chat-input{
-    display:flex;gap:12px;align-items:flex-end;
-    padding:16px 20px 18px;border-top:1px solid var(--glass-border);
-  }
-  .chat-input textarea{
-    flex:1;resize:none;min-height:44px;max-height:140px;
-    background:var(--glass-bg);
-    border:1px solid var(--glass-border);
-    border-radius:14px;padding:11px 16px;
-    color:var(--color-fg);font-family:var(--font-sans);font-size:.95rem;
-    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
-    outline:none;transition:border-color .15s,box-shadow .15s;
-  }
-  .chat-input textarea::placeholder{color:var(--color-fg-muted)}
-  .chat-input textarea:focus{
-    border-color:color-mix(in srgb,var(--color-accent) 50%,transparent);
-    box-shadow:0 0 0 3px var(--color-accent-light);
-  }
-  .chat-send{
-    flex-shrink:0;height:44px;padding:0 22px;
-    background:var(--color-accent);color:var(--color-on-accent);
-    border:none;border-radius:14px;font-weight:600;font-size:.95rem;cursor:pointer;
-    transition:background .15s,transform .15s;
-  }
-  .chat-send:hover{background:var(--color-accent-hover);transform:translateY(-1px)}
-  .chat-send:disabled{opacity:.5;cursor:not-allowed;transform:none}
-
-  .chat-hint{margin-top:16px;text-align:center;font-size:.8rem;color:var(--color-fg-muted)}
-  .chat-hint button{
-    background:none;border:none;color:var(--color-accent);cursor:pointer;
-    font-size:.8rem;padding:0 4px;
-  }
-  .chat-hint button:hover{text-decoration:underline}
-
-  /* ===== Footer ===== */
-  .site-footer{
-    border-top:1px solid var(--color-border);
-    background:var(--color-bg-alt);margin-top:auto;
-  }
-  .footer-content{
-    max-width:1000px;margin:0 auto;padding:28px;
-    display:flex;justify-content:center;gap:28px;flex-wrap:wrap;
-  }
-  .footer-copy{font-size:.82rem;color:var(--color-fg-muted)}
-  .footer-links-col{display:flex;gap:20px}
-  .footer-links-col a{color:var(--color-fg-light);font-size:.9rem}
-  .footer-links-col a:hover{color:var(--color-accent)}
-
-  @media (max-width:820px){
-    .nav-links{display:none}
-    .hamburger{display:flex}
-    .site-logo{margin-right:auto}
-    .chat-page{padding:24px 16px 16px}
-    .chat-window{height:calc(100vh - 200px);min-height:380px;max-height:640px;border-radius:18px}
-    .chat-messages{padding:18px 14px}
-    .msg{max-width:92%}
-  }
-</style>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body style="height:100vh; overflow:hidden;">
 
-<header class="site-header">
-  <div class="header-inner">
-    <a class="site-logo" href="index.html" aria-label="欧阳威 — 首页">OYW</a>
-    <nav class="nav-links" aria-label="主导航">
-      <a class="nav-link" href="index.html">个人简历</a>
-      <a class="nav-link active" href="ai-assistant.html">AI助手</a>
-      <a class="nav-link" href="other.html">其他</a>
-      <a class="nav-link" href="contact.html">联系我</a>
-    </nav>
-    <div class="header-spacer"></div>
-    <button class="theme-toggle" type="button" aria-label="切换明暗主题">◐ 主题</button>
-    <button class="hamburger" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <nav class="mobile-menu" id="mobile-menu" aria-label="移动端导航">
-    <a href="index.html">个人简历</a>
-    <a href="ai-assistant.html">AI助手</a>
-    <a href="other.html">其他</a>
-    <a href="contact.html">联系我</a>
-  </nav>
-</header>
+  <a href="#main-content" class="skip-link">跳到主要内容</a>
 
-<div class="chat-page">
-  <div class="chat-header">
-    <span class="chat-kicker">AI Assistant</span>
-    <h1 class="chat-title">欧阳威的 AI 助手</h1>
-    <p class="chat-sub">问我任何关于欧阳威的问题 —— 经历、技能、作品、竞赛</p>
-  </div>
-
-  <div class="chat-window" role="log" aria-live="polite" aria-label="对话区域">
-    <div class="chat-window-head">
-      <div class="chat-avatar">AI</div>
-      <div>
-        <div class="chat-window-name">欧阳威 · AI 助手</div>
-        <div class="chat-window-status connecting" id="chat-status">连接中…</div>
-      </div>
+  <!-- ===== Header ===== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a class="site-logo" href="index.html" aria-label="欧阳威 — 首页">OYW</a>
+      <nav class="nav-links" aria-label="主导航">
+        <a class="nav-link" href="index.html">个人简历</a>
+        <a class="nav-link active" href="ai-assistant.html">AI助手</a>
+        <a class="nav-link" href="other.html">其他</a>
+        <a class="nav-link" href="contact.html">联系我</a>
+      </nav>
       <div class="header-spacer"></div>
+      <button class="theme-toggle" type="button" aria-label="切换明暗主题">◐ 主题</button>
+      <button class="hamburger" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="移动端导航">
+      <a href="index.html">个人简历</a>
+      <a href="ai-assistant.html" class="active">AI助手</a>
+      <a href="other.html">其他</a>
+      <a href="contact.html">联系我</a>
+    </nav>
+  </header>
+
+  <div class="chat-page" id="main-content">
+    <div class="chat-header">
+      <span class="chat-kicker">AI Assistant</span>
+      <h1 class="chat-title">欧阳威的 AI 助手</h1>
+      <p class="chat-sub">问我任何关于欧阳威的问题 —— 经历、技能、作品、竞赛</p>
     </div>
 
-    <div class="chat-messages" id="chat-messages">
-      <div class="msg bot">
-        <div class="msg-avatar">AI</div>
+    <div class="chat-window" role="log" aria-live="polite" aria-label="对话区域">
+      <div class="chat-window-head">
+        <div class="chat-avatar">AI</div>
         <div>
-          <div class="msg-bubble">你好！我是欧阳威的 AI 助手。你可以问我关于他的教育背景、技术技能、竞赛荣誉、实习经历，或者任何关于他的问题。想从哪里开始？</div>
-          <div class="msg-time">现在</div>
+          <div class="chat-window-name">欧阳威 · AI 助手</div>
+          <div class="chat-window-status connecting" id="chat-status">连接中…</div>
+        </div>
+        <div class="header-spacer"></div>
+      </div>
+
+      <div class="chat-messages" id="chat-messages">
+        <div class="msg bot">
+          <div class="msg-avatar">AI</div>
+          <div>
+            <div class="msg-bubble">你好！我是欧阳威的 AI 助手。你可以问我关于他的教育背景、技术技能、竞赛荣誉、实习经历，或者任何关于他的问题。想从哪里开始？</div>
+            <div class="msg-time">现在</div>
+          </div>
         </div>
       </div>
+
+      <div class="chat-input">
+        <textarea id="chat-text" rows="1" placeholder="输入你的问题…（如：他擅长什么？）" aria-label="输入消息"></textarea>
+        <button class="chat-send" id="chat-send" type="button" aria-label="发送">发送</button>
+      </div>
     </div>
 
-    <div class="chat-input">
-      <textarea id="chat-text" rows="1" placeholder="输入你的问题…（如：他擅长什么？）" aria-label="输入消息"></textarea>
-      <button class="chat-send" id="chat-send" type="button" aria-label="发送">发送</button>
+    <p class="chat-hint">试试问：
+      <button type="button" data-q="他擅长哪些方面？">他擅长哪些方面？</button> ·
+      <button type="button" data-q="他获得过什么竞赛奖项？">竞赛奖项</button> ·
+      <button type="button" data-q="他的实习经历有哪些？">实习经历</button>
+    </p>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer" role="contentinfo" style="margin-top:0;">
+    <div class="footer-bottom" style="margin:0 auto; border-top:none;">
+      <span class="footer-copy">&copy; 2026 欧阳威 · Built with passion</span>
+      <nav aria-label="页脚导航" class="footer-social">
+        <a href="index.html" style="font-size:0.85rem;">个人简历</a>
+        <a href="other.html" style="font-size:0.85rem;">其他</a>
+        <a href="contact.html" style="font-size:0.85rem;">联系我</a>
+      </nav>
     </div>
-  </div>
+  </footer>
 
-  <p class="chat-hint">试试问：<button type="button" data-q="他擅长哪些方面？">他擅长哪些方面？</button>·
-  <button type="button" data-q="他获得过什么竞赛奖项？">竞赛奖项</button>·
-  <button type="button" data-q="他的实习经历有哪些？">实习经历</button></p>
-</div>
+  <script src="script.js"></script>
+  <script>
+  /* ===== 聊天逻辑（页面专属） ===== */
+  (function(){
+    var messages = document.getElementById('chat-messages');
+    var text = document.getElementById('chat-text');
+    var sendBtn = document.getElementById('chat-send');
 
-<footer class="site-footer">
-  <div class="footer-content">
-    <div class="footer-copy">© 2026 欧阳威 · Built with Claude Code</div>
-    <nav class="footer-links-col" aria-label="页脚导航">
-      <a href="index.html">个人简历</a>
-      <a href="ai-assistant.html">AI助手</a>
-      <a href="other.html">其他</a>
-    </nav>
-  </div>
-</footer>
+    var sessionId = Date.now() + '-' + Math.random().toString(36).slice(2,10);
+    var API_URL = 'https://7c93621c.r7.cpolar.cn/webhook/resume-agent-chat';
 
-<script>
-/* ===== 主题切换（与简历页一致） ===== */
-(function(){
-  var btn=document.querySelector('.theme-toggle');
-  function current(){return document.documentElement.dataset.theme==='dark'?'dark':'light'}
-  function syncBtn(){btn.textContent=current()==='dark'?'◐ 深色':'◐ 浅色'}
-  btn.addEventListener('click',function(){
-    var next=current()==='dark'?'light':'dark';
-    document.documentElement.dataset.theme=next;
-    try{localStorage.setItem('ow-theme',next)}catch(e){}
-    syncBtn();
-  });
-  syncBtn();
-})();
-
-/* ===== 汉堡菜单（与简历页一致） ===== */
-(function(){
-  var hb=document.querySelector('.hamburger');
-  if(!hb)return;
-  var mm=document.getElementById('mobile-menu');
-  hb.addEventListener('click',function(){
-    var open=mm.classList.toggle('open');
-    hb.classList.toggle('open',open);
-    hb.setAttribute('aria-expanded',open?'true':'false');
-    hb.setAttribute('aria-label',open?'关闭菜单':'打开菜单');
-  });
-})();
-
-/* ===== 聊天逻辑 ===== */
-(function(){
-  var messages=document.getElementById('chat-messages');
-  var text=document.getElementById('chat-text');
-  var send=document.getElementById('chat-send');
-
-  // 会话 ID：每次打开页面生成新会话，避免不同用户对话串记忆
-  var sessionId=Date.now()+'-'+Math.random().toString(36).slice(2,10);
-
-  // 后端接口地址：cpolar 公网穿透到本地 n8n
-  var API_URL='https://7c93621c.r7.cpolar.cn/webhook/resume-agent-chat';
-
-  function appendMsg(role,content){
-    var isUser=role==='user';
-    var row=document.createElement('div');
-    row.className='msg '+role;
-    var av=document.createElement('div');
-    av.className='msg-avatar';
-    av.textContent=isUser?'我':'AI';
-    var wrap=document.createElement('div');
-    var bubble=document.createElement('div');
-    bubble.className='msg-bubble';
-    bubble.textContent=content;
-    var time=document.createElement('div');
-    time.className='msg-time';
-    time.textContent=new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'});
-    wrap.appendChild(bubble);wrap.appendChild(time);
-    row.appendChild(av);row.appendChild(wrap);
-    messages.appendChild(row);
-    messages.scrollTop=messages.scrollHeight;
-  }
-
-  function showTyping(){
-    var row=document.createElement('div');
-    row.className='msg bot';row.id='typing-row';
-    var av=document.createElement('div');av.className='msg-avatar';av.textContent='AI';
-    var wrap=document.createElement('div');
-    var bubble=document.createElement('div');bubble.className='msg-bubble';
-    var t=document.createElement('div');t.className='typing';
-    t.innerHTML='<span></span><span></span><span></span>';
-    bubble.appendChild(t);wrap.appendChild(bubble);
-    row.appendChild(av);row.appendChild(wrap);
-    messages.appendChild(row);
-    messages.scrollTop=messages.scrollHeight;
-  }
-  function removeTyping(){var r=document.getElementById('typing-row');if(r)r.remove()}
-
-  // ===== 在线状态检测：探测轻量 health 端点，在线绿/离线灰 =====
-  var statusEl=document.getElementById('chat-status');
-  var checkTimer=null;
-  // health 端点：n8n 单独工作流，GET 立即返回 200，不调 DeepSeek，毫秒级判定
-  var HEALTH_URL=API_URL.replace('/webhook/resume-agent-chat','/webhook/health');
-  // 三态：connecting(默认) / online / offline
-  function setStatus(state){
-    if(!statusEl)return;
-    statusEl.classList.remove('connecting','online','offline');
-    statusEl.classList.add(state);
-    if(state==='connecting'){statusEl.textContent='连接中…'}
-    else if(state==='online'){statusEl.textContent='在线 · 了解欧阳威的一切'}
-    else{statusEl.textContent='离线 · 服务暂不可用'}
-  }
-  async function checkStatus(){
-    var controller=new AbortController();
-    var timer=setTimeout(function(){controller.abort()},4000);
-    try{
-      var resp=await fetch(HEALTH_URL,{
-        method:'GET',
-        signal:controller.signal,
-        cache:'no-store'
-      });
-      setStatus(resp.ok?'online':'offline');
-    }catch(e){
-      setStatus('offline');
-    }finally{
-      clearTimeout(timer);
+    function appendMsg(role, content) {
+      var isUser = role === 'user';
+      var row = document.createElement('div');
+      row.className = 'msg ' + role;
+      var av = document.createElement('div');
+      av.className = 'msg-avatar';
+      av.textContent = isUser ? '我' : 'AI';
+      var wrap = document.createElement('div');
+      var bubble = document.createElement('div');
+      bubble.className = 'msg-bubble';
+      bubble.textContent = content;
+      var time = document.createElement('div');
+      time.className = 'msg-time';
+      time.textContent = new Date().toLocaleTimeString('zh-CN', {hour:'2-digit', minute:'2-digit'});
+      wrap.appendChild(bubble);
+      wrap.appendChild(time);
+      row.appendChild(av);
+      row.appendChild(wrap);
+      messages.appendChild(row);
+      messages.scrollTop = messages.scrollHeight;
     }
-  }
-  // 初始为连接中，首次检测 + 每 15 秒刷新
-  setStatus('connecting');
-  checkStatus();
-  checkTimer=setInterval(checkStatus,15000);
 
-  async function sendMessage(){
-    var content=text.value.trim();
-    if(!content||send.disabled)return;
-    appendMsg('user',content);
-    text.value='';text.style.height='auto';
-    send.disabled=true;
-    showTyping();
-    try{
-      // 调用预留接口；后端未就绪时接口会返回占位回复
-      var resp=await fetch(API_URL,{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({message:content,sessionId:sessionId})
-      });
-      if(!resp.ok)throw new Error('HTTP '+resp.status);
-      var data=await resp.json();
-      removeTyping();
-      appendMsg('bot',data.reply||'（未收到回复）');
-    }catch(e){
-      removeTyping();
-      appendMsg('bot','AI 助手当前离线，暂时无法回复。请稍后再试。');
+    function showTyping() {
+      var row = document.createElement('div');
+      row.className = 'msg bot';
+      row.id = 'typing-row';
+      var av = document.createElement('div');
+      av.className = 'msg-avatar';
+      av.textContent = 'AI';
+      var wrap = document.createElement('div');
+      var bubble = document.createElement('div');
+      bubble.className = 'msg-bubble';
+      var t = document.createElement('div');
+      t.className = 'typing';
+      t.innerHTML = '<span></span><span></span><span></span>';
+      bubble.appendChild(t);
+      wrap.appendChild(bubble);
+      row.appendChild(av);
+      row.appendChild(wrap);
+      messages.appendChild(row);
+      messages.scrollTop = messages.scrollHeight;
     }
-    send.disabled=false;
-    text.focus();
-  }
 
-  send.addEventListener('click',sendMessage);
-  text.addEventListener('keydown',function(e){
-    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage()}
-  });
-  // 自动增高输入框
-  text.addEventListener('input',function(){
-    this.style.height='auto';
-    this.style.height=Math.min(this.scrollHeight,140)+'px';
-  });
-  // 快捷问题
-  document.querySelectorAll('.chat-hint button[data-q]').forEach(function(b){
-    b.addEventListener('click',function(){text.value=b.getAttribute('data-q');sendMessage()});
-  });
-})();
-</script>
+    function removeTyping() {
+      var r = document.getElementById('typing-row');
+      if (r) r.remove();
+    }
+
+    /* ===== 在线状态检测 ===== */
+    var statusEl = document.getElementById('chat-status');
+    var HEALTH_URL = API_URL.replace('/webhook/resume-agent-chat', '/webhook/health');
+
+    function setStatus(state) {
+      if (!statusEl) return;
+      statusEl.classList.remove('connecting', 'online', 'offline');
+      statusEl.classList.add(state);
+      if (state === 'connecting') statusEl.textContent = '连接中…';
+      else if (state === 'online') statusEl.textContent = '在线 · 了解欧阳威的一切';
+      else statusEl.textContent = '离线 · 服务暂不可用';
+    }
+
+    async function checkStatus() {
+      var controller = new AbortController();
+      var timer = setTimeout(function() { controller.abort(); }, 4000);
+      try {
+        var resp = await fetch(HEALTH_URL, { method:'GET', signal:controller.signal, cache:'no-store' });
+        setStatus(resp.ok ? 'online' : 'offline');
+      } catch(e) {
+        setStatus('offline');
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    setStatus('connecting');
+    checkStatus();
+    setInterval(checkStatus, 15000);
+
+    /* ===== 发送消息 ===== */
+    async function sendMessage() {
+      var content = text.value.trim();
+      if (!content || sendBtn.disabled) return;
+      appendMsg('user', content);
+      text.value = '';
+      text.style.height = 'auto';
+      sendBtn.disabled = true;
+      showTyping();
+      try {
+        var resp = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type':'application/json' },
+          body: JSON.stringify({ message: content, sessionId: sessionId })
+        });
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        var data = await resp.json();
+        removeTyping();
+        appendMsg('bot', data.reply || '（未收到回复）');
+      } catch(e) {
+        removeTyping();
+        appendMsg('bot', 'AI 助手当前离线，暂时无法回复。请稍后再试。');
+      }
+      sendBtn.disabled = false;
+      text.focus();
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    text.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+    });
+    text.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, 140) + 'px';
+    });
+    document.querySelectorAll('.chat-hint button[data-q]').forEach(function(b) {
+      b.addEventListener('click', function() {
+        text.value = b.getAttribute('data-q');
+        sendMessage();
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
