@@ -2249,11 +2249,23 @@ html[data-theme="dark"] .form-success {
   }
 
   .stats-inner {
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+    max-width: 420px;
+    margin: 0 auto;
   }
 
   .stat-item {
-    min-width: 120px;
+    min-width: auto;
+  }
+
+  .stat-number {
+    font-size: clamp(1.8rem, 9vw, 2.4rem);
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
   }
 
   .section-nav {
