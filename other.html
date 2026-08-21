@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 
@@ -54,10 +54,13 @@
   </header>
 
   <main class="page-main" id="main-content">
-    <div class="section-head reveal" style="text-align:center; margin-bottom:40px;">
-      <span class="section-kicker">More</span>
-      <h1 class="section-title">其他</h1>
-      <p class="section-sub">欧阳威的其他内容与链接</p>
+    <div class="wave-banner">
+      <canvas id="wave-canvas" aria-hidden="true"></canvas>
+      <div class="section-head reveal" style="text-align:center; margin-bottom:0;">
+        <span class="section-kicker">More</span>
+        <h1 class="section-title">其他</h1>
+        <p class="section-sub">欧阳威的其他内容与链接</p>
+      </div>
     </div>
 
     <div class="placeholder-card reveal reveal-delay-1">
@@ -104,5 +107,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="wave.js"></script>
 </body>
 </html>
