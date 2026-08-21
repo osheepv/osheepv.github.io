@@ -23,33 +23,39 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="styles.css?v=11">
+  <script src="i18n.js?v=1"></script>
 </head>
 <body>
 
-  <a href="#main-content" class="skip-link">跳到主要内容</a>
+  <a href="#main-content" class="skip-link" data-i18n="skip.link">跳到主要内容</a>
 
   <!-- ===== Header ===== -->
   <header class="site-header" role="banner">
     <div class="header-inner">
       <a class="site-logo" href="index.html" aria-label="欧阳威 — 首页">OYW</a>
       <nav class="nav-links" aria-label="主导航">
-        <a class="nav-link" href="index.html">个人简历</a>
-        <a class="nav-link" href="ai-assistant.html">AI助手</a>
-        <a class="nav-link active" href="other.html">其他</a>
-        <a class="nav-link" href="contact.html">联系我</a>
+        <a class="nav-link" href="index.html" data-i18n="nav.resume">个人简历</a>
+        <a class="nav-link" href="ai-assistant.html" data-i18n="nav.ai">AI助手</a>
+        <a class="nav-link active" href="other.html" data-i18n="nav.other">其他</a>
+        <a class="nav-link" href="contact.html" data-i18n="nav.contact">联系我</a>
       </nav>
       <div class="header-spacer"></div>
-      <button class="theme-toggle" type="button" aria-label="切换明暗主题">◐ 主题</button>
+      <div class="lang-toggle" role="group" data-i18n-aria="lang.aria" aria-label="切换语言">
+        <button type="button" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <span class="lang-slider" aria-hidden="true"></span>
+      </div>
+      <button class="theme-toggle" type="button" data-i18n-aria="theme.aria" aria-label="切换明暗主题">◐ 主题</button>
       <button class="hamburger" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="移动端导航">
-      <a href="index.html">个人简历</a>
-      <a href="ai-assistant.html">AI助手</a>
-      <a href="other.html" class="active">其他</a>
-      <a href="contact.html">联系我</a>
+      <a href="index.html" data-i18n="nav.resume">个人简历</a>
+      <a href="ai-assistant.html" data-i18n="nav.ai">AI助手</a>
+      <a href="other.html" class="active" data-i18n="nav.other">其他</a>
+      <a href="contact.html" data-i18n="nav.contact">联系我</a>
     </nav>
   </header>
 
@@ -57,22 +63,22 @@
     <div class="wave-banner">
       <canvas id="wave-canvas" aria-hidden="true"></canvas>
       <div class="section-head reveal" style="text-align:center; margin-bottom:0;">
-        <span class="section-kicker">More</span>
-        <h1 class="section-title">其他</h1>
-        <p class="section-sub">欧阳威的其他内容与链接</p>
+        <span class="section-kicker" data-i18n="other.kicker">More</span>
+        <h1 class="section-title" data-i18n="other.title">其他</h1>
+        <p class="section-sub" data-i18n="other.sub">欧阳威的其他内容与链接</p>
       </div>
     </div>
 
     <div class="placeholder-card reveal reveal-delay-1">
       <div class="big">🚧</div>
-      <h2>内容建设中</h2>
-      <p>这里将展示欧阳威的更多内容 —— 博客文章、项目细节、学习笔记等。敬请期待。</p>
+      <h2 data-i18n="other.cardTitle">内容建设中</h2>
+      <p data-i18n="other.cardBody">这里将展示欧阳威的更多内容 —— 博客文章、项目细节、学习笔记等。敬请期待。</p>
     </div>
 
     <!-- Quick links -->
     <div style="max-width:640px; margin:40px auto 0; display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;">
-      <a href="index.html" class="btn btn-ghost" style="justify-content:center;">← 返回简历</a>
-      <a href="contact.html" class="btn btn-ghost" style="justify-content:center;">联系我 →</a>
+      <a href="index.html" class="btn btn-ghost" style="justify-content:center;" data-i18n="other.back">← 返回简历</a>
+      <a href="contact.html" class="btn btn-ghost" style="justify-content:center;" data-i18n="other.contact">联系我 →</a>
     </div>
   </main>
 
@@ -81,19 +87,19 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <div class="logo">OYW</div>
-        <p>欧阳威的个人简历网站。机械设计制造及其自动化专业，数学建模竞赛获奖者。</p>
+        <p data-i18n="footer.brand2">欧阳威的个人简历网站。机械设计制造及其自动化专业，数学建模竞赛获奖者。</p>
       </div>
       <div class="footer-col">
-        <h4>探索</h4>
+        <h4 data-i18n="footer.explore">探索</h4>
         <ul>
-          <li><a href="index.html">个人简历</a></li>
-          <li><a href="ai-assistant.html">AI助手</a></li>
-          <li><a href="other.html">其他</a></li>
-          <li><a href="contact.html">联系我</a></li>
+          <li><a href="index.html" data-i18n="nav.resume">个人简历</a></li>
+          <li><a href="ai-assistant.html" data-i18n="nav.ai">AI助手</a></li>
+          <li><a href="other.html" data-i18n="nav.other">其他</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">联系我</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>联系</h4>
+        <h4 data-i18n="footer.contact">联系</h4>
         <ul>
           <li><a href="mailto:3402685368@qq.com">3402685368@qq.com</a></li>
           <li><a href="mailto:oyw20041015@gmail.com">oyw20041015@gmail.com</a></li>
@@ -102,11 +108,11 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2026 欧阳威 · Built with passion</span>
+      <span class="footer-copy" data-i18n="footer.copy">&copy; 2026 欧阳威 · Built with passion</span>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
   <script src="wave.js?v=7"></script>
 </body>
 </html>
