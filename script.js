@@ -15,9 +15,12 @@
 
   function syncThemeBtn() {
     if (!themeBtn) return;
-    themeBtn.textContent = window.I18N
-      ? I18N.t(currentTheme() === 'dark' ? 'theme.light' : 'theme.dark')
-      : (currentTheme() === 'dark' ? '\u25D0 \u6D45\u8272' : '\u25D0 \u6DF1\u8272');
+    var label = themeBtn.querySelector('.theme-label');
+    if (label) {
+      label.textContent = window.I18N
+        ? I18N.t(currentTheme() === 'dark' ? 'theme.light' : 'theme.dark')
+        : (currentTheme() === 'dark' ? '\u6D45\u8272' : '\u6DF1\u8272');
+    }
   }
 
   if (themeBtn) {
