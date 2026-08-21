@@ -26,6 +26,9 @@
   if (themeBtn) {
     themeBtn.addEventListener('click', function () {
       var next = currentTheme() === 'dark' ? 'light' : 'dark';
+      // 切换瞬间轻微柔化，增强连续形变质感（180ms 后移除）
+      themeBtn.classList.add('switching');
+      window.setTimeout(function () { themeBtn.classList.remove('switching'); }, 180);
       document.documentElement.dataset.theme = next;
       try { localStorage.setItem('ow-theme', next); } catch (e) {}
       syncThemeBtn();
@@ -37,6 +40,21 @@
   if (window.I18N) {
     I18N.hooks(function () { syncThemeBtn(); });
   }
+
+  /* 跟随系统深浅主题（仅当用户未手动选择过） */
+  (function () {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    function onSystemThemeChange(e) {
+      try {
+        if (!localStorage.getItem('ow-theme')) {
+          document.documentElement.dataset.theme = e.matches ? 'dark' : 'light';
+          syncThemeBtn();
+        }
+      } catch (err) {}
+    }
+    if (mq.addEventListener) mq.addEventListener('change', onSystemThemeChange);
+    else if (mq.addListener) mq.addListener(onSystemThemeChange);
+  })();
 
   /* ===== 2. Hamburger Menu ===== */
   var hamburger = document.querySelector('.hamburger');
