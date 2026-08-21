@@ -78,6 +78,12 @@
       'skills.s3b': 'Python + Matlab 完成数据清洗、数值计算、模型验证与可视化，具备完整的建模竞赛方法论。',
       'skills.s4t': 'AI Agent 与工作流',
       'skills.s4b': '熟练运用 Claude Code、Codex、OpenClaw、WorkBuddy、n8n 等 AI Agent 工具完成开发自动化与工作流搭建。已落地项目包括个人网站搭建与部署上线、微信小程序开发上线等。',
+      'skills.ic1': '机械原理',
+      'skills.ic2': '工程制图',
+      'skills.ic3': '有限元',
+      'skills.ic4': '结构仿真',
+      'skills.ic5': '数据清洗',
+      'skills.ic6': '可视化',
 
       /* Awards */
       'awards.kicker': 'Awards',
@@ -276,6 +282,12 @@
       'skills.s3b': 'Python + MATLAB for data cleaning, numerical computation, model validation and visualization, with a complete competition modeling methodology.',
       'skills.s4t': 'AI Agent & Workflows',
       'skills.s4b': 'Proficient in AI Agent tools — Claude Code, Codex, OpenClaw, WorkBuddy, n8n — for development automation and workflow building. Shipped projects include this website (built & deployed) and a WeChat Mini Program (developed & launched).',
+      'skills.ic1': 'Mechanical Principles',
+      'skills.ic2': 'Engineering Drawing',
+      'skills.ic3': 'FEA',
+      'skills.ic4': 'Structural Simulation',
+      'skills.ic5': 'Data Cleaning',
+      'skills.ic6': 'Visualization',
 
       /* Awards */
       'awards.kicker': 'Awards',
