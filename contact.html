@@ -23,59 +23,65 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="styles.css?v=11">
+  <script src="i18n.js?v=1"></script>
 </head>
 <body>
 
-  <a href="#main-content" class="skip-link">跳到主要内容</a>
+  <a href="#main-content" class="skip-link" data-i18n="skip.link">跳到主要内容</a>
 
   <!-- ===== Header ===== -->
   <header class="site-header" role="banner">
     <div class="header-inner">
       <a class="site-logo" href="index.html" aria-label="欧阳威 — 首页">OYW</a>
       <nav class="nav-links" aria-label="主导航">
-        <a class="nav-link" href="index.html">个人简历</a>
-        <a class="nav-link" href="ai-assistant.html">AI助手</a>
-        <a class="nav-link" href="other.html">其他</a>
-        <a class="nav-link active" href="contact.html">联系我</a>
+        <a class="nav-link" href="index.html" data-i18n="nav.resume">个人简历</a>
+        <a class="nav-link" href="ai-assistant.html" data-i18n="nav.ai">AI助手</a>
+        <a class="nav-link" href="other.html" data-i18n="nav.other">其他</a>
+        <a class="nav-link active" href="contact.html" data-i18n="nav.contact">联系我</a>
       </nav>
       <div class="header-spacer"></div>
-      <button class="theme-toggle" type="button" aria-label="切换明暗主题">◐ 主题</button>
+      <div class="lang-toggle" role="group" data-i18n-aria="lang.aria" aria-label="切换语言">
+        <button type="button" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <span class="lang-slider" aria-hidden="true"></span>
+      </div>
+      <button class="theme-toggle" type="button" data-i18n-aria="theme.aria" aria-label="切换明暗主题">◐ 主题</button>
       <button class="hamburger" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="移动端导航">
-      <a href="index.html">个人简历</a>
-      <a href="ai-assistant.html">AI助手</a>
-      <a href="other.html">其他</a>
-      <a href="contact.html" class="active">联系我</a>
+      <a href="index.html" data-i18n="nav.resume">个人简历</a>
+      <a href="ai-assistant.html" data-i18n="nav.ai">AI助手</a>
+      <a href="other.html" data-i18n="nav.other">其他</a>
+      <a href="contact.html" class="active" data-i18n="nav.contact">联系我</a>
     </nav>
   </header>
 
   <main id="main-content" class="page-main">
-    <a class="back-link" href="index.html">← 返回首页</a>
+    <a class="back-link" href="index.html" data-i18n="contact.back">← 返回首页</a>
 
     <div class="wave-banner">
       <canvas id="wave-canvas" aria-hidden="true"></canvas>
       <div class="section-head reveal" style="text-align:center; margin-bottom:0;">
-        <span class="section-kicker">Contact</span>
-        <h1 class="section-title">联系我</h1>
-        <p class="section-sub">无论是项目合作、学术交流还是问题咨询，都欢迎随时联系</p>
+        <span class="section-kicker" data-i18n="contact.kicker">Contact</span>
+        <h1 class="section-title" data-i18n="contact.title">联系我</h1>
+        <p class="section-sub" data-i18n="contact.sub">无论是项目合作、学术交流还是问题咨询，都欢迎随时联系</p>
       </div>
     </div>
 
     <div class="contact-grid">
       <!-- Contact Info -->
       <div class="contact-info-card reveal">
-        <h3>联系方式</h3>
+        <h3 data-i18n="contact.cardTitle">联系方式</h3>
 
         <div class="contact-item">
           <div class="icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           </div>
           <div>
-            <div class="label">邮箱（主要）</div>
+            <div class="label" data-i18n="contact.email1">邮箱（主要）</div>
             <div class="value">3402685368@qq.com</div>
           </div>
         </div>
@@ -85,7 +91,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           </div>
           <div>
-            <div class="label">邮箱（备用）</div>
+            <div class="label" data-i18n="contact.email2">邮箱（备用）</div>
             <div class="value">oyw20041015@gmail.com</div>
           </div>
         </div>
@@ -95,7 +101,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           </div>
           <div>
-            <div class="label">电话</div>
+            <div class="label" data-i18n="contact.phone">电话</div>
             <div class="value">19858807815</div>
           </div>
         </div>
@@ -105,7 +111,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
           <div>
-            <div class="label">所在地</div>
+            <div class="label" data-i18n="contact.loc">所在地</div>
             <div class="value">浙江 · 衢州</div>
           </div>
         </div>
@@ -113,38 +119,38 @@
 
       <!-- Contact Form -->
       <div class="contact-form-card reveal reveal-delay-1">
-        <h3 style="font-size:1.1rem; font-weight:700; color:var(--color-fg-bold); margin-bottom:24px;">发送消息</h3>
+        <h3 style="font-size:1.1rem; font-weight:700; color:var(--color-fg-bold); margin-bottom:24px;" data-i18n="contact.formTitle">发送消息</h3>
 
         <div class="form-success" id="form-success" role="alert">
-          ✓ 消息已发送！我会尽快回复你。
+          <span data-i18n="contact.success">✓ 消息已发送！我会尽快回复你。</span>
         </div>
 
         <form id="contact-form" novalidate>
           <div class="form-group">
-            <label for="contact-name">姓名 <span class="required">*</span></label>
-            <input type="text" id="contact-name" name="name" class="form-input" placeholder="你的姓名" autocomplete="name" required>
+            <label for="contact-name" data-i18n="contact.name">姓名 <span class="required">*</span></label>
+            <input type="text" id="contact-name" name="name" class="form-input" placeholder="你的姓名" data-i18n-ph="contact.ph.name" autocomplete="name" required>
             <div class="form-error" id="name-error" role="alert"></div>
           </div>
 
           <div class="form-group">
-            <label for="contact-email">邮箱 <span class="required">*</span></label>
-            <input type="email" id="contact-email" name="email" class="form-input" placeholder="your@email.com" autocomplete="email" required>
+            <label for="contact-email" data-i18n="contact.email">邮箱 <span class="required">*</span></label>
+            <input type="email" id="contact-email" name="email" class="form-input" placeholder="your@email.com" data-i18n-ph="contact.ph.email" autocomplete="email" required>
             <div class="form-error" id="email-error" role="alert"></div>
           </div>
 
           <div class="form-group">
-            <label for="contact-subject">主题</label>
-            <input type="text" id="contact-subject" name="subject" class="form-input" placeholder="消息主题（可选）">
+            <label for="contact-subject" data-i18n="contact.subject">主题</label>
+            <input type="text" id="contact-subject" name="subject" class="form-input" placeholder="消息主题（可选）" data-i18n-ph="contact.ph.subject">
           </div>
 
           <div class="form-group">
-            <label for="contact-message">消息内容 <span class="required">*</span></label>
-            <textarea id="contact-message" name="message" class="form-textarea" placeholder="输入你想说的内容..." required></textarea>
+            <label for="contact-message" data-i18n="contact.message">消息内容 <span class="required">*</span></label>
+            <textarea id="contact-message" name="message" class="form-textarea" placeholder="输入你想说的内容..." data-i18n-ph="contact.ph.message" required></textarea>
             <div class="form-error" id="message-error" role="alert"></div>
           </div>
 
           <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
-            发送消息
+            <span data-i18n="contact.submit">发送消息</span>
           </button>
         </form>
       </div>
@@ -156,19 +162,19 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <div class="logo">OYW</div>
-        <p>欧阳威的个人简历网站。机械设计制造及其自动化专业，数学建模竞赛获奖者。</p>
+        <p data-i18n="footer.brand2">欧阳威的个人简历网站。机械设计制造及其自动化专业，数学建模竞赛获奖者。</p>
       </div>
       <div class="footer-col">
-        <h4>探索</h4>
+        <h4 data-i18n="footer.explore">探索</h4>
         <ul>
-          <li><a href="index.html">个人简历</a></li>
-          <li><a href="ai-assistant.html">AI助手</a></li>
-          <li><a href="other.html">其他</a></li>
-          <li><a href="contact.html">联系我</a></li>
+          <li><a href="index.html" data-i18n="nav.resume">个人简历</a></li>
+          <li><a href="ai-assistant.html" data-i18n="nav.ai">AI助手</a></li>
+          <li><a href="other.html" data-i18n="nav.other">其他</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">联系我</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>联系</h4>
+        <h4 data-i18n="footer.contact">联系</h4>
         <ul>
           <li><a href="mailto:3402685368@qq.com">3402685368@qq.com</a></li>
           <li><a href="mailto:oyw20041015@gmail.com">oyw20041015@gmail.com</a></li>
@@ -177,11 +183,11 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2026 欧阳威 · Built with passion</span>
+      <span class="footer-copy" data-i18n="footer.copy">&copy; 2026 欧阳威 · Built with passion</span>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
   <script src="wave.js?v=7"></script>
 </body>
 </html>
