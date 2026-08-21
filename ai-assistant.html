@@ -23,8 +23,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=12">
-  <script src="i18n.js?v=2"></script>
+  <link rel="stylesheet" href="styles.css?v=13">
+  <script src="i18n.js?v=3"></script>
 </head>
 <body style="height:100dvh; overflow:hidden;">
 
@@ -46,7 +46,13 @@
         <button type="button" data-lang="en" aria-pressed="false">EN</button>
         <span class="lang-slider" aria-hidden="true"></span>
       </div>
-      <button class="theme-toggle" type="button" data-i18n-aria="theme.aria" aria-label="切换明暗主题">◐ 主题</button>
+      <button class="theme-toggle" type="button" data-i18n-aria="theme.aria" aria-label="切换明暗主题">
+        <span class="theme-icon" aria-hidden="true">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </span>
+        <span class="theme-label">◐ 主题</span>
+      </button>
       <button class="hamburger" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
@@ -102,7 +108,7 @@
     </p>
   </div>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=3"></script>
   <script src="wave.js?v=7"></script>
   <script>
   /* ===== 聊天逻辑（页面专属） ===== */
