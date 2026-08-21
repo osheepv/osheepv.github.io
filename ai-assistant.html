@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body style="height:100dvh; overflow:hidden;">
 
@@ -54,10 +54,13 @@
   </header>
 
   <div class="chat-page" id="main-content">
-    <div class="chat-header">
-      <span class="chat-kicker">AI Assistant</span>
-      <h1 class="chat-title">欧阳威的 AI 助手</h1>
-      <p class="chat-sub">问我任何关于欧阳威的问题 —— 经历、技能、作品、竞赛</p>
+    <div class="wave-banner chat-banner">
+      <canvas id="wave-canvas" aria-hidden="true"></canvas>
+      <div class="chat-header">
+        <span class="chat-kicker">AI Assistant</span>
+        <h1 class="chat-title">欧阳威的 AI 助手</h1>
+        <p class="chat-sub">问我任何关于欧阳威的问题 —— 经历、技能、作品、竞赛</p>
+      </div>
     </div>
 
     <div class="chat-window" role="log" aria-live="polite" aria-label="对话区域">
@@ -94,6 +97,7 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="wave.js"></script>
   <script>
   /* ===== 聊天逻辑（页面专属） ===== */
   (function(){
