@@ -2612,3 +2612,89 @@ html[data-theme="dark"] .form-success {
     border-color: var(--color-border);
   }
 }
+
+/* ===== 26b. Glassmorphism — Small Elements (chips, badges, inputs, nav, buttons) ===== */
+.mobile-menu,
+.section-nav,
+.award-badge,
+.badge-gold,
+.badge-blue,
+.badge-purple,
+.badge-bronze,
+.detail-badge.award-gold,
+.detail-badge.award-silver,
+.detail-badge.award-bronze,
+.detail-badge.exp,
+.skill-tag,
+.takeaway-box,
+.detail-nav-link,
+.detail-cta,
+.msg.bot .msg-bubble,
+.chat-input textarea,
+.form-input,
+.form-textarea,
+.theme-toggle,
+.hamburger,
+.btn-secondary,
+.btn-ghost,
+.contact-item .icon {
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+/* 实底 → 强玻璃底（菜单/导航/气泡/输入框需要更高可读性） */
+.mobile-menu,
+.section-nav,
+.msg.bot .msg-bubble,
+.chat-input textarea,
+.form-input,
+.form-textarea {
+  background: var(--glass-bg-strong);
+}
+
+/* 透明底 → 玻璃底（小控件） */
+.theme-toggle,
+.hamburger,
+.btn-secondary,
+.btn-ghost,
+.detail-nav-link {
+  background: var(--glass-bg);
+}
+
+/* 边框统一为玻璃边（accent 描边按钮 btn-secondary 保留蓝色描边） */
+.mobile-menu,
+.section-nav,
+.msg.bot .msg-bubble,
+.chat-input textarea,
+.form-input,
+.form-textarea,
+.theme-toggle,
+.hamburger,
+.btn-ghost,
+.detail-nav-link {
+  border-color: var(--glass-border);
+}
+
+/* 不支持 backdrop-filter 时回退到原来的实底 */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .mobile-menu,
+  .section-nav,
+  .msg.bot .msg-bubble,
+  .chat-input textarea,
+  .form-input,
+  .form-textarea {
+    background: var(--color-bg-alt);
+  }
+  .chat-input textarea,
+  .form-input,
+  .form-textarea {
+    background: var(--color-bg);
+  }
+  .theme-toggle,
+  .hamburger,
+  .btn-secondary,
+  .btn-ghost,
+  .detail-nav-link {
+    background: transparent;
+  }
+}
