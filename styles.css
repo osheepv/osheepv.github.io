@@ -367,7 +367,11 @@ html[data-theme="dark"] .site-header {
   padding: 100px 24px 60px;
   text-align: center;
   overflow: hidden;
-  background: var(--color-bg-alt);
+  background:
+    radial-gradient(120% 90% at 18% 0%,   rgba(0,102,204,0.12),  transparent 58%),
+    radial-gradient(120% 90% at 100% 18%, rgba(123,92,255,0.12), transparent 55%),
+    radial-gradient(150% 110% at 50% 100%, rgba(0,188,212,0.10), transparent 60%),
+    var(--color-bg-alt);
 }
 
 /* Decorative gradient orbs */
@@ -416,6 +420,14 @@ html[data-theme="dark"] .orb-purple {
 
 html[data-theme="dark"] .orb-orange {
   background: radial-gradient(circle, rgba(255, 159, 10, 0.15), transparent 70%);
+}
+
+html[data-theme="dark"] .hero {
+  background:
+    radial-gradient(120% 90% at 18% 0%,   rgba(41,151,255,0.14),  transparent 58%),
+    radial-gradient(120% 90% at 100% 18%, rgba(94,92,230,0.14),   transparent 55%),
+    radial-gradient(150% 110% at 50% 100%, rgba(0,188,212,0.10),  transparent 60%),
+    var(--color-bg-alt);
 }
 
 @keyframes float {
