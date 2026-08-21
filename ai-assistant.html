@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI助手 — 欧阳威</title>
+  <title data-i18n-title="chat.pageTitle">AI助手 — 欧阳威</title>
   <meta name="description" content="和欧阳威的 AI 助手对话，了解他的经历、技能与作品。">
 
   <script>
@@ -23,33 +23,39 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="styles.css?v=11">
+  <script src="i18n.js?v=1"></script>
 </head>
 <body style="height:100dvh; overflow:hidden;">
 
-  <a href="#main-content" class="skip-link">跳到主要内容</a>
+  <a href="#main-content" class="skip-link" data-i18n="skip.link">跳到主要内容</a>
 
   <!-- ===== Header ===== -->
   <header class="site-header" role="banner">
     <div class="header-inner">
       <a class="site-logo" href="index.html" aria-label="欧阳威 — 首页">OYW</a>
       <nav class="nav-links" aria-label="主导航">
-        <a class="nav-link" href="index.html">个人简历</a>
-        <a class="nav-link active" href="ai-assistant.html">AI助手</a>
-        <a class="nav-link" href="other.html">其他</a>
-        <a class="nav-link" href="contact.html">联系我</a>
+        <a class="nav-link" href="index.html" data-i18n="nav.resume">个人简历</a>
+        <a class="nav-link active" href="ai-assistant.html" data-i18n="nav.ai">AI助手</a>
+        <a class="nav-link" href="other.html" data-i18n="nav.other">其他</a>
+        <a class="nav-link" href="contact.html" data-i18n="nav.contact">联系我</a>
       </nav>
       <div class="header-spacer"></div>
-      <button class="theme-toggle" type="button" aria-label="切换明暗主题">◐ 主题</button>
+      <div class="lang-toggle" role="group" data-i18n-aria="lang.aria" aria-label="切换语言">
+        <button type="button" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <span class="lang-slider" aria-hidden="true"></span>
+      </div>
+      <button class="theme-toggle" type="button" data-i18n-aria="theme.aria" aria-label="切换明暗主题">◐ 主题</button>
       <button class="hamburger" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="移动端导航">
-      <a href="index.html">个人简历</a>
-      <a href="ai-assistant.html" class="active">AI助手</a>
-      <a href="other.html">其他</a>
-      <a href="contact.html">联系我</a>
+      <a href="index.html" data-i18n="nav.resume">个人简历</a>
+      <a href="ai-assistant.html" class="active" data-i18n="nav.ai">AI助手</a>
+      <a href="other.html" data-i18n="nav.other">其他</a>
+      <a href="contact.html" data-i18n="nav.contact">联系我</a>
     </nav>
   </header>
 
@@ -58,8 +64,8 @@
       <canvas id="wave-canvas" aria-hidden="true"></canvas>
       <div class="chat-header">
         <span class="chat-kicker">AI Assistant</span>
-        <h1 class="chat-title">欧阳威的 AI 助手</h1>
-        <p class="chat-sub">问我任何关于欧阳威的问题 —— 经历、技能、作品、竞赛</p>
+        <h1 class="chat-title" data-i18n="chat.title">欧阳威的 AI 助手</h1>
+        <p class="chat-sub" data-i18n="chat.sub">问我任何关于欧阳威的问题 —— 经历、技能、作品、竞赛</p>
       </div>
     </div>
 
@@ -67,8 +73,8 @@
       <div class="chat-window-head">
         <div class="chat-avatar">AI</div>
         <div>
-          <div class="chat-window-name">欧阳威 · AI 助手</div>
-          <div class="chat-window-status connecting" id="chat-status">连接中…</div>
+          <div class="chat-window-name" data-i18n="chat.name">欧阳威 · AI 助手</div>
+          <div class="chat-window-status connecting" id="chat-status" data-i18n="chat.statusConn">连接中…</div>
         </div>
         <div class="header-spacer"></div>
       </div>
@@ -77,26 +83,26 @@
         <div class="msg bot">
           <div class="msg-avatar">AI</div>
           <div>
-            <div class="msg-bubble">你好！我是欧阳威的 AI 助手。你可以问我关于他的教育背景、技术技能、竞赛荣誉、实习经历，或者任何关于他的问题。想从哪里开始？</div>
-            <div class="msg-time">现在</div>
+            <div class="msg-bubble" data-i18n="chat.hello">你好！我是欧阳威的 AI 助手。你可以问我关于他的教育背景、技术技能、竞赛荣誉、实习经历，或者任何关于他的问题。想从哪里开始？</div>
+            <div class="msg-time" data-i18n="chat.now">现在</div>
           </div>
         </div>
       </div>
 
       <div class="chat-input">
-        <textarea id="chat-text" rows="1" placeholder="输入你的问题…（如：他擅长什么？）" aria-label="输入消息"></textarea>
-        <button class="chat-send" id="chat-send" type="button" aria-label="发送">发送</button>
+        <textarea id="chat-text" rows="1" placeholder="输入你的问题…（如：他擅长什么？）" aria-label="输入消息" data-i18n-ph="chat.ph"></textarea>
+        <button class="chat-send" id="chat-send" type="button" aria-label="发送" data-i18n="chat.send">发送</button>
       </div>
     </div>
 
-    <p class="chat-hint">试试问：
-      <button type="button" data-q="他擅长哪些方面？">他擅长哪些方面？</button> ·
-      <button type="button" data-q="他获得过什么竞赛奖项？">竞赛奖项</button> ·
-      <button type="button" data-q="他的实习经历有哪些？">实习经历</button>
+    <p class="chat-hint"><span data-i18n="chat.hint">试试问：</span>
+      <button type="button" data-q="他擅长哪些方面？" data-i18n="chat.q1">他擅长哪些方面？</button> ·
+      <button type="button" data-q="他获得过什么竞赛奖项？" data-i18n="chat.q2">竞赛奖项</button> ·
+      <button type="button" data-q="他的实习经历有哪些？" data-i18n="chat.q3">实习经历</button>
     </p>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
   <script src="wave.js?v=7"></script>
   <script>
   /* ===== 聊天逻辑（页面专属） ===== */
@@ -114,14 +120,14 @@
       row.className = 'msg ' + role;
       var av = document.createElement('div');
       av.className = 'msg-avatar';
-      av.textContent = isUser ? '我' : 'AI';
+      av.textContent = isUser ? I18N.t('chat.user') : 'AI';
       var wrap = document.createElement('div');
       var bubble = document.createElement('div');
       bubble.className = 'msg-bubble';
       bubble.textContent = content;
       var time = document.createElement('div');
       time.className = 'msg-time';
-      time.textContent = new Date().toLocaleTimeString('zh-CN', {hour:'2-digit', minute:'2-digit'});
+      time.textContent = new Date().toLocaleTimeString(I18N.current() === 'en' ? 'en-US' : 'zh-CN', {hour:'2-digit', minute:'2-digit'});
       wrap.appendChild(bubble);
       wrap.appendChild(time);
       row.appendChild(av);
@@ -164,9 +170,9 @@
       if (!statusEl) return;
       statusEl.classList.remove('connecting', 'online', 'offline');
       statusEl.classList.add(state);
-      if (state === 'connecting') statusEl.textContent = '连接中…';
-      else if (state === 'online') statusEl.textContent = '在线 · 了解欧阳威的一切';
-      else statusEl.textContent = '离线 · 服务暂不可用';
+      if (state === 'connecting') statusEl.textContent = I18N.t('chat.statusConn');
+      else if (state === 'online') statusEl.textContent = I18N.t('chat.statusOn');
+      else statusEl.textContent = I18N.t('chat.statusOff');
     }
 
     async function checkStatus() {
@@ -204,10 +210,10 @@
         if (!resp.ok) throw new Error('HTTP ' + resp.status);
         var data = await resp.json();
         removeTyping();
-        appendMsg('bot', data.reply || '（未收到回复）');
+        appendMsg('bot', data.reply || I18N.t('chat.noReply'));
       } catch(e) {
         removeTyping();
-        appendMsg('bot', 'AI 助手当前离线，暂时无法回复。请稍后再试。');
+        appendMsg('bot', I18N.t('chat.fail'));
       }
       sendBtn.disabled = false;
       text.focus();
