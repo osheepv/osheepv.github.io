@@ -129,12 +129,40 @@
 
     var rafId = null;
     var running = false;
-    var lastT = 0;
-    var FRAME_MS = 1000 / 90; // 目标 ~90fps：水波更顺滑（rAF 跟随屏幕刷新率，60Hz 屏上限 60）
+    var lastT = 0;          // 上次实际渲染时间戳
+    var emaDt = 0;          // 实际渲染间隔的指数移动平均（用于档位判断）
+    var emaInit = false;
+    /* 自适应帧率档位：像游戏一样动态调整。
+     * 从最高档开始，实际帧间隔跟不上目标（> 1.1×）就降档；
+     * 余量充足（< 0.75×）且稳定约 1 秒再升回。60Hz 屏自动稳定在 60，
+     * 120Hz/144Hz 高刷屏自动跑满对应刷新率。 */
+    var FPS_TIERS = [144, 120, 90, 60, 45, 30];
+    var tierIdx = 0;
+    var stableCount = 0;
 
     function frame(ts) {
       if (!running) return;
-      if (ts - lastT >= FRAME_MS) {
+      var interval = 1000 / FPS_TIERS[tierIdx];
+      if (ts - lastT >= interval) {
+        if (lastT > 0) {
+          var dt = ts - lastT;
+          if (!emaInit) { emaDt = dt; emaInit = true; }
+          else emaDt = emaDt * 0.9 + dt * 0.1;
+          if (emaDt > interval * 1.1 && tierIdx < FPS_TIERS.length - 1) {
+            tierIdx++;        // 跟不上 → 降档
+            stableCount = 0;
+            emaInit = false;
+          } else if (emaDt < interval * 0.75 && tierIdx > 0) {
+            stableCount++;    // 余量充足 → 累积后升档
+            if (stableCount >= 60) {
+              tierIdx--;
+              stableCount = 0;
+              emaInit = false;
+            }
+          } else {
+            stableCount = 0;
+          }
+        }
         lastT = ts;
         step();
         render();
