@@ -127,7 +127,37 @@
       ctx.drawImage(off, 0, 0, W, H);
     }
 
-    function loop() { step(); render(); requestAnimationFrame(loop); }
+    var rafId = null;
+    var running = false;
+    var lastT = 0;
+    var FRAME_MS = 1000 / 30; // 限制到 ~30fps：水波视觉足够，CPU 占用减半
+
+    function frame(ts) {
+      if (!running) return;
+      if (ts - lastT >= FRAME_MS) {
+        lastT = ts;
+        step();
+        render();
+      }
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function start() {
+      if (running || reduceMotion) return;
+      running = true;
+      lastT = 0;
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function stop() {
+      running = false;
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    }
+
+    // 标签页切到后台时暂停动画，避免无谓占用 CPU 与耗电
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop(); else start();
+    });
 
     window.addEventListener('resize', function () { resize(); allocGrid(); });
 
@@ -137,7 +167,7 @@
       for (var f = 0; f < 40; f++) step();
       render();
     } else {
-      loop();
+      start();
     }
   });
 })();
