@@ -2696,3 +2696,94 @@ html[data-theme="dark"] .form-success {
     background: transparent;
   }
 }
+
+/* ===== 27. Language Toggle (中/EN) ===== */
+.lang-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 2px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  flex-shrink: 0;
+}
+
+.lang-toggle button {
+  position: relative;
+  z-index: 2;
+  width: 42px;
+  height: 26px;
+  border: none;
+  background: transparent;
+  color: var(--color-fg-light);
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  border-radius: var(--radius-pill);
+  transition: color 0.25s ease;
+  padding: 0;
+}
+
+.lang-toggle button[aria-pressed="true"] {
+  color: #fff;
+}
+
+.lang-slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 42px;
+  height: 26px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  box-shadow: 0 2px 10px rgba(0, 102, 204, 0.35);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.lang-toggle[data-lang="en"] .lang-slider {
+  transform: translateX(42px);
+}
+
+/* 语言切换：正文淡入淡出 */
+main,
+footer,
+.chat-page {
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+body.i18n-fade-out main,
+body.i18n-fade-out footer,
+body.i18n-fade-out .chat-page {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* 移动端紧凑 */
+@media (max-width: 768px) {
+  .header-inner {
+    gap: 10px;
+  }
+  .lang-toggle {
+    height: 30px;
+  }
+  .lang-toggle button {
+    width: 36px;
+    height: 24px;
+  }
+  .lang-slider {
+    width: 36px;
+    height: 24px;
+  }
+  .lang-toggle[data-lang="en"] .lang-slider {
+    transform: translateX(36px);
+  }
+  .theme-toggle {
+    padding: 6px 10px;
+  }
+}
