@@ -3023,3 +3023,46 @@ body.i18n-fade-out .chat-page {
     transform: none !important;
   }
 }
+
+/* —— 阴影适配：mask 会裁掉 box-shadow，非 corner-shape 浏览器改用 drop-shadow
+       （阴影跟随 squircle 形状；Chrome/Edge 原生 corner-shape 分支保留 box-shadow） —— */
+@supports not (corner-shape: squircle) {
+  .about-card,
+  .bento-card,
+  .award-card,
+  .exp-card,
+  .detail-hero,
+  .detail-section,
+  .detail-cta,
+  .contact-info-card,
+  .contact-form-card,
+  .related-card,
+  .placeholder-card {
+    box-shadow: none;
+    filter: drop-shadow(var(--shadow-sm));
+  }
+  .about-card:hover,
+  .bento-card:hover,
+  .award-card:hover,
+  .exp-card:hover,
+  .detail-hero:hover,
+  .detail-section:hover,
+  .related-card:hover {
+    filter: drop-shadow(var(--shadow-lg));
+  }
+  .chat-window {
+    box-shadow: none;
+    filter: drop-shadow(var(--shadow-lg));
+  }
+  .msg.user .msg-bubble {
+    box-shadow: none;
+    filter: drop-shadow(0 4px 14px rgba(0, 102, 204, 0.25));
+  }
+  /* 输入框 focus 光圈 */
+  .form-input:focus,
+  .form-textarea:focus,
+  .chat-input textarea:focus {
+    box-shadow: none;
+    filter: drop-shadow(0 0 0 3px var(--color-accent-light));
+  }
+}
