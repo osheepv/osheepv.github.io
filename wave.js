@@ -27,8 +27,7 @@
 
   /* ============ WebGL GPU 路径 ============ */
   function initWebGL(canvas, gl) {
-    var debug = { ok: false, stepProg: false, renderProg: false, frame: 0, pokeCount: 0, lastA: -1, err: '' };
-    window.__waveDebug = debug;    var VERT =
+    var VERT =
       'attribute vec2 aPos;' +
       'varying vec2 vUv;' +
       'void main(){ vUv = aPos * 0.5 + 0.5; gl_Position = vec4(aPos, 0.0, 1.0); }';
