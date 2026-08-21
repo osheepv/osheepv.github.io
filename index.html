@@ -401,7 +401,7 @@
       if (p.x < 0 || p.y < 0 || p.x > W || p.y > H) return; // 仅在首屏 Hero 内响应
       var now = performance.now();
       var last = ripples[ripples.length - 1];
-      if (!last || Math.hypot(p.x - last.x, p.y - last.y) > 34) spawn(p.x, p.y, 3.6);
+      if (!last || Math.hypot(p.x - last.x, p.y - last.y) > 80) spawn(p.x, p.y, 3.6);
       lastMove = now;
     }
     window.addEventListener('mousemove', pointerMove);
@@ -415,7 +415,7 @@
     function draw() {
       ctx.clearRect(0, 0, W, H);
       var now = performance.now();
-      if (now - lastMove > 2600 && now - lastSpawn > 2200) {
+      if (now - lastMove > 3500 && now - lastSpawn > 4500) {
         spawn(Math.random() * W, Math.random() * H, 2.4);
         lastSpawn = now;
       }
