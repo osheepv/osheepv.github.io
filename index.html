@@ -26,33 +26,39 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="styles.css?v=11">
+  <script src="i18n.js?v=1"></script>
 </head>
 <body>
 
-  <a href="#main-content" class="skip-link">跳到主要内容</a>
+  <a href="#main-content" class="skip-link" data-i18n="skip.link">跳到主要内容</a>
 
   <!-- ===== Header ===== -->
   <header class="site-header" role="banner">
     <div class="header-inner">
       <a class="site-logo" href="index.html" aria-label="欧阳威 — 首页">OYW</a>
       <nav class="nav-links" aria-label="主导航">
-        <a class="nav-link active" href="index.html">个人简历</a>
-        <a class="nav-link" href="ai-assistant.html">AI助手</a>
-        <a class="nav-link" href="other.html">其他</a>
-        <a class="nav-link" href="contact.html">联系我</a>
+        <a class="nav-link active" href="index.html" data-i18n="nav.resume">个人简历</a>
+        <a class="nav-link" href="ai-assistant.html" data-i18n="nav.ai">AI助手</a>
+        <a class="nav-link" href="other.html" data-i18n="nav.other">其他</a>
+        <a class="nav-link" href="contact.html" data-i18n="nav.contact">联系我</a>
       </nav>
       <div class="header-spacer"></div>
-      <button class="theme-toggle" type="button" aria-label="切换明暗主题">◐ 主题</button>
+      <div class="lang-toggle" role="group" data-i18n-aria="lang.aria" aria-label="切换语言">
+        <button type="button" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <span class="lang-slider" aria-hidden="true"></span>
+      </div>
+      <button class="theme-toggle" type="button" data-i18n-aria="theme.aria" aria-label="切换明暗主题">◐ 主题</button>
       <button class="hamburger" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="移动端导航">
-      <a href="index.html" class="active">个人简历</a>
-      <a href="ai-assistant.html">AI助手</a>
-      <a href="other.html">其他</a>
-      <a href="contact.html">联系我</a>
+      <a href="index.html" class="active" data-i18n="nav.resume">个人简历</a>
+      <a href="ai-assistant.html" data-i18n="nav.ai">AI助手</a>
+      <a href="other.html" data-i18n="nav.other">其他</a>
+      <a href="contact.html" data-i18n="nav.contact">联系我</a>
     </nav>
   </header>
 
@@ -66,18 +72,18 @@
       <div class="orb orb-orange"></div>
 
       <div class="hero-content">
-        <span class="hero-eyebrow">机械工程 · 数学建模 · AI Agent</span>
-        <h1 class="hero-title">用数据、模型与 AI，<br>让工程更精准更高效。</h1>
-        <p class="hero-subtitle">欧阳威 · 衢州学院机械设计制造及其自动化专业。专注于将数学建模与机械工程相结合，在多场竞赛中斩获佳绩。同时熟练运用 Claude Code、n8n 等 AI Agent 工具完成开发自动化与工作流搭建，持续探索工程与智能化的融合解法。</p>
+        <span class="hero-eyebrow" data-i18n="hero.eyebrow">机械工程 · 数学建模 · AI Agent</span>
+        <h1 class="hero-title" data-i18n="hero.title">用数据、模型与 AI，<br>让工程更精准更高效。</h1>
+        <p class="hero-subtitle" data-i18n="hero.sub">欧阳威 · 衢州学院机械设计制造及其自动化专业。专注于将数学建模与机械工程相结合，在多场竞赛中斩获佳绩。同时熟练运用 Claude Code、n8n 等 AI Agent 工具完成开发自动化与工作流搭建，持续探索工程与智能化的融合解法。</p>
         <div class="hero-actions">
-          <a href="#awards" class="btn btn-primary">查看荣誉</a>
-          <a href="contact.html" class="btn btn-secondary">联系我</a>
+          <a href="#awards" class="btn btn-primary" data-i18n="hero.cta1">查看荣誉</a>
+          <a href="contact.html" class="btn btn-secondary" data-i18n="hero.cta2">联系我</a>
         </div>
       </div>
 
       <div class="scroll-hint" aria-hidden="true">
         <div class="mouse"></div>
-        <span>向下滚动</span>
+        <span data-i18n="hero.scroll">向下滚动</span>
       </div>
     </section>
 
@@ -86,19 +92,19 @@
       <div class="stats-inner">
         <div class="stat-item reveal">
           <div class="stat-number" data-count="6" data-suffix="">0</div>
-          <div class="stat-label">竞赛奖项</div>
+          <div class="stat-label" data-i18n="stat.1">竞赛奖项</div>
         </div>
         <div class="stat-item reveal reveal-delay-1">
           <div class="stat-number" data-count="4" data-suffix="">0</div>
-          <div class="stat-label">实习与校园经历</div>
+          <div class="stat-label" data-i18n="stat.2">实习与校园经历</div>
         </div>
         <div class="stat-item reveal reveal-delay-2">
           <div class="stat-number" data-count="4" data-suffix="">0</div>
-          <div class="stat-label">核心技能领域</div>
+          <div class="stat-label" data-i18n="stat.3">核心技能领域</div>
         </div>
         <div class="stat-item reveal reveal-delay-3">
           <div class="stat-number" data-count="10" data-suffix="+">0</div>
-          <div class="stat-label">校级以上证书</div>
+          <div class="stat-label" data-i18n="stat.4">校级以上证书</div>
         </div>
       </div>
     </section>
@@ -106,50 +112,50 @@
     <!-- ===== Keyword Ticker ===== -->
     <div class="keyword-ticker" aria-hidden="true">
       <div class="ticker-track">
-        <span class="ticker-item">数学建模</span>
-        <span class="ticker-item">3D建模</span>
-        <span class="ticker-item">仿真分析</span>
+        <span class="ticker-item" data-i18n="ticker.1">数学建模</span>
+        <span class="ticker-item" data-i18n="ticker.2">3D建模</span>
+        <span class="ticker-item" data-i18n="ticker.3">仿真分析</span>
         <span class="ticker-item">Python</span>
-        <span class="ticker-item">Matlab</span>
-        <span class="ticker-item">机械设计</span>
+        <span class="ticker-item" data-i18n="ticker.5">Matlab</span>
+        <span class="ticker-item" data-i18n="ticker.6">机械设计</span>
         <span class="ticker-item">Claude Code</span>
         <span class="ticker-item">n8n</span>
         <span class="ticker-item">AI Agent</span>
-        <span class="ticker-item">数据清洗</span>
-        <span class="ticker-item">运筹优化</span>
+        <span class="ticker-item" data-i18n="ticker.10">数据清洗</span>
+        <span class="ticker-item" data-i18n="ticker.11">运筹优化</span>
         <span class="ticker-item">SolidWorks</span>
         <span class="ticker-item">ANSYS</span>
         <span class="ticker-item">WorkBuddy</span>
         <span class="ticker-item">Codex</span>
-        <span class="ticker-item">工作流搭建</span>
+        <span class="ticker-item" data-i18n="ticker.16">工作流搭建</span>
         <!-- Duplicate for seamless loop -->
-        <span class="ticker-item">数学建模</span>
-        <span class="ticker-item">3D建模</span>
-        <span class="ticker-item">仿真分析</span>
+        <span class="ticker-item" data-i18n="ticker.1">数学建模</span>
+        <span class="ticker-item" data-i18n="ticker.2">3D建模</span>
+        <span class="ticker-item" data-i18n="ticker.3">仿真分析</span>
         <span class="ticker-item">Python</span>
-        <span class="ticker-item">Matlab</span>
-        <span class="ticker-item">机械设计</span>
+        <span class="ticker-item" data-i18n="ticker.5">Matlab</span>
+        <span class="ticker-item" data-i18n="ticker.6">机械设计</span>
         <span class="ticker-item">Claude Code</span>
         <span class="ticker-item">n8n</span>
         <span class="ticker-item">AI Agent</span>
-        <span class="ticker-item">数据清洗</span>
-        <span class="ticker-item">运筹优化</span>
+        <span class="ticker-item" data-i18n="ticker.10">数据清洗</span>
+        <span class="ticker-item" data-i18n="ticker.11">运筹优化</span>
         <span class="ticker-item">SolidWorks</span>
         <span class="ticker-item">ANSYS</span>
         <span class="ticker-item">WorkBuddy</span>
         <span class="ticker-item">Codex</span>
-        <span class="ticker-item">工作流搭建</span>
+        <span class="ticker-item" data-i18n="ticker.16">工作流搭建</span>
       </div>
     </div>
 
     <!-- ===== In-page Section Navigation ===== -->
     <nav class="section-nav" aria-label="页内导航">
       <div class="section-nav-inner">
-        <a href="#about">关于</a>
-        <a href="#skills">技能</a>
-        <a href="#awards">竞赛荣誉</a>
-        <a href="#experience">经历</a>
-        <a href="#contact-cta">联系</a>
+        <a href="#about" data-i18n="secnav.1">关于</a>
+        <a href="#skills" data-i18n="secnav.2">技能</a>
+        <a href="#awards" data-i18n="secnav.3">竞赛荣誉</a>
+        <a href="#experience" data-i18n="secnav.4">经历</a>
+        <a href="#contact-cta" data-i18n="secnav.5">联系</a>
       </div>
     </nav>
 
@@ -157,20 +163,20 @@
     <section class="section section-alt" id="about" data-nav-section aria-label="关于我">
       <div class="section-inner">
         <div class="section-head reveal">
-          <span class="section-kicker">About</span>
-          <h2 class="section-title">关于我</h2>
-          <p class="section-sub">机械工程与数据建模的交叉探索者</p>
+          <span class="section-kicker" data-i18n="about.kicker">About</span>
+          <h2 class="section-title" data-i18n="about.title">关于我</h2>
+          <p class="section-sub" data-i18n="about.sub">机械工程与数据建模的交叉探索者</p>
         </div>
         <div class="about-grid">
           <div class="about-card reveal">
-            <h3><span class="icon">🎓</span>教育背景</h3>
-            <p>衢州学院 · 机械设计制造及其自动化专业。系统学习机械设计、制造工艺与工程力学，同时自学编程与数据建模，将工程思维与数据方法结合。</p>
-            <span class="tag">2023 — 2027（预计）</span>
+            <h3 data-i18n="about.c1t"><span class="icon">🎓</span>教育背景</h3>
+            <p data-i18n="about.c1b">衢州学院 · 机械设计制造及其自动化专业。系统学习机械设计、制造工艺与工程力学，同时自学编程与数据建模，将工程思维与数据方法结合。</p>
+            <span class="tag" data-i18n="about.c1tag">2023 — 2027（预计）</span>
           </div>
           <div class="about-card reveal reveal-delay-1">
-            <h3><span class="icon">⬢</span>自我定位</h3>
-            <p>擅长用数学模型解决工程问题，在数学建模竞赛中多次获奖。具备从数据清洗、特征工程到模型求解的全流程能力。同时熟练运用 AI Agent 工具（Claude Code、n8n 等）完成项目开发与自动化工作流搭建，已在个人网站部署上线、微信小程序开发等项目中落地实践。</p>
-            <span class="tag">建模 · 编程 · AI Agent</span>
+            <h3 data-i18n="about.c2t"><span class="icon">⬢</span>自我定位</h3>
+            <p data-i18n="about.c2b">擅长用数学模型解决工程问题，在数学建模竞赛中多次获奖。具备从数据清洗、特征工程到模型求解的全流程能力。同时熟练运用 AI Agent 工具（Claude Code、n8n 等）完成项目开发与自动化工作流搭建，已在个人网站部署上线、微信小程序开发等项目中落地实践。</p>
+            <span class="tag" data-i18n="about.c2tag">建模 · 编程 · AI Agent</span>
           </div>
         </div>
       </div>
@@ -179,7 +185,7 @@
     <!-- ===== Quote Section ===== -->
     <section class="section section-dark quote-section reveal" aria-label="引言">
       <div class="section-inner">
-        <p class="quote-text"><span class="quote-open">&ldquo;</span>好模型不是越复杂越好，而是能用最简洁的假设解释清楚现象，并在有限时间内完成验证。<span class="quote-close">&rdquo;</span></p>
+        <p class="quote-text" data-i18n="quote.text"><span class="quote-open">&ldquo;</span>好模型不是越复杂越好，而是能用最简洁的假设解释清楚现象，并在有限时间内完成验证。<span class="quote-close">&rdquo;</span></p>
       </div>
     </section>
 
@@ -187,14 +193,14 @@
     <section class="section section-alt" id="skills" data-nav-section aria-label="技能">
       <div class="section-inner">
         <div class="section-head reveal">
-          <span class="section-kicker">Skills</span>
-          <h2 class="section-title">技能领域</h2>
-          <p class="section-sub">从三维设计到 AI Agent，覆盖工程与智能化全链条</p>
+          <span class="section-kicker" data-i18n="skills.kicker">Skills</span>
+          <h2 class="section-title" data-i18n="skills.title">技能领域</h2>
+          <p class="section-sub" data-i18n="skills.sub">从三维设计到 AI Agent，覆盖工程与智能化全链条</p>
         </div>
         <div class="bento-grid">
           <div class="bento-card tint-blue reveal">
-            <h3>3D建模与机械设计</h3>
-            <p>熟练运用 SolidWorks、AutoCAD 完成零部件三维建模与工程图纸绘制。掌握机械原理与机械设计基础，能独立完成从需求分析到结构设计的全流程。</p>
+            <h3 data-i18n="skills.s1t">3D建模与机械设计</h3>
+            <p data-i18n="skills.s1b">熟练运用 SolidWorks、AutoCAD 完成零部件三维建模与工程图纸绘制。掌握机械原理与机械设计基础，能独立完成从需求分析到结构设计的全流程。</p>
             <div class="skill-icons">
               <span>SolidWorks</span>
               <span>AutoCAD</span>
@@ -203,8 +209,8 @@
             </div>
           </div>
           <div class="bento-card tint-purple reveal reveal-delay-1">
-            <h3>仿真分析</h3>
-            <p>运用 ANSYS 进行有限元分析与结构仿真，验证设计方案的合理性与可靠性。</p>
+            <h3 data-i18n="skills.s2t">仿真分析</h3>
+            <p data-i18n="skills.s2b">运用 ANSYS 进行有限元分析与结构仿真，验证设计方案的合理性与可靠性。</p>
             <div class="skill-icons">
               <span>ANSYS</span>
               <span>有限元</span>
@@ -212,8 +218,8 @@
             </div>
           </div>
           <div class="bento-card tint-orange reveal reveal-delay-2">
-            <h3>编程与数据建模</h3>
-            <p>Python + Matlab 完成数据清洗、数值计算、模型验证与可视化，具备完整的建模竞赛方法论。</p>
+            <h3 data-i18n="skills.s3t">编程与数据建模</h3>
+            <p data-i18n="skills.s3b">Python + Matlab 完成数据清洗、数值计算、模型验证与可视化，具备完整的建模竞赛方法论。</p>
             <div class="skill-icons">
               <span>Python</span>
               <span>Matlab</span>
@@ -222,8 +228,8 @@
             </div>
           </div>
           <div class="bento-card tint-green reveal reveal-delay-3">
-            <h3>AI Agent 与工作流</h3>
-            <p>熟练运用 Claude Code、Codex、OpenClaw、WorkBuddy、n8n 等 AI Agent 工具完成开发自动化与工作流搭建。已落地项目包括个人网站搭建与部署上线、微信小程序开发上线等。</p>
+            <h3 data-i18n="skills.s4t">AI Agent 与工作流</h3>
+            <p data-i18n="skills.s4b">熟练运用 Claude Code、Codex、OpenClaw、WorkBuddy、n8n 等 AI Agent 工具完成开发自动化与工作流搭建。已落地项目包括个人网站搭建与部署上线、微信小程序开发上线等。</p>
             <div class="skill-icons">
               <span>Claude Code</span>
               <span>Codex</span>
@@ -240,38 +246,38 @@
     <section class="section" id="awards" data-nav-section aria-label="竞赛荣誉">
       <div class="section-inner">
         <div class="section-head reveal">
-          <span class="section-kicker">Awards</span>
-          <h2 class="section-title">竞赛荣誉</h2>
-          <p class="section-sub">在全国与区域性数学建模竞赛中累计获得 6 项奖项</p>
+          <span class="section-kicker" data-i18n="awards.kicker">Awards</span>
+          <h2 class="section-title" data-i18n="awards.title">竞赛荣誉</h2>
+          <p class="section-sub" data-i18n="awards.sub">在全国与区域性数学建模竞赛中累计获得 6 项奖项</p>
         </div>
         <div class="awards-grid">
           <a class="award-card reveal" href="detail.html?id=award-1">
-            <span class="award-badge badge-gold">省一</span>
-            <h3>全国大学生数学建模竞赛 · 浙江赛区一等奖</h3>
-            <p class="award-meta">2025 · CUMCM · 浙江赛区 A 题</p>
-            <p class="award-summary">从建模、编程到论文撰写全流程主导完成，72小时高强度赛程中反复验证确保模型结果合理可信。</p>
-            <span class="award-arrow">查看详情 →</span>
+            <span class="award-badge badge-gold" data-i18n="a.a1.badge">省一</span>
+            <h3 data-i18n="a.a1.title">全国大学生数学建模竞赛 · 浙江赛区一等奖</h3>
+            <p class="award-meta" data-i18n="a.a1.meta">2025 · CUMCM · 浙江赛区 A 题</p>
+            <p class="award-summary" data-i18n="a.a1.summary">从建模、编程到论文撰写全流程主导完成，72小时高强度赛程中反复验证确保模型结果合理可信。</p>
+            <span class="award-arrow" data-i18n="awards.arrow">查看详情 →</span>
           </a>
           <a class="award-card reveal reveal-delay-1" href="detail.html?id=award-2">
-            <span class="award-badge badge-blue">国三</span>
-            <h3>"华数杯"全国大学生数学建模 · 本科生组三等奖</h3>
-            <p class="award-meta">2025 · 华数杯 · 本科生组</p>
-            <p class="award-summary">聚焦大数据分析类题目，在数据清洗、特征工程与模型调优中投入大量精力。</p>
-            <span class="award-arrow">查看详情 →</span>
+            <span class="award-badge badge-blue" data-i18n="a.a2.badge">国三</span>
+            <h3 data-i18n="a.a2.title">"华数杯"全国大学生数学建模 · 本科生组三等奖</h3>
+            <p class="award-meta" data-i18n="a.a2.meta">2025 · 华数杯 · 本科生组</p>
+            <p class="award-summary" data-i18n="a.a2.summary">聚焦大数据分析类题目，在数据清洗、特征工程与模型调优中投入大量精力。</p>
+            <span class="award-arrow" data-i18n="awards.arrow">查看详情 →</span>
           </a>
           <a class="award-card reveal reveal-delay-2" href="detail.html?id=award-3">
-            <span class="award-badge badge-purple">三奖</span>
-            <h3>MathorCup 数学应用挑战赛 · 本科生组三等奖</h3>
-            <p class="award-meta">2025 · MathorCup · 本科生组</p>
-            <p class="award-summary">运用线性规划与启发式算法相结合的方式求解调度优化问题，积累了运筹优化实战经验。</p>
-            <span class="award-arrow">查看详情 →</span>
+            <span class="award-badge badge-purple" data-i18n="a.a3.badge">三奖</span>
+            <h3 data-i18n="a.a3.title">MathorCup 数学应用挑战赛 · 本科生组三等奖</h3>
+            <p class="award-meta" data-i18n="a.a3.meta">2025 · MathorCup · 本科生组</p>
+            <p class="award-summary" data-i18n="a.a3.summary">运用线性规划与启发式算法相结合的方式求解调度优化问题，积累了运筹优化实战经验。</p>
+            <span class="award-arrow" data-i18n="awards.arrow">查看详情 →</span>
           </a>
           <a class="award-card reveal reveal-delay-3" href="detail.html?id=award-4">
-            <span class="award-badge badge-bronze">三奖</span>
-            <h3>长三角高校数学建模竞赛 · 三等奖（连续两届）</h3>
-            <p class="award-meta">2024 — 2025 · 长三角赛区</p>
-            <p class="award-summary">从首届的摸索到次届的稳定输出，每次参赛都在建模流程与论文质量上有明显进步。</p>
-            <span class="award-arrow">查看详情 →</span>
+            <span class="award-badge badge-bronze" data-i18n="a.a4.badge">三奖</span>
+            <h3 data-i18n="a.a4.title">长三角高校数学建模竞赛 · 三等奖（连续两届）</h3>
+            <p class="award-meta" data-i18n="a.a4.meta">2024 — 2025 · 长三角赛区</p>
+            <p class="award-summary" data-i18n="a.a4.summary">从首届的摸索到次届的稳定输出，每次参赛都在建模流程与论文质量上有明显进步。</p>
+            <span class="award-arrow" data-i18n="awards.arrow">查看详情 →</span>
           </a>
         </div>
       </div>
@@ -281,34 +287,34 @@
     <section class="section section-alt" id="experience" data-nav-section aria-label="实习与校园经历">
       <div class="section-inner">
         <div class="section-head reveal">
-          <span class="section-kicker">Experience</span>
-          <h2 class="section-title">实习与校园经历</h2>
-          <p class="section-sub">从车间一线到社团管理，在实践中持续成长</p>
+          <span class="section-kicker" data-i18n="exp.kicker">Experience</span>
+          <h2 class="section-title" data-i18n="exp.title">实习与校园经历</h2>
+          <p class="section-sub" data-i18n="exp.sub">从车间一线到社团管理，在实践中持续成长</p>
         </div>
         <div class="exp-grid">
           <a class="exp-card shadow-blue reveal" href="detail.html?id=exp-1">
-            <p class="exp-time">2024.11 — 2024.12</p>
-            <h3>企业走访实习</h3>
-            <p>实地走访 4 家机械制造标杆企业，深入生产车间与研发中心，系统学习零部件加工工艺与流程管控。</p>
-            <span class="exp-arrow">查看详情 →</span>
+            <p class="exp-time" data-i18n="e.e1.time">2024.11 — 2024.12</p>
+            <h3 data-i18n="e.e1.title">企业走访实习</h3>
+            <p data-i18n="e.e1.body">实地走访 4 家机械制造标杆企业，深入生产车间与研发中心，系统学习零部件加工工艺与流程管控。</p>
+            <span class="exp-arrow" data-i18n="exp.arrow">查看详情 →</span>
           </a>
           <a class="exp-card shadow-purple reveal reveal-delay-1" href="detail.html?id=exp-2">
-            <p class="exp-time">2023.10 — 2025.02</p>
-            <h3>KAB 创业联盟副部长</h3>
-            <p>协同筹办两届校园淘宝街活动，负责摊主招募、场地规划与现场管控，沉淀了一套可复用的活动应急方案。</p>
-            <span class="exp-arrow">查看详情 →</span>
+            <p class="exp-time" data-i18n="e.e2.time">2023.10 — 2025.02</p>
+            <h3 data-i18n="e.e2.title">KAB 创业联盟副部长</h3>
+            <p data-i18n="e.e2.body">协同筹办两届校园淘宝街活动，负责摊主招募、场地规划与现场管控，沉淀了一套可复用的活动应急方案。</p>
+            <span class="exp-arrow" data-i18n="exp.arrow">查看详情 →</span>
           </a>
           <a class="exp-card shadow-blue reveal reveal-delay-2" href="detail.html?id=exp-3">
-            <p class="exp-time">2023.10 — 2025.12</p>
-            <h3>数学建模社团 · 核心成员</h3>
-            <p>累计参与 6 场省级及以上竞赛收获 6 项奖项，熟练运用 Python/Matlab 完成数据建模全流程，主导搭建社团知识库。</p>
-            <span class="exp-arrow">查看详情 →</span>
+            <p class="exp-time" data-i18n="e.e3.time">2023.10 — 2025.12</p>
+            <h3 data-i18n="e.e3.title">数学建模社团 · 核心成员</h3>
+            <p data-i18n="e.e3.body">累计参与 6 场省级及以上竞赛收获 6 项奖项，熟练运用 Python/Matlab 完成数据建模全流程，主导搭建社团知识库。</p>
+            <span class="exp-arrow" data-i18n="exp.arrow">查看详情 →</span>
           </a>
           <a class="exp-card shadow-purple reveal reveal-delay-3" href="detail.html?id=exp-4">
-            <p class="exp-time">2024 — 2025</p>
-            <h3>荣誉 & 奖学金</h3>
-            <p>本科期间累计获得三等奖学金、优秀学生干部，以及 10+ 项校级及以上竞赛证书。</p>
-            <span class="exp-arrow">查看详情 →</span>
+            <p class="exp-time" data-i18n="e.e4.time">2024 — 2025</p>
+            <h3 data-i18n="e.e4.title">荣誉 & 奖学金</h3>
+            <p data-i18n="e.e4.body">本科期间累计获得三等奖学金、优秀学生干部，以及 10+ 项校级及以上竞赛证书。</p>
+            <span class="exp-arrow" data-i18n="exp.arrow">查看详情 →</span>
           </a>
         </div>
       </div>
@@ -317,9 +323,9 @@
     <!-- ===== CTA Section ===== -->
     <section class="cta-section" id="contact-cta" data-nav-section aria-label="联系我">
       <div class="cta-content reveal">
-        <h2 class="cta-title">有项目合作或问题咨询？</h2>
-        <p class="cta-sub">无论是数学建模、机械设计、数据分析还是 AI Agent 工作流搭建，欢迎随时联系我交流。</p>
-        <a href="contact.html" class="btn btn-primary">联系我 →</a>
+        <h2 class="cta-title" data-i18n="cta.title">有项目合作或问题咨询？</h2>
+        <p class="cta-sub" data-i18n="cta.sub">无论是数学建模、机械设计、数据分析还是 AI Agent 工作流搭建，欢迎随时联系我交流。</p>
+        <a href="contact.html" class="btn btn-primary" data-i18n="cta.btn">联系我 →</a>
       </div>
     </section>
 
@@ -330,19 +336,19 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <div class="logo">OYW</div>
-        <p>欧阳威的个人简历网站。机械设计制造及其自动化专业，数学建模竞赛获奖者。用数据、模型与 AI Agent 让工程更精准、更高效。</p>
+        <p data-i18n="footer.brand">欧阳威的个人简历网站。机械设计制造及其自动化专业，数学建模竞赛获奖者。用数据、模型与 AI Agent 让工程更精准、更高效。</p>
       </div>
       <div class="footer-col">
-        <h4>探索</h4>
+        <h4 data-i18n="footer.explore">探索</h4>
         <ul>
-          <li><a href="index.html">个人简历</a></li>
-          <li><a href="ai-assistant.html">AI助手</a></li>
-          <li><a href="other.html">其他</a></li>
-          <li><a href="contact.html">联系我</a></li>
+          <li><a href="index.html" data-i18n="nav.resume">个人简历</a></li>
+          <li><a href="ai-assistant.html" data-i18n="nav.ai">AI助手</a></li>
+          <li><a href="other.html" data-i18n="nav.other">其他</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">联系我</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>联系</h4>
+        <h4 data-i18n="footer.contact">联系</h4>
         <ul>
           <li><a href="mailto:3402685368@qq.com">3402685368@qq.com</a></li>
           <li><a href="mailto:oyw20041015@gmail.com">oyw20041015@gmail.com</a></li>
@@ -351,7 +357,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2026 欧阳威 · Built with passion</span>
+      <span class="footer-copy" data-i18n="footer.copy">&copy; 2026 欧阳威 · Built with passion</span>
       <div class="footer-social">
         <a href="mailto:3402685368@qq.com" aria-label="发送邮件">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
@@ -366,7 +372,7 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
   <script src="wave.js?v=7"></script>
 </body>
 </html>
