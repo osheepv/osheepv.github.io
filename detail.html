@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 
@@ -53,7 +53,14 @@
   </header>
 
   <main class="page-main" id="main-content">
-    <a class="back-link" href="index.html">← 返回个人简历</a>
+    <div class="wave-banner">
+      <canvas id="wave-canvas" aria-hidden="true"></canvas>
+      <a class="back-link" href="index.html">← 返回个人简历</a>
+      <div class="section-head" style="text-align:center; margin-bottom:0;">
+        <span class="section-kicker">Detail</span>
+        <h1 class="section-title">详情</h1>
+      </div>
+    </div>
     <div id="detail-content">
       <div class="detail-hero" style="text-align:center; padding:48px 32px;">
         <div style="font-size:2rem; margin-bottom:12px;">⏳</div>
@@ -96,6 +103,7 @@
 
   <script src="details.js"></script>
   <script src="script.js"></script>
+  <script src="wave.js"></script>
   <script>
   /* ===== 渲染详情 ===== */
   (function(){
