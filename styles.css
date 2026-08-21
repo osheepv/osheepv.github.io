@@ -310,20 +310,71 @@ html[data-theme="dark"] .site-header {
 }
 
 .theme-toggle {
-  border: 1px solid var(--color-border);
-  background: transparent;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
   color: var(--color-fg-light);
-  font-size: 0.82rem;
-  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 14px 6px 9px;
   border-radius: var(--radius-pill);
   font-family: var(--font-mono);
-  transition: all 0.2s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease,
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .theme-toggle:hover {
   color: var(--color-fg-bold);
   border-color: var(--color-accent);
   background: var(--color-accent-light);
+}
+
+/* iOS 按压反馈：弹性回缩 */
+.theme-toggle:active {
+  transform: scale(0.9);
+}
+
+/* iOS 太阳/月亮切换动效（图标放大版） */
+.theme-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.theme-icon svg {
+  position: absolute;
+  inset: 0;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+
+.icon-sun {
+  color: #ff9f0a;
+}
+
+.icon-moon {
+  color: #a5a5ff;
+  opacity: 0;
+  transform: rotate(-150deg) scale(0.3);
+}
+
+/* 深色主题：太阳旋出、月亮旋入（由 head 的 data-theme 直接驱动，无需 JS） */
+html[data-theme="dark"] .theme-icon .icon-sun {
+  opacity: 0;
+  transform: rotate(150deg) scale(0.3);
+}
+
+html[data-theme="dark"] .theme-icon .icon-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
 }
 
 .hamburger {
