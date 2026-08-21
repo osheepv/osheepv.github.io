@@ -15,7 +15,9 @@
 
   function syncThemeBtn() {
     if (!themeBtn) return;
-    themeBtn.textContent = currentTheme() === 'dark' ? '\u25D0 \u6D45\u8272' : '\u25D0 \u6DF1\u8272';
+    themeBtn.textContent = window.I18N
+      ? I18N.t(currentTheme() === 'dark' ? 'theme.light' : 'theme.dark')
+      : (currentTheme() === 'dark' ? '\u25D0 \u6D45\u8272' : '\u25D0 \u6DF1\u8272');
   }
 
   if (themeBtn) {
@@ -28,6 +30,11 @@
     syncThemeBtn();
   }
 
+  // 语言切换时同步主题按钮文案
+  if (window.I18N) {
+    I18N.hooks(function () { syncThemeBtn(); });
+  }
+
   /* ===== 2. Hamburger Menu ===== */
   var hamburger = document.querySelector('.hamburger');
   var mobileMenu = document.getElementById('mobile-menu');
@@ -37,7 +44,7 @@
       var open = mobileMenu.classList.toggle('open');
       hamburger.classList.toggle('open', open);
       hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      hamburger.setAttribute('aria-label', open ? '\u5173\u95ED\u83DC\u5355' : '\u6253\u5F00\u83DC\u5355');
+      hamburger.setAttribute('aria-label', open ? I18N.t('menu.close') : I18N.t('menu.open'));
     });
 
     // Close mobile menu when a link is clicked
@@ -46,7 +53,7 @@
         mobileMenu.classList.remove('open');
         hamburger.classList.remove('open');
         hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.setAttribute('aria-label', '\u6253\u5F00\u83DC\u5355');
+        hamburger.setAttribute('aria-label', I18N.t('menu.open'));
       });
     });
 
@@ -247,19 +254,19 @@
 
       // Name validation
       if (nameInput.value.trim().length < 2) {
-        showError(nameError, '\u8BF7\u8F93\u5165\u59D3\u540D\uFF08\u81F3\u5C112\u4E2A\u5B57\uFF09');
+        showError(nameError, I18N.t('contact.err.name'));
         valid = false;
       }
 
       // Email validation
       if (!validateEmail(emailInput.value.trim())) {
-        showError(emailError, '\u8BF7\u8F93\u5165\u6709\u6548\u7684\u7535\u5B50\u90AE\u7BB1');
+        showError(emailError, I18N.t('contact.err.email'));
         valid = false;
       }
 
       // Message validation
       if (messageInput.value.trim().length < 10) {
-        showError(messageError, '\u8BF7\u8F93\u5165\u81F3\u5C1110\u4E2A\u5B57\u7684\u6D88\u606F');
+        showError(messageError, I18N.t('contact.err.message'));
         valid = false;
       }
 
