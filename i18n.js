@@ -21,8 +21,8 @@
       'skip.link': '跳到主要内容',
       'theme.aria': '切换明暗主题',
       'lang.aria': '切换语言',
-      'theme.light': '◐ 浅色',
-      'theme.dark': '◐ 深色',
+      'theme.light': '浅色',
+      'theme.dark': '深色',
       'theme.light.en': '◐ Light',
       'theme.dark.en': '◐ Dark',
 
@@ -225,8 +225,8 @@
       'skip.link': 'Skip to main content',
       'theme.aria': 'Toggle light/dark theme',
       'lang.aria': 'Switch language',
-      'theme.light': '◐ Light',
-      'theme.dark': '◐ Dark',
+      'theme.light': 'Light',
+      'theme.dark': 'Dark',
       'theme.light.en': '◐ Light',
       'theme.dark.en': '◐ Dark',
 
