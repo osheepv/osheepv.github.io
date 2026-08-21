@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 
@@ -56,10 +56,13 @@
   <main id="main-content" class="page-main">
     <a class="back-link" href="index.html">← 返回首页</a>
 
-    <div class="section-head reveal" style="text-align:center; margin-bottom:40px;">
-      <span class="section-kicker">Contact</span>
-      <h1 class="section-title">联系我</h1>
-      <p class="section-sub">无论是项目合作、学术交流还是问题咨询，都欢迎随时联系</p>
+    <div class="wave-banner">
+      <canvas id="wave-canvas" aria-hidden="true"></canvas>
+      <div class="section-head reveal" style="text-align:center; margin-bottom:0;">
+        <span class="section-kicker">Contact</span>
+        <h1 class="section-title">联系我</h1>
+        <p class="section-sub">无论是项目合作、学术交流还是问题咨询，都欢迎随时联系</p>
+      </div>
     </div>
 
     <div class="contact-grid">
@@ -179,5 +182,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="wave.js"></script>
 </body>
 </html>
