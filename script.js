@@ -6,6 +6,23 @@
 (function () {
   'use strict';
 
+  /* ===== 0. EmailJS 配置（真实发信） =====
+     用法：去 https://www.emailjs.com 注册 → 创建 Email Service（连接你的
+     QQ / Gmail 邮箱）→ 创建 Email Template，模板变量用 {{name}} {{email}}
+     {{subject}} {{message}}。然后把下面三个占位符替换成你自己的值即可。
+     未替换（仍是占位符）时，表单自动降级为 mailto: 唤起本地邮件客户端，
+     不会“假成功”，访客依然能把信发到你邮箱。 */
+  var EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+  var EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+  var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+  var EMAILJS_TO_EMAIL    = '3402685368@qq.com';
+  var EMAILJS_CONFIGURED = EMAILJS_PUBLIC_KEY  !== 'YOUR_PUBLIC_KEY'
+                        && EMAILJS_SERVICE_ID  !== 'YOUR_SERVICE_ID'
+                        && EMAILJS_TEMPLATE_ID !== 'YOUR_TEMPLATE_ID';
+  if (EMAILJS_CONFIGURED && window.emailjs) {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  }
+
   /* ===== 1. Theme Toggle ===== */
   var themeBtn = document.querySelector('.theme-toggle');
 
@@ -248,6 +265,7 @@
     var emailError = document.getElementById('email-error');
     var messageError = document.getElementById('message-error');
     var successMsg = document.getElementById('form-success');
+    var failMsg = document.getElementById('form-fail');
     var submitBtn = contactForm.querySelector('button[type="submit"]');
 
     function showError(errorEl, message) {
@@ -292,22 +310,49 @@
       }
 
       if (valid) {
-        // Show loading state
         contactForm.classList.add('form-loading');
         submitBtn.disabled = true;
 
-        // Simulate async submission
-        setTimeout(function () {
-          contactForm.classList.remove('form-loading');
-          submitBtn.disabled = false;
+        var subjectEl = document.getElementById('contact-subject');
+        var params = {
+          name: nameInput.value.trim(),
+          email: emailInput.value.trim(),
+          subject: (subjectEl && subjectEl.value.trim()) || '(无主题)',
+          message: messageInput.value.trim()
+        };
+
+        function handleSuccess() {
           successMsg.classList.add('show');
           contactForm.reset();
+          setTimeout(function () { successMsg.classList.remove('show'); }, 5000);
+        }
 
-          // Hide success after 5 seconds
-          setTimeout(function () {
-            successMsg.classList.remove('show');
-          }, 5000);
-        }, 1200);
+        function handleFail() {
+          if (failMsg) {
+            failMsg.classList.add('show');
+            setTimeout(function () { failMsg.classList.remove('show'); }, 6000);
+          }
+        }
+
+        if (EMAILJS_CONFIGURED && window.emailjs) {
+          // 真实发信通道：访客留言直接发到你的邮箱
+          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+            .then(handleSuccess)
+            .catch(handleFail)
+            .finally(function () {
+              contactForm.classList.remove('form-loading');
+              submitBtn.disabled = false;
+            });
+        } else {
+          // 降级通道：未配置 EmailJS 时，唤起本地邮件客户端（立即可用）
+          var mailto = 'mailto:' + EMAILJS_TO_EMAIL
+            + '?subject=' + encodeURIComponent('[网站留言] ' + params.subject)
+            + '&body=' + encodeURIComponent('姓名：' + params.name + '\n邮箱：' + params.email + '\n\n' + params.message);
+          window.location.href = mailto;
+          handleSuccess();
+          contactForm.classList.remove('form-loading');
+          submitBtn.disabled = false;
+        }
       }
     });
 
