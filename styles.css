@@ -1895,8 +1895,29 @@ html[data-theme="dark"] .form-success {
   animation: fadeInUp 0.4s ease;
 }
 
-.form-loading {
+.form-fail {
   display: none;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 59, 48, 0.1);
+  border: 1px solid rgba(255, 59, 48, 0.3);
+  color: #d70015;
+  font-size: 0.92rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+html[data-theme="dark"] .form-fail {
+  color: #ff453a;
+}
+
+.form-fail.show {
+  display: block;
+  animation: fadeInUp 0.4s ease;
+}
+
+.form-loading {
+  position: relative;
   pointer-events: none;
   opacity: 0.6;
 }
