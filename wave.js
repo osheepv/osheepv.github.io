@@ -130,7 +130,7 @@
     var rafId = null;
     var running = false;
     var lastT = 0;
-    var FRAME_MS = 1000 / 30; // 限制到 ~30fps：水波视觉足够，CPU 占用减半
+    var FRAME_MS = 1000 / 90; // 目标 ~90fps：水波更顺滑（rAF 跟随屏幕刷新率，60Hz 屏上限 60）
 
     function frame(ts) {
       if (!running) return;
