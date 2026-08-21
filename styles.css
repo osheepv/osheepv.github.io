@@ -66,8 +66,7 @@ html[data-theme="dark"] body {
   --color-on-accent: #ffffff;
 
   /* Glassmorphism tokens */
-  --glass-bg: rgba(255, 255, 255, 0.55);
-  --glass-bg-strong: rgba(255, 255, 255, 0.78);
+  --glass-bg: rgba(255, 255, 255, 0.65);
   --glass-border: rgba(255, 255, 255, 0.72);
   --glass-highlight-top: rgba(255, 255, 255, 0.42);
   --glass-highlight-bottom: rgba(255, 255, 255, 0.1);
@@ -123,8 +122,7 @@ html[data-theme="dark"] {
   --color-surface-hover: rgba(255, 255, 255, 0.06);
 
   /* Glassmorphism tokens */
-  --glass-bg: rgba(28, 28, 30, 0.55);
-  --glass-bg-strong: rgba(28, 28, 30, 0.82);
+  --glass-bg: rgba(28, 28, 30, 0.65);
   --glass-border: rgba(255, 255, 255, 0.14);
   --glass-highlight-top: rgba(255, 255, 255, 0.09);
   --glass-highlight-bottom: rgba(255, 255, 255, 0.03);
@@ -2569,7 +2567,7 @@ html[data-theme="dark"] .form-success {
 .chat-window {
   background:
     linear-gradient(180deg, var(--glass-highlight-top), var(--glass-highlight-bottom) 45%, transparent 62%),
-    var(--glass-bg-strong);
+    var(--glass-bg);
 }
 
 /* tint 渐变卡片：渐变终点接入玻璃底色，与全站玻璃语言统一 */
@@ -2649,7 +2647,7 @@ html[data-theme="dark"] .form-success {
 .chat-input textarea,
 .form-input,
 .form-textarea {
-  background: var(--glass-bg-strong);
+  background: var(--glass-bg);
 }
 
 /* 透明底 → 玻璃底（小控件） */
