@@ -12,9 +12,9 @@
      {{subject}} {{message}}。然后把下面三个占位符替换成你自己的值即可。
      未替换（仍是占位符）时，表单自动降级为 mailto: 唤起本地邮件客户端，
      不会“假成功”，访客依然能把信发到你邮箱。 */
-  var EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
-  var EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
-  var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+  var EMAILJS_PUBLIC_KEY  = 'hsYFpecS2Lwwap57-';
+  var EMAILJS_SERVICE_ID  = 'service_uamow5e';
+  var EMAILJS_TEMPLATE_ID = 'template_qwxbd9a';
   var EMAILJS_TO_EMAIL    = '3402685368@qq.com';
   var EMAILJS_CONFIGURED = EMAILJS_PUBLIC_KEY  !== 'YOUR_PUBLIC_KEY'
                         && EMAILJS_SERVICE_ID  !== 'YOUR_SERVICE_ID'
@@ -317,7 +317,7 @@
         var params = {
           name: nameInput.value.trim(),
           email: emailInput.value.trim(),
-          subject: (subjectEl && subjectEl.value.trim()) || '(无主题)',
+          title: (subjectEl && subjectEl.value.trim()) || '(无主题)',
           message: messageInput.value.trim()
         };
 
@@ -346,7 +346,7 @@
         } else {
           // 降级通道：未配置 EmailJS 时，唤起本地邮件客户端（立即可用）
           var mailto = 'mailto:' + EMAILJS_TO_EMAIL
-            + '?subject=' + encodeURIComponent('[网站留言] ' + params.subject)
+            + '?subject=' + encodeURIComponent('[网站留言] ' + params.title)
             + '&body=' + encodeURIComponent('姓名：' + params.name + '\n邮箱：' + params.email + '\n\n' + params.message);
           window.location.href = mailto;
           handleSuccess();
