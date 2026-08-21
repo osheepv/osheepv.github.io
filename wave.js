@@ -1,8 +1,7 @@
 /*
- * wave.js — 俯视水面物理涟漪背景（共享）
- * 在每个含 <canvas id="wave-canvas"> 的页面里，以其父容器为响应区域：
- * 鼠标/触摸在区域内移动即扰动水面，速度越快波幅越大，涟漪真实辐射/干涉/衰减。
- * 尊重 prefers-reduced-motion（静态降级）。
+ * wave.js — 俯视水面物理涟漪背景（整页 / 共享）
+ * canvas 固定铺满视口，鼠标/触摸在页面任意位置移动即扰动水面，
+ * 速度越快波幅越大，涟漪真实辐射/干涉/衰减。尊重 prefers-reduced-motion。
  */
 (function () {
   var canvases = document.querySelectorAll('#wave-canvas');
@@ -11,13 +10,14 @@
 
   Array.prototype.forEach.call(canvases, function (canvas) {
     var ctx = canvas.getContext('2d');
-    var area = canvas.parentElement;
     var W = 0, H = 0, DPR = 1;
 
     function resize() {
       DPR = Math.min(window.devicePixelRatio || 1, 2);
-      W = area.clientWidth; H = area.clientHeight;
-      canvas.width = W * DPR; canvas.height = H * DPR;
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = W * DPR;
+      canvas.height = H * DPR;
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     }
     resize();
@@ -60,8 +60,8 @@
     allocGrid();
 
     function toLocal(e) {
-      var rct = area.getBoundingClientRect();
-      return { x: e.clientX - rct.left, y: e.clientY - rct.top };
+      // canvas 固定铺满视口，坐标原点即视口左上角
+      return { x: e.clientX, y: e.clientY };
     }
     function poke(px, py, mag) {
       var cx = Math.floor(px / CELL), cy = Math.floor(py / CELL), r = 2;
@@ -75,7 +75,7 @@
     var pmouse = null;
     function pointer(e) {
       var p = toLocal(e);
-      if (p.x < 0 || p.y < 0 || p.x > W || p.y > H) return; // 仅在 canvas 父区域内响应
+      // 整页响应：不再限制 canvas 父区域
       if (pmouse) {
         var dx = p.x - pmouse.x, dy = p.y - pmouse.y;
         var dist = Math.hypot(dx, dy);
