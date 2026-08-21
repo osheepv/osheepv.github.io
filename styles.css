@@ -17,7 +17,11 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: var(--color-bg);
+  background:
+    radial-gradient(120% 90% at 12% 0%,   rgba(0,102,204,0.12),  transparent 55%),
+    radial-gradient(120% 90% at 100% 18%, rgba(123,92,255,0.12), transparent 52%),
+    radial-gradient(150% 110% at 50% 100%, rgba(0,188,212,0.10), transparent 58%),
+    var(--color-bg);
   color: var(--color-fg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -27,6 +31,14 @@ body {
   flex-direction: column;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(120% 90% at 12% 0%,   rgba(41,151,255,0.14),  transparent 55%),
+    radial-gradient(120% 90% at 100% 18%, rgba(94,92,230,0.14),   transparent 52%),
+    radial-gradient(150% 110% at 50% 100%, rgba(0,188,212,0.10),  transparent 58%),
+    var(--color-bg);
 }
 
 /* ===== 2. Design Tokens ===== */
@@ -367,21 +379,19 @@ html[data-theme="dark"] .site-header {
   padding: 100px 24px 60px;
   text-align: center;
   overflow: hidden;
-  background:
-    radial-gradient(120% 90% at 18% 0%,   rgba(0,102,204,0.12),  transparent 58%),
-    radial-gradient(120% 90% at 100% 18%, rgba(123,92,255,0.12), transparent 55%),
-    radial-gradient(150% 110% at 50% 100%, rgba(0,188,212,0.10), transparent 60%),
-    var(--color-bg-alt);
+  background: transparent;
 }
 
-/* Interactive wave background (top-down ripples) */
+/* Interactive wave background（整页俯视涟漪，固定铺满视口） */
 #wave-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   display: block;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
 }
 
@@ -391,11 +401,7 @@ html[data-theme="dark"] .site-header {
   overflow: hidden;
   padding: 56px 16px 48px;
   margin-bottom: 8px;
-  background:
-    radial-gradient(120% 90% at 18% 0%,   rgba(0,102,204,0.12),  transparent 58%),
-    radial-gradient(120% 90% at 100% 18%, rgba(123,92,255,0.12), transparent 55%),
-    radial-gradient(150% 110% at 50% 100%, rgba(0,188,212,0.10), transparent 60%),
-    var(--color-bg-alt);
+  background: transparent;
 }
 .wave-banner > * {
   position: relative;
@@ -415,11 +421,7 @@ html[data-theme="dark"] .site-header {
 }
 
 html[data-theme="dark"] .wave-banner {
-  background:
-    radial-gradient(120% 90% at 18% 0%,   rgba(41,151,255,0.14),  transparent 58%),
-    radial-gradient(120% 90% at 100% 18%, rgba(94,92,230,0.14),   transparent 55%),
-    radial-gradient(150% 110% at 50% 100%, rgba(0,188,212,0.10),  transparent 60%),
-    var(--color-bg-alt);
+  background: transparent;
 }
 
 /* Decorative gradient orbs */
@@ -471,11 +473,7 @@ html[data-theme="dark"] .orb-orange {
 }
 
 html[data-theme="dark"] .hero {
-  background:
-    radial-gradient(120% 90% at 18% 0%,   rgba(41,151,255,0.14),  transparent 58%),
-    radial-gradient(120% 90% at 100% 18%, rgba(94,92,230,0.14),   transparent 55%),
-    radial-gradient(150% 110% at 50% 100%, rgba(0,188,212,0.10),  transparent 60%),
-    var(--color-bg-alt);
+  background: transparent;
 }
 
 @keyframes float {
@@ -569,7 +567,7 @@ html[data-theme="dark"] .hero {
 
 /* ===== 6. Stats Bar ===== */
 .stats-bar {
-  background: var(--color-bg-alt);
+  background: transparent;
   padding: 48px 24px;
   border-bottom: 1px solid var(--color-border);
 }
@@ -687,11 +685,11 @@ html[data-theme="dark"] .keyword-ticker::after {
 }
 
 .section-alt {
-  background: var(--color-bg-alt);
+  background: transparent;
 }
 
 .section-dark {
-  background: var(--color-bg-dark);
+  background: rgba(0,0,0,0.5);
   color: #f5f5f7;
 }
 
@@ -1203,14 +1201,14 @@ html[data-theme="dark"] .badge-bronze { color: #d97706; }
 
 /* ===== 16. Footer ===== */
 .site-footer {
-  background: var(--color-bg-dark);
+  background: rgba(0,0,0,0.5);
   color: rgba(255, 255, 255, 0.6);
   padding: 60px 24px 32px;
   margin-top: auto;
 }
 
 html[data-theme="dark"] .site-footer {
-  background: #111;
+  background: rgba(0,0,0,0.5);
 }
 
 .footer-inner {
