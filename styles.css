@@ -385,6 +385,43 @@ html[data-theme="dark"] .site-header {
   pointer-events: none;
 }
 
+/* Shared wave banner (used on all sub-pages) */
+.wave-banner {
+  position: relative;
+  overflow: hidden;
+  padding: 56px 16px 48px;
+  margin-bottom: 8px;
+  background:
+    radial-gradient(120% 90% at 18% 0%,   rgba(0,102,204,0.12),  transparent 58%),
+    radial-gradient(120% 90% at 100% 18%, rgba(123,92,255,0.12), transparent 55%),
+    radial-gradient(150% 110% at 50% 100%, rgba(0,188,212,0.10), transparent 60%),
+    var(--color-bg-alt);
+}
+.wave-banner > * {
+  position: relative;
+  z-index: 1;
+}
+.wave-banner .section-head {
+  margin-bottom: 0;
+}
+
+/* chat page banner: slimmer padding, header flush */
+.chat-banner {
+  padding: 28px 16px 8px;
+  margin-bottom: 0;
+}
+.chat-banner > .chat-header {
+  margin-bottom: 0;
+}
+
+html[data-theme="dark"] .wave-banner {
+  background:
+    radial-gradient(120% 90% at 18% 0%,   rgba(41,151,255,0.14),  transparent 58%),
+    radial-gradient(120% 90% at 100% 18%, rgba(94,92,230,0.14),   transparent 55%),
+    radial-gradient(150% 110% at 50% 100%, rgba(0,188,212,0.10),  transparent 60%),
+    var(--color-bg-alt);
+}
+
 /* Decorative gradient orbs */
 .orb {
   position: absolute;
