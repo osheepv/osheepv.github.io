@@ -2845,67 +2845,33 @@ body.i18n-fade-out .chat-page {
     transform: translateX(36px);
   }
   .theme-toggle {
-    padding: 6px 10px;
+    padding: 6px 8px;
+  }
+  .theme-toggle .theme-label {
+    display: none;
   }
 }
 
 
 /* ===== 28. Apple 连续曲率圆角（Squircle） =====
    说明：Apple 圆角是平滑连续过渡的超椭圆曲线（n≈4），不是普通四分之一圆弧。
-   - 主方案：SVG 超椭圆 mask（--sq-*，Chrome/Safari/Firefox 均支持）
+   实现：5 层 mask —— 四角固定尺寸的 squircle 角（角半径精确、不随元素尺寸变形）
+         + 中心白色矩形（calc 拉伸，无角所以无变形）。Chrome/Safari/Firefox 均支持。
    - 渐进增强：@supports 检测原生 corner-shape（Chrome/Edge 129+）时改用原生
-   - 兜底：不支持 mask 的旧浏览器保留普通 border-radius（上方各组已定义）
+   - 兜底：不支持 mask 的旧浏览器保留普通 border-radius
    注意：胶囊元素（--radius-pill）保持圆形端部，不套 mask。 */
-.sq-xl {
-  -webkit-mask-image: var(--sq-xl);
-  mask-image: var(--sq-xl);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-}
-.sq-lg {
-  -webkit-mask-image: var(--sq-lg);
-  mask-image: var(--sq-lg);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-}
-.sq-md {
-  -webkit-mask-image: var(--sq-md);
-  mask-image: var(--sq-md);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-}
-.sq-sm {
-  -webkit-mask-image: var(--sq-sm);
-  mask-image: var(--sq-sm);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-}
-.sq-xs {
-  -webkit-mask-image: var(--sq-xs);
-  mask-image: var(--sq-xs);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-}
 
 /* —— 大容器（28px） —— */
 .chat-window,
 .placeholder-card,
 .detail-hero {
   border-radius: var(--radius-xl);
-  -webkit-mask-image: var(--sq-xl);
-  mask-image: var(--sq-xl);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
+  -webkit-mask-image: var(--sqc-xl-tl), var(--sqc-xl-tr), var(--sqc-xl-br), var(--sqc-xl-bl), var(--sqc-center);
+  mask-image: var(--sqc-xl-tl), var(--sqc-xl-tr), var(--sqc-xl-br), var(--sqc-xl-bl), var(--sqc-center);
+  -webkit-mask-size: 28px 28px, 28px 28px, 28px 28px, 28px 28px, calc(100% - 56px) calc(100% - 56px);
+  mask-size: 28px 28px, 28px 28px, 28px 28px, 28px 28px, calc(100% - 56px) calc(100% - 56px);
+  -webkit-mask-position: 0 0, 100% 0, 100% 100%, 0 100%, 28px 28px;
+  mask-position: 0 0, 100% 0, 100% 100%, 0 100%, 28px 28px;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
@@ -2919,10 +2885,12 @@ body.i18n-fade-out .chat-page {
 .detail-cta,
 .contact-info-card,
 .contact-form-card {
-  -webkit-mask-image: var(--sq-lg);
-  mask-image: var(--sq-lg);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
+  -webkit-mask-image: var(--sqc-lg-tl), var(--sqc-lg-tr), var(--sqc-lg-br), var(--sqc-lg-bl), var(--sqc-center);
+  mask-image: var(--sqc-lg-tl), var(--sqc-lg-tr), var(--sqc-lg-br), var(--sqc-lg-bl), var(--sqc-center);
+  -webkit-mask-size: 20px 20px, 20px 20px, 20px 20px, 20px 20px, calc(100% - 40px) calc(100% - 40px);
+  mask-size: 20px 20px, 20px 20px, 20px 20px, 20px 20px, calc(100% - 40px) calc(100% - 40px);
+  -webkit-mask-position: 0 0, 100% 0, 100% 100%, 0 100%, 20px 20px;
+  mask-position: 0 0, 100% 0, 100% 100%, 0 100%, 20px 20px;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
@@ -2936,10 +2904,12 @@ body.i18n-fade-out .chat-page {
 .chat-send,
 .msg-bubble,
 .scroll-hint .mouse {
-  -webkit-mask-image: var(--sq-md);
-  mask-image: var(--sq-md);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
+  -webkit-mask-image: var(--sqc-md-tl), var(--sqc-md-tr), var(--sqc-md-br), var(--sqc-md-bl), var(--sqc-center);
+  mask-image: var(--sqc-md-tl), var(--sqc-md-tr), var(--sqc-md-br), var(--sqc-md-bl), var(--sqc-center);
+  -webkit-mask-size: 14px 14px, 14px 14px, 14px 14px, 14px 14px, calc(100% - 28px) calc(100% - 28px);
+  mask-size: 14px 14px, 14px 14px, 14px 14px, 14px 14px, calc(100% - 28px) calc(100% - 28px);
+  -webkit-mask-position: 0 0, 100% 0, 100% 100%, 0 100%, 14px 14px;
+  mask-position: 0 0, 100% 0, 100% 100%, 0 100%, 14px 14px;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
@@ -2951,10 +2921,12 @@ body.i18n-fade-out .chat-page {
 .award-badge,
 .detail-badge,
 .contact-item .icon {
-  -webkit-mask-image: var(--sq-sm);
-  mask-image: var(--sq-sm);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
+  -webkit-mask-image: var(--sqc-sm-tl), var(--sqc-sm-tr), var(--sqc-sm-br), var(--sqc-sm-bl), var(--sqc-center);
+  mask-image: var(--sqc-sm-tl), var(--sqc-sm-tr), var(--sqc-sm-br), var(--sqc-sm-bl), var(--sqc-center);
+  -webkit-mask-size: 10px 10px, 10px 10px, 10px 10px, 10px 10px, calc(100% - 20px) calc(100% - 20px);
+  mask-size: 10px 10px, 10px 10px, 10px 10px, 10px 10px, calc(100% - 20px) calc(100% - 20px);
+  -webkit-mask-position: 0 0, 100% 0, 100% 100%, 0 100%, 10px 10px;
+  mask-position: 0 0, 100% 0, 100% 100%, 0 100%, 10px 10px;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
@@ -2962,12 +2934,14 @@ body.i18n-fade-out .chat-page {
 /* 移动端 768px：chat-window 圆角降档为 lg，mask 同步换档 */
 @media (max-width: 768px) {
   .chat-window {
-    -webkit-mask-image: var(--sq-lg);
-    mask-image: var(--sq-lg);
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
+  -webkit-mask-image: var(--sqc-lg-tl), var(--sqc-lg-tr), var(--sqc-lg-br), var(--sqc-lg-bl), var(--sqc-center);
+  mask-image: var(--sqc-lg-tl), var(--sqc-lg-tr), var(--sqc-lg-br), var(--sqc-lg-bl), var(--sqc-center);
+  -webkit-mask-size: 20px 20px, 20px 20px, 20px 20px, 20px 20px, calc(100% - 40px) calc(100% - 40px);
+  mask-size: 20px 20px, 20px 20px, 20px 20px, 20px 20px, calc(100% - 40px) calc(100% - 40px);
+  -webkit-mask-position: 0 0, 100% 0, 100% 100%, 0 100%, 20px 20px;
+  mask-position: 0 0, 100% 0, 100% 100%, 0 100%, 20px 20px;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
   }
 }
 
@@ -3004,19 +2978,18 @@ body.i18n-fade-out .chat-page {
   }
 }
 
-/* —— 不支持 mask 的旧浏览器：保持普通圆角（无需额外处理，border-radius 已在各组定义） —— */
-
-
 /* ===== 29. 主题切换按钮 · iOS/macOS 控制中心规范 ===== */
 /* 按钮本体：胶囊 Squircle 连续曲率 + 背景/阴影随主题 300ms 柔和过渡 */
 .theme-toggle {
   box-shadow: var(--shadow-sm);
   transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease,
     box-shadow 0.3s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  -webkit-mask-image: var(--sq-pill);
-  mask-image: var(--sq-pill);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
+  -webkit-mask-image: var(--sqc-pill-tl), var(--sqc-pill-tr), var(--sqc-pill-br), var(--sqc-pill-bl), var(--sqc-center);
+  mask-image: var(--sqc-pill-tl), var(--sqc-pill-tr), var(--sqc-pill-br), var(--sqc-pill-bl), var(--sqc-center);
+  -webkit-mask-size: 16px 16px, 16px 16px, 16px 16px, 16px 16px, calc(100% - 32px) calc(100% - 32px);
+  mask-size: 16px 16px, 16px 16px, 16px 16px, 16px 16px, calc(100% - 32px) calc(100% - 32px);
+  -webkit-mask-position: 0 0, 100% 0, 100% 100%, 0 100%, 16px 16px;
+  mask-position: 0 0, 100% 0, 100% 100%, 0 100%, 16px 16px;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
