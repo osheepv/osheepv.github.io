@@ -65,6 +65,14 @@ html[data-theme="dark"] body {
   --color-surface-hover: rgba(0, 0, 0, 0.03);
   --color-on-accent: #ffffff;
 
+  /* Glassmorphism tokens */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.72);
+  --glass-highlight-top: rgba(255, 255, 255, 0.42);
+  --glass-highlight-bottom: rgba(255, 255, 255, 0.1);
+  --glass-blur: blur(22px) saturate(180%);
+
   /* Gradient accents */
   --gradient-blue: linear-gradient(135deg, #0066cc, #003d7a);
   --gradient-purple: linear-gradient(135deg, #5856d6, #3634a3);
@@ -113,6 +121,14 @@ html[data-theme="dark"] {
   --color-border-light: #2c2c2e;
   --color-surface: #1c1c1e;
   --color-surface-hover: rgba(255, 255, 255, 0.06);
+
+  /* Glassmorphism tokens */
+  --glass-bg: rgba(28, 28, 30, 0.55);
+  --glass-bg-strong: rgba(28, 28, 30, 0.82);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-highlight-top: rgba(255, 255, 255, 0.09);
+  --glass-highlight-bottom: rgba(255, 255, 255, 0.03);
+  --glass-blur: blur(22px) saturate(180%);
 
   --gradient-blue: linear-gradient(135deg, #2997ff, #0066cc);
   --gradient-purple: linear-gradient(135deg, #5e5ce6, #3634a3);
@@ -2526,5 +2542,73 @@ html[data-theme="dark"] .form-success {
 
   .orb {
     display: none;
+  }
+}
+
+/* ===== 26. Glassmorphism — Shared Card Treatment ===== */
+.about-card,
+.bento-card,
+.award-card,
+.exp-card,
+.detail-hero,
+.detail-section,
+.related-card,
+.contact-info-card,
+.contact-form-card,
+.placeholder-card,
+.chat-window {
+  background:
+    linear-gradient(180deg, var(--glass-highlight-top), var(--glass-highlight-bottom) 45%, transparent 62%),
+    var(--glass-bg);
+  border-color: var(--glass-border);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+/* 聊天窗口是常驻滚动区域：用更实的玻璃底，保证长文本可读性 */
+.chat-window {
+  background:
+    linear-gradient(180deg, var(--glass-highlight-top), var(--glass-highlight-bottom) 45%, transparent 62%),
+    var(--glass-bg-strong);
+}
+
+/* tint 渐变卡片：渐变终点接入玻璃底色，与全站玻璃语言统一 */
+.bento-card.tint-blue {
+  background: linear-gradient(180deg, var(--gradient-tint-blue) 0%, var(--glass-bg) 100%);
+}
+.bento-card.tint-purple {
+  background: linear-gradient(180deg, var(--gradient-tint-purple) 0%, var(--glass-bg) 100%);
+}
+.bento-card.tint-orange {
+  background: linear-gradient(180deg, var(--gradient-tint-orange) 0%, var(--glass-bg) 100%);
+}
+.bento-card.tint-green {
+  background: linear-gradient(180deg, var(--gradient-tint-green) 0%, var(--glass-bg) 100%);
+}
+.detail-hero.tint-gold {
+  background: linear-gradient(180deg, var(--glass-bg) 0%, rgba(255, 149, 0, 0.05) 100%);
+}
+.detail-hero.tint-silver {
+  background: linear-gradient(180deg, var(--glass-bg) 0%, var(--gradient-tint-purple) 100%);
+}
+.detail-hero.tint-bronze {
+  background: linear-gradient(180deg, var(--glass-bg) 0%, rgba(180, 83, 9, 0.05) 100%);
+}
+
+/* 不支持 backdrop-filter 的浏览器：回退到实底卡片，保证可读性 */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .about-card,
+  .bento-card,
+  .award-card,
+  .exp-card,
+  .detail-hero,
+  .detail-section,
+  .related-card,
+  .contact-info-card,
+  .contact-form-card,
+  .placeholder-card,
+  .chat-window {
+    background: var(--color-surface);
+    border-color: var(--color-border);
   }
 }
