@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 
@@ -60,6 +60,7 @@
 
     <!-- ===== Hero Section ===== -->
     <section class="hero" aria-label="个人介绍">
+      <canvas id="wave-canvas" aria-hidden="true"></canvas>
       <div class="orb orb-blue"></div>
       <div class="orb orb-purple"></div>
       <div class="orb orb-orange"></div>
@@ -366,5 +367,95 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('wave-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var hero = canvas.parentElement;
+    var W = 0, H = 0, DPR = 1;
+
+    function resize() {
+      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      W = hero.clientWidth; H = hero.clientHeight;
+      canvas.width = W * DPR; canvas.height = H * DPR;
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    var COLORS = ['130,175,230', '165,150,235', '120,205,220'];
+    var ripples = [];
+    var lastSpawn = 0, lastMove = 0;
+
+    function spawn(x, y, strength) {
+      ripples.push({ x: x, y: y, t: 0, strength: strength, color: COLORS[ripples.length % COLORS.length] });
+    }
+    function toLocal(e) {
+      var r = hero.getBoundingClientRect();
+      return { x: e.clientX - r.left, y: e.clientY - r.top };
+    }
+    function pointerMove(e) {
+      var p = toLocal(e);
+      if (p.x < 0 || p.y < 0 || p.x > W || p.y > H) return; // 仅在首屏 Hero 内响应
+      var now = performance.now();
+      var last = ripples[ripples.length - 1];
+      if (!last || Math.hypot(p.x - last.x, p.y - last.y) > 34) spawn(p.x, p.y, 3.6);
+      lastMove = now;
+    }
+    window.addEventListener('mousemove', pointerMove);
+    window.addEventListener('touchmove', function (e) {
+      var t = e.touches[0];
+      if (t) pointerMove({ clientX: t.clientX, clientY: t.clientY });
+    }, { passive: true });
+
+    var LIFE = 2.8, SPEED = 130, WAVELEN = 30, RINGS = 4;
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      var now = performance.now();
+      if (now - lastMove > 2600 && now - lastSpawn > 2200) {
+        spawn(Math.random() * W, Math.random() * H, 2.4);
+        lastSpawn = now;
+      }
+      for (var i = ripples.length - 1; i >= 0; i--) {
+        var r = ripples[i];
+        r.t += 0.016;
+        var R = r.t * SPEED;
+        var decay = Math.max(0, 1 - r.t / LIFE);
+        for (var k = 0; k < RINGS; k++) {
+          var rr = R - k * WAVELEN;
+          if (rr <= 0) continue;
+          var env = Math.exp(-Math.pow((rr - R) / (WAVELEN * 1.3), 2));
+          var a = r.strength * decay * env * 0.07;
+          if (a < 0.002) continue;
+          ctx.beginPath();
+          ctx.arc(r.x, r.y, rr, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(' + r.color + ',' + a + ')';
+          ctx.lineWidth = 1.6;
+          ctx.stroke();
+          var ha = a * 1.1;
+          if (ha > 0.004 && rr - 1.4 > 0) {
+            ctx.beginPath();
+            ctx.arc(r.x, r.y, rr - 1.4, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(255,255,255,' + ha + ')';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+        if (r.t > LIFE) ripples.splice(i, 1);
+      }
+      if (!reduceMotion) requestAnimationFrame(draw);
+    }
+
+    if (reduceMotion) {
+      spawn(W / 2, H / 2, 3.6);
+      for (var f = 0; f < 30; f++) draw();
+    } else {
+      requestAnimationFrame(draw);
+    }
+  })();
+  </script>
 </body>
 </html>
