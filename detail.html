@@ -23,7 +23,7 @@
   <link href="https://fonts.googleapis.cn/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css?v=19">
-  <script src="i18n.js?v=3"></script>
+  <script src="i18n.js?v=4"></script>
 </head>
 <body>
 
@@ -113,7 +113,7 @@
     </div>
   </footer>
 
-  <script src="details.js"></script>
+  <script src="details.js?v=2"></script>
   <script src="script.js?v=6"></script>
   <script src="wave.js?v=24"></script>
   <script>
@@ -123,7 +123,7 @@
     var id = params.get('id');
     var root = document.getElementById('detail-content');
     var extra = document.getElementById('detail-extra');
-    var BADGE_MAP = {'\u7701\u4E00':'province1', '\u56FD\u4E09':'national3', '\u4E09\u5956':'prize3'};
+    var BADGE_MAP = {'\u7701\u4E00':'province1', '\u56FD\u4E09':'national3', '\u4E09\u5956':'prize3', '\u672C\u4E09':'undergrad3', '\u8D5B\u533A':'regional'};
 
     function badgeLabelFor(label) {
       if (!label) return I18N.t('badge.exp');
@@ -147,8 +147,14 @@
 
       function badgeClass(label) {
         if (label === '\u7701\u4E00') return 'award-gold';
-        if (label === '\u56FD\u4E09' || label === '\u4E09\u5956') return 'award-silver';
+        if (label === '\u56FD\u4E09' || label === '\u4E09\u5956' || label === '\u672C\u4E09' || label === '\u8D5B\u533A') return 'award-silver';
         return 'award-bronze';
+      }
+
+      function relLabel(kind) {
+        if (kind === 'award') return I18N.t('detail.relAward');
+        if (kind === 'project') return I18N.t('detail.relProject');
+        return I18N.t('detail.relExp');
       }
 
       var badgeLabel = badgeLabelFor(data.badge);
@@ -199,8 +205,8 @@
       navHtml += '</nav>';
 
       var related = [];
-      if (prevId) related.push({ id: prevId, label: window.DETAILS[prevId].kind === 'award' ? I18N.t('detail.relAward') : I18N.t('detail.relExp') });
-      if (nextId) related.push({ id: nextId, label: window.DETAILS[nextId].kind === 'award' ? I18N.t('detail.relAward') : I18N.t('detail.relExp') });
+      if (prevId) related.push({ id: prevId, label: relLabel(window.DETAILS[prevId].kind) });
+      if (nextId) related.push({ id: nextId, label: relLabel(window.DETAILS[nextId].kind) });
 
       var relatedHtml = '';
       if (related.length > 0) {
