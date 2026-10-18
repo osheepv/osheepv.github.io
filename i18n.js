@@ -45,12 +45,12 @@
       'ticker.4': 'Python', 'ticker.5': 'Matlab', 'ticker.6': '机械设计',
       'ticker.7': 'Claude Code', 'ticker.8': 'n8n', 'ticker.9': 'AI Agent',
       'ticker.10': '数据清洗', 'ticker.11': '运筹优化', 'ticker.12': 'SolidWorks',
-      'ticker.13': 'ANSYS', 'ticker.14': 'WorkBuddy', 'ticker.15': 'Codex',
+      'ticker.13': 'BP 神经网络', 'ticker.14': 'WorkBuddy', 'ticker.15': 'Codex',
       'ticker.16': '工作流搭建',
 
       /* Section nav */
       'secnav.1': '关于', 'secnav.2': '技能', 'secnav.3': '竞赛荣誉',
-      'secnav.4': '经历', 'secnav.5': '联系',
+      'secnav.4': '经历', 'secnav.5': '联系', 'secnav.6': '项目',
 
       /* About */
       'about.kicker': 'About',
@@ -72,16 +72,16 @@
       'skills.sub': '从三维设计到 AI Agent，覆盖工程与智能化全链条',
       'skills.s1t': '3D建模与机械设计',
       'skills.s1b': '熟练运用 SolidWorks、AutoCAD 完成零部件三维建模与工程图纸绘制。掌握机械原理与机械设计基础，能独立完成从需求分析到结构设计的全流程。',
-      'skills.s2t': '仿真分析',
-      'skills.s2b': '运用 ANSYS 进行有限元分析与结构仿真，验证设计方案的合理性与可靠性。',
+      'skills.s2t': '数值建模与算法优化',
+      'skills.s2b': '以 MATLAB 实现 BP 神经网络与 WOA/PSO/ILSO 混合优化算法，完成滚珠丝杠热误差建模，预测精度较传统 BP 神经网络提升约 68%。',
       'skills.s3t': '编程与数据建模',
       'skills.s3b': 'Python + Matlab 完成数据清洗、数值计算、模型验证与可视化，具备完整的建模竞赛方法论。',
       'skills.s4t': 'AI Agent 与工作流',
       'skills.s4b': '熟练运用 Claude Code、Codex、OpenClaw、WorkBuddy、n8n 等 AI Agent 工具完成开发自动化与工作流搭建。已落地项目包括个人网站搭建与部署上线、微信小程序开发上线等。',
       'skills.ic1': '机械原理',
       'skills.ic2': '工程制图',
-      'skills.ic3': '有限元',
-      'skills.ic4': '结构仿真',
+      'skills.ic3': 'BP 神经网络',
+      'skills.ic4': '优化算法',
       'skills.ic5': '数据清洗',
       'skills.ic6': '可视化',
 
@@ -92,22 +92,38 @@
       'awards.arrow': '查看详情 →',
       'badge.province1': '省一', 'badge.national3': '国三',
       'badge.prize3': '三奖', 'badge.exp': '经历',
+      'badge.undergrad3': '本三', 'badge.regional': '赛区',
       'a.a1.badge': '省一',
       'a.a1.title': '全国大学生数学建模竞赛 · 浙江赛区一等奖',
       'a.a1.meta': '2025 · CUMCM · 浙江赛区 A 题',
       'a.a1.summary': '从建模、编程到论文撰写全流程主导完成，72小时高强度赛程中反复验证确保模型结果合理可信。',
-      'a.a2.badge': '国三',
+      'a.a2.badge': '本三',
       'a.a2.title': '"华数杯"全国大学生数学建模 · 本科生组三等奖',
       'a.a2.meta': '2025 · 华数杯 · 本科生组',
       'a.a2.summary': '聚焦大数据分析类题目，在数据清洗、特征工程与模型调优中投入大量精力。',
-      'a.a3.badge': '三奖',
-      'a.a3.title': 'MathorCup 数学应用挑战赛 · 本科生组三等奖',
-      'a.a3.meta': '2025 · MathorCup · 本科生组',
+      'a.a3.badge': '赛区',
+      'a.a3.title': 'MathorCup 数学应用挑战赛 · 赛区三等奖',
+      'a.a3.meta': '2025 · MathorCup · 赛区',
       'a.a3.summary': '运用线性规划与启发式算法相结合的方式求解调度优化问题，积累了运筹优化实战经验。',
       'a.a4.badge': '三奖',
       'a.a4.title': '长三角高校数学建模竞赛 · 三等奖（连续两届）',
       'a.a4.meta': '2024 — 2025 · 长三角赛区',
       'a.a4.summary': '从首届的摸索到次届的稳定输出，每次参赛都在建模流程与论文质量上有明显进步。',
+
+      /* Projects */
+      'proj.kicker': 'Projects',
+      'proj.title': '项目经历',
+      'proj.sub': '从机械设计到算法建模，完整走通从方案到交付的流程',
+      'proj.arrow': '查看详情 →',
+      'proj.p1.time': '2025.11 · 独立完成',
+      'proj.p1.title': '二级圆柱齿轮减速器设计',
+      'proj.p1.body': '针对带式运输机 F=2300N、v=1.5m/s 工况完成减速器设计，含电机选型、传动比分配、齿轮强度计算、三根轴设计与校核，输出 A1 装配图 1 张、A3 零件图 2 张。',
+      'proj.p2.time': '2026.01 · 独立完成',
+      'proj.p2.title': '花样流水灯控制器',
+      'proj.p2.body': '基于 AT89C51，用 C 语言在 Keil 中编写按键扫描与数码管动态显示模块，Proteus 完成电路仿真验证。',
+      'proj.p3.time': '2025.12 — 2026.07 · 第一作者',
+      'proj.p3.title': '滚珠丝杠热误差建模研究',
+      'proj.p3.body': '以多工况实测温度与热误差数据为基础，提出 WOA-PSO-ILSO 混合优化 BP 神经网络模型，预测精度较传统 BP 提升约 68%、较 ILSO-BP 提升约 15%（论文拟投）。',
 
       /* Experience */
       'exp.kicker': 'Experience',
@@ -123,9 +139,9 @@
       'e.e3.time': '2023.10 — 2025.12',
       'e.e3.title': '数学建模社团 · 核心成员',
       'e.e3.body': '累计参与 6 场省级及以上竞赛收获 6 项奖项，熟练运用 Python/Matlab 完成数据建模全流程，主导搭建社团知识库。',
-      'e.e4.time': '2024 — 2025',
+      'e.e4.time': '2024 — 2026',
       'e.e4.title': '荣誉 & 奖学金',
-      'e.e4.body': '本科期间累计获得三等奖学金、优秀学生干部，以及 10+ 项校级及以上竞赛证书。',
+      'e.e4.body': '本科期间累计获得三等奖学金、学业奖学金、优秀学生干部，以及 10+ 项校级及以上竞赛证书。',
 
       /* CTA */
       'cta.title': '有项目合作或问题咨询？',
@@ -189,6 +205,7 @@
       'detail.related': '继续阅读',
       'detail.relAward': '竞赛荣誉',
       'detail.relExp': '经历',
+      'detail.relProject': '项目',
       'detail.ctaT': '对这些内容感兴趣？',
       'detail.ctaB': '如果想了解更多或者讨论相关话题，欢迎随时联系。',
       'detail.ctaBtn': '联系我 →',
@@ -250,12 +267,12 @@
       'ticker.4': 'Python', 'ticker.5': 'MATLAB', 'ticker.6': 'Mechanical Design',
       'ticker.7': 'Claude Code', 'ticker.8': 'n8n', 'ticker.9': 'AI Agent',
       'ticker.10': 'Data Cleaning', 'ticker.11': 'Optimization', 'ticker.12': 'SolidWorks',
-      'ticker.13': 'ANSYS', 'ticker.14': 'WorkBuddy', 'ticker.15': 'Codex',
+      'ticker.13': 'BP Neural Network', 'ticker.14': 'WorkBuddy', 'ticker.15': 'Codex',
       'ticker.16': 'Workflow Automation',
 
       /* Section nav */
       'secnav.1': 'About', 'secnav.2': 'Skills', 'secnav.3': 'Awards',
-      'secnav.4': 'Experience', 'secnav.5': 'Contact',
+      'secnav.4': 'Experience', 'secnav.5': 'Contact', 'secnav.6': 'Projects',
 
       /* About */
       'about.kicker': 'About',
@@ -277,16 +294,16 @@
       'skills.sub': 'From 3D design to AI Agent — covering the full engineering & intelligence chain',
       'skills.s1t': '3D Modeling & Mechanical Design',
       'skills.s1b': 'Proficient in SolidWorks and AutoCAD for 3D part modeling and engineering drawings. Solid grasp of mechanical principles and design fundamentals — capable of the full pipeline from requirement analysis to structural design.',
-      'skills.s2t': 'Simulation & Analysis',
-      'skills.s2b': 'Finite element analysis and structural simulation with ANSYS to verify the rationality and reliability of design solutions.',
+      'skills.s2t': 'Numerical Modeling & Optimization',
+      'skills.s2b': 'Implement BP neural networks and WOA/PSO/ILSO hybrid optimization algorithms in MATLAB, and have completed thermal error modeling for ball screws, improving prediction accuracy by about 68% over a conventional BP neural network.',
       'skills.s3t': 'Programming & Data Modeling',
       'skills.s3b': 'Python + MATLAB for data cleaning, numerical computation, model validation and visualization, with a complete competition modeling methodology.',
       'skills.s4t': 'AI Agent & Workflows',
       'skills.s4b': 'Proficient in AI Agent tools — Claude Code, Codex, OpenClaw, WorkBuddy, n8n — for development automation and workflow building. Shipped projects include this website (built & deployed) and a WeChat Mini Program (developed & launched).',
       'skills.ic1': 'Mechanical Principles',
       'skills.ic2': 'Engineering Drawing',
-      'skills.ic3': 'FEA',
-      'skills.ic4': 'Structural Simulation',
+      'skills.ic3': 'BP Neural Network',
+      'skills.ic4': 'Optimization Algorithms',
       'skills.ic5': 'Data Cleaning',
       'skills.ic6': 'Visualization',
 
@@ -297,22 +314,38 @@
       'awards.arrow': 'View details →',
       'badge.province1': 'Prov. 1st', 'badge.national3': 'Nat. 3rd',
       'badge.prize3': '3rd Prize', 'badge.exp': 'Experience',
+      'badge.undergrad3': '3rd', 'badge.regional': 'Regional',
       'a.a1.badge': 'Prov. 1st',
       'a.a1.title': 'CUMCM National College Math Modeling · Zhejiang 1st Prize',
       'a.a1.meta': '2025 · CUMCM · Zhejiang Problem A',
       'a.a1.summary': 'Led the full pipeline from modeling and coding to paper writing, with repeated validation during the intense 72-hour contest to keep results reliable.',
-      'a.a2.badge': 'Nat. 3rd',
+      'a.a2.badge': '3rd',
       'a.a2.title': '"Huashu Cup" National College Math Modeling · Undergrad 3rd Prize',
       'a.a2.meta': '2025 · Huashu Cup · Undergrad',
       'a.a2.summary': 'Focused on a big-data analysis problem, investing heavily in data cleaning, feature engineering and model tuning.',
-      'a.a3.badge': '3rd Prize',
-      'a.a3.title': 'MathorCup Mathematical Modeling Challenge · Undergrad 3rd Prize',
-      'a.a3.meta': '2025 · MathorCup · Undergrad',
+      'a.a3.badge': 'Regional',
+      'a.a3.title': 'MathorCup Mathematical Application Challenge · Regional 3rd Prize',
+      'a.a3.meta': '2025 · MathorCup · Regional',
       'a.a3.summary': 'Solved a scheduling optimization problem with linear programming combined with heuristic algorithms, gaining hands-on operations research experience.',
       'a.a4.badge': '3rd Prize',
       'a.a4.title': 'Yangtze Delta Universities Math Modeling · 3rd Prize (twice)',
       'a.a4.meta': '2024 — 2025 · Yangtze Delta',
       'a.a4.summary': 'From groping in the first year to steady output in the second, each contest brought visible progress in modeling process and paper quality.',
+
+      /* Projects */
+      'proj.kicker': 'Projects',
+      'proj.title': 'Projects',
+      'proj.sub': 'From mechanical design to algorithm modeling — carrying each project from concept to delivery',
+      'proj.arrow': 'View details →',
+      'proj.p1.time': 'Nov 2025 · Independent',
+      'proj.p1.title': 'Two-Stage Cylindrical Gear Reducer Design',
+      'proj.p1.body': 'Designed a reducer for a belt conveyor (F = 2300 N, v = 1.5 m/s), covering motor selection, transmission ratio allocation, gear strength calculations, and the design and verification of three shafts; produced one A1 assembly drawing and two A3 part drawings.',
+      'proj.p2.time': 'Jan 2026 · Independent',
+      'proj.p2.title': 'Patterned Water-Light Controller',
+      'proj.p2.body': 'Built on an AT89C51 microcontroller, wrote key scanning and dynamic seven-segment display modules in C with Keil, and verified the circuit in a Proteus simulation.',
+      'proj.p3.time': 'Dec 2025 — Jul 2026 · First Author',
+      'proj.p3.title': 'Thermal Error Modeling for Ball Screws',
+      'proj.p3.body': 'Based on measured temperature and thermal error data under multiple working conditions, proposed a WOA-PSO-ILSO hybrid-optimized BP neural network model, improving prediction accuracy by about 68% over a conventional BP model and about 15% over ILSO-BP (paper in preparation).',
 
       /* Experience */
       'exp.kicker': 'Experience',
@@ -328,9 +361,9 @@
       'e.e3.time': '2023.10 — 2025.12',
       'e.e3.title': 'Math Modeling Club · Core Member',
       'e.e3.body': 'Participated in 6 provincial+ competitions with 6 awards, proficient in full-pipeline data modeling with Python/MATLAB, and led the club knowledge base.',
-      'e.e4.time': '2024 — 2025',
+      'e.e4.time': '2024 — 2026',
       'e.e4.title': 'Honors & Scholarships',
-      'e.e4.body': 'Earned a Third-Class Scholarship, Outstanding Student Cadre, and 10+ university-level or above competition certificates during undergraduate study.',
+      'e.e4.body': 'Earned a Third-Class Scholarship, an Academic Scholarship, Outstanding Student Cadre, and 10+ university-level or above competition certificates during undergraduate study.',
 
       /* CTA */
       'cta.title': 'Have a project or a question?',
@@ -394,6 +427,7 @@
       'detail.related': 'Keep Reading',
       'detail.relAward': 'Award',
       'detail.relExp': 'Experience',
+      'detail.relProject': 'Project',
       'detail.ctaT': 'Interested in these?',
       'detail.ctaB': 'Want to know more or discuss related topics? Feel free to contact me.',
       'detail.ctaBtn': 'Contact Me →',
@@ -454,13 +488,13 @@
   DICT.en['d:award-2:skills'] = ['Data Cleaning', 'Feature Engineering', 'Python', 'ML Basics'];
   DICT.en['d:award-2:takeaway'] = 'Data quality determines the model ceiling — time spent cleaning data always pays back in model accuracy.';
 
-  DICT.en['d:award-3:title'] = '2025 15th MathorCup Challenge · Undergrad 3rd Prize';
-  DICT.en['d:award-3:meta'] = '2025 · MathorCup University Math Modeling Challenge · Undergrad';
-  DICT.en['d:award-3:summary'] = 'MathorCup is known for practical engineering and operations research. The problem involved scheduling optimization — I combined linear programming with heuristic algorithms to solve it, gaining hands-on OR experience and earning the Undergrad 3rd Prize.';
+  DICT.en['d:award-3:title'] = '2025 15th MathorCup Challenge · Regional 3rd Prize';
+  DICT.en['d:award-3:meta'] = '2025 · MathorCup Mathematical Application Challenge · Regional';
+  DICT.en['d:award-3:summary'] = 'MathorCup is known for practical engineering and operations research. The problem involved scheduling optimization — I combined linear programming with heuristic algorithms to solve it, gaining hands-on OR experience and earning the Regional 3rd Prize.';
   DICT.en['d:award-3:highlights'] = [
     'Scheduling/OR problem solved with linear programming',
     'Combined heuristic algorithms to boost solving efficiency',
-    'Won the Undergrad 3rd Prize'
+    'Won the Regional 3rd Prize'
   ];
   DICT.en['d:award-3:details'] = [
     'Learned and applied integer programming plus greedy/simulated-annealing heuristics',
@@ -535,10 +569,11 @@
   DICT.en['d:exp-3:takeaway'] = 'Real growth happens the moment you write experience down and teach others — output is the most efficient input.';
 
   DICT.en['d:exp-4:title'] = 'Honors & Scholarships';
-  DICT.en['d:exp-4:meta'] = '2024 — 2025';
-  DICT.en['d:exp-4:summary'] = 'Earned multiple university honors and scholarships during undergraduate study, including a Third-Class Scholarship, Outstanding Student Cadre, and 10+ university-level or above competition certificates — recognition of sustained effort and balanced development.';
+  DICT.en['d:exp-4:meta'] = '2024 — 2026';
+  DICT.en['d:exp-4:summary'] = 'Earned multiple university honors and scholarships during undergraduate study, including a Third-Class Scholarship, an Academic Scholarship, Outstanding Student Cadre, and 10+ university-level or above competition certificates — recognition of sustained effort and balanced development.';
   DICT.en['d:exp-4:highlights'] = [
     '2024–2025 · Third-Class Scholarship',
+    '2025–2026 · Academic Scholarship',
     '2024–2025 · Outstanding Student Cadre',
     '10+ university-level or above competition certificates'
   ];
@@ -549,6 +584,57 @@
   ];
   DICT.en['d:exp-4:skills'] = ['Academic Planning', 'Time Management', 'Balanced Development'];
   DICT.en['d:exp-4:takeaway'] = 'Honors are not the destination — they are confirmation that you are spending time on the right things.';
+
+  DICT.en['d:project-1:title'] = 'Two-Stage Cylindrical Gear Reducer Design';
+  DICT.en['d:project-1:meta'] = 'Nov 2025 · Independent';
+  DICT.en['d:project-1:summary'] = 'Designed an expanded two-stage spur gear reducer for a belt conveyor (F = 2300 N, v = 1.5 m/s), covering motor selection, transmission ratio allocation, gear strength calculations, and the design and verification of three shafts — delivering one A1 assembly drawing and two A3 part drawings.';
+  DICT.en['d:project-1:highlights'] = [
+    'Completed motor selection (5.5 kW) and transmission ratio allocation (total ratio 32.4, reducer ratio 9.26)',
+    'Completed contact and bending fatigue strength calculations for the high- and low-speed gear stages (high-speed: m=2, z=31/110; low-speed: m=3, z=34/89)',
+    'Completed structural design and strength verification of three shafts, bearing life checks, and verification of five keyed connections',
+    'Produced one A1 assembly drawing and two A3 part drawings with CAD, and independently wrote the design report'
+  ];
+  DICT.en['d:project-1:details'] = [
+    'Selected the transmission scheme and calculated overall parameters from the belt conveyor working conditions',
+    'Designed both gear stages against contact and bending fatigue strength requirements',
+    'Checked drawings and the design report item by item before delivery'
+  ];
+  DICT.en['d:project-1:skills'] = ['Mechanical Design', 'Gear Transmission', 'Strength Verification', 'AutoCAD'];
+  DICT.en['d:project-1:takeaway'] = 'A design drawing is only the final output — every selection and every check behind it has to stand on its own, which is what makes the result trustworthy.';
+
+  DICT.en['d:project-2:title'] = 'Patterned Water-Light Controller';
+  DICT.en['d:project-2:meta'] = 'Jan 2026 · Independent';
+  DICT.en['d:project-2:summary'] = 'Designed a patterned water-light controller based on the AT89C51 microcontroller, wrote key scanning and dynamic seven-segment display modules in C with Keil, and verified the circuit with a Proteus simulation.';
+  DICT.en['d:project-2:highlights'] = [
+    'Completed the system scheme and minimum-system design around the AT89C51',
+    'Wrote the main program plus key scanning and dynamic display modules in C with Keil (split into key.c and display.c)',
+    'Implemented "pattern – speed – count" display on 8 seven-segment digits, independent key settings and an end-of-run buzzer alert',
+    'Built the minimum system, key and decoder circuits in Proteus, verified the simulation and wrote the design report'
+  ];
+  DICT.en['d:project-2:details'] = [
+    'Broke the program into modules so key scanning, display and main flow could be debugged separately',
+    'Used dynamic scanning to drive 8 seven-segment digits with a limited number of I/O pins',
+    'Cross-checked software behavior against the Proteus simulation before finalizing'
+  ];
+  DICT.en['d:project-2:skills'] = ['AT89C51', 'C', 'Keil', 'Proteus'];
+  DICT.en['d:project-2:takeaway'] = 'Splitting embedded code into small modules makes debugging far easier — when something goes wrong, you can isolate it instead of guessing.';
+
+  DICT.en['d:project-3:title'] = 'Thermal Error Modeling for Ball Screws';
+  DICT.en['d:project-3:meta'] = 'Dec 2025 — Jul 2026 · First Author';
+  DICT.en['d:project-3:summary'] = 'Based on measured temperature and thermal error data under multiple working conditions, proposed a WOA-PSO-ILSO hybrid-optimized BP neural network model. Prediction accuracy improved by about 68% over a conventional BP model and about 15% over ILSO-BP (paper in preparation).';
+  DICT.en['d:project-3:highlights'] = [
+    'Built the modeling dataset from measured temperature and thermal error data under multiple working conditions',
+    'Proposed a WOA-PSO-ILSO hybrid-optimized BP neural network prediction model',
+    'Combined sliding-window time-series feature construction with random forest feature selection',
+    'Improved prediction accuracy by about 68% over conventional BP and about 15% over ILSO-BP (paper in preparation)'
+  ];
+  DICT.en['d:project-3:details'] = [
+    'Handled experimental data processing, feature construction and model implementation independently',
+    'Compared the proposed model against conventional BP and ILSO-BP baselines under the same data',
+    'Took first-author responsibility for the paper draft'
+  ];
+  DICT.en['d:project-3:skills'] = ['MATLAB', 'BP Neural Network', 'WOA/PSO/ILSO', 'Feature Engineering'];
+  DICT.en['d:project-3:takeaway'] = 'The gain came less from stacking algorithms than from matching the right features and optimization strategy to the physical problem.';
 
   /* ===== 核心逻辑 ===== */
   function currentLang() {
