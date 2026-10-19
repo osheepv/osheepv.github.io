@@ -199,6 +199,7 @@
       'detail.achievements': '主要成果',
       'detail.details': '详细经历',
       'detail.skills': '相关技能',
+      'detail.figures': '项目图表',
       'detail.takeaway': '我的感悟',
       'detail.prev': '← 上一篇',
       'detail.next': '下一篇 →',
@@ -421,6 +422,7 @@
       'detail.achievements': 'Key Achievements',
       'detail.details': 'Detailed Story',
       'detail.skills': 'Related Skills',
+      'detail.figures': 'Figures',
       'detail.takeaway': 'My Takeaway',
       'detail.prev': '← Previous',
       'detail.next': 'Next →',
@@ -635,6 +637,13 @@
   ];
   DICT.en['d:project-3:skills'] = ['MATLAB', 'BP Neural Network', 'WOA/PSO/ILSO', 'Feature Engineering'];
   DICT.en['d:project-3:takeaway'] = 'The gain came less from stacking algorithms than from matching the right features and optimization strategy to the physical problem.';
+
+  DICT.en['d:project-3:figures'] = [
+    {
+      src: "assets/figures/three-algorithms-comparison.png",
+      caption: "RMSE, MAE and MAPE of three models at feed speeds of 6 / 8 / 10 m/min — the WOA-PSO-ILSO-BP model outperforms both BP and ILSO-BP on all three metrics."
+    }
+  ];
 
   /* ===== 核心逻辑 ===== */
   function currentLang() {

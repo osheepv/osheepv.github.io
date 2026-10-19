@@ -210,6 +210,12 @@ window.DETAILS = {
       "以第一作者完成论文撰写（拟投）",
     ],
     skills: ["MATLAB", "BP 神经网络", "WOA/PSO/ILSO", "特征工程"],
+    figures: [
+      {
+        src: "assets/figures/three-algorithms-comparison.png",
+        caption: "三种模型在 6 / 8 / 10 m/min 进给速度下的 RMSE、MAE 与 MAPE 对比：WOA-PSO-ILSO-BP 在三项指标上均优于传统 BP 与 ILSO-BP"
+      }
+    ],
     takeaway: "模型效果的提升更多来自特征与优化策略同工程问题的匹配，而不是单纯叠加算法。"
   }
 };

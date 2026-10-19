@@ -3092,3 +3092,34 @@ body.i18n-fade-out .chat-page {
     filter: drop-shadow(0 0 0 3px var(--color-accent-light));
   }
 }
+
+
+/* ===== 详情页 · 项目图表 ===== */
+.detail-figures {
+  display: grid;
+  gap: 18px;
+}
+
+.detail-figure {
+  margin: 0;
+  padding: 14px;
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.detail-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.detail-figure figcaption {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--color-fg-light);
+  text-align: center;
+}
