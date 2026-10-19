@@ -205,6 +205,13 @@ window.DETAILS = {
       "结合 Proteus 仿真验证软硬件功能后定稿",
     ],
     skills: ["AT89C51", "C 语言", "Keil", "Proteus"],
+    figures: [
+      {
+        src: "assets/figures/proteus-simulation.jpg",
+        caption: "Proteus 仿真验证：AT89C51 经 74LS245 驱动 8 位 LED 与 8 位数码管，按键设置样式 / 速度 / 循环次数，数码管实时显示"
+      }
+    ],
+
     takeaway: "把嵌入式程序拆成小模块后，出问题能快速定位，调试效率比堆在一个文件里高得多。"
   },
   "project-3": {

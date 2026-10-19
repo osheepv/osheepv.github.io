@@ -636,6 +636,13 @@
   DICT.en['d:project-2:skills'] = ['AT89C51', 'C', 'Keil', 'Proteus'];
   DICT.en['d:project-2:takeaway'] = 'Splitting embedded code into small modules makes debugging far easier — when something goes wrong, you can isolate it instead of guessing.';
 
+  DICT.en['d:project-2:figures'] = [
+    {
+      src: "assets/figures/proteus-simulation.jpg",
+      caption: "Proteus simulation: an AT89C51 drives eight LEDs and an 8-digit display through 74LS245 buffers; keys set the pattern, speed and cycle count, with the result shown live on the display."
+    }
+  ];
+
   DICT.en['d:project-3:title'] = 'Thermal Error Modeling for Ball Screws';
   DICT.en['d:project-3:meta'] = 'Dec 2025 — Jul 2026 · First Author';
   DICT.en['d:project-3:summary'] = 'Based on measured temperature and thermal error data under multiple working conditions, proposed a WOA-PSO-ILSO hybrid-optimized BP neural network model. Prediction accuracy improved by about 68% over a conventional BP model and about 15% over ILSO-BP (paper in preparation).';
