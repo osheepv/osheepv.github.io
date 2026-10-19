@@ -41,7 +41,7 @@
       'stat.4': '校级以上证书',
 
       /* Ticker */
-      'ticker.1': '数学建模', 'ticker.2': '3D建模', 'ticker.3': '仿真分析',
+      'ticker.1': '数学建模', 'ticker.2': '3D建模', 'ticker.3': '单片机开发',
       'ticker.4': 'Python', 'ticker.5': 'Matlab', 'ticker.6': '机械设计',
       'ticker.7': 'Claude Code', 'ticker.8': 'n8n', 'ticker.9': 'AI Agent',
       'ticker.10': '数据清洗', 'ticker.11': '运筹优化', 'ticker.12': 'SolidWorks',
@@ -263,7 +263,7 @@
       'stat.4': 'Certificates (Univ.+)',
 
       /* Ticker */
-      'ticker.1': 'Math Modeling', 'ticker.2': '3D Modeling', 'ticker.3': 'Simulation',
+      'ticker.1': 'Math Modeling', 'ticker.2': '3D Modeling', 'ticker.3': 'MCU Development',
       'ticker.4': 'Python', 'ticker.5': 'MATLAB', 'ticker.6': 'Mechanical Design',
       'ticker.7': 'Claude Code', 'ticker.8': 'n8n', 'ticker.9': 'AI Agent',
       'ticker.10': 'Data Cleaning', 'ticker.11': 'Optimization', 'ticker.12': 'SolidWorks',
