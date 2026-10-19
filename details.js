@@ -260,16 +260,16 @@ window.DETAILS = {
     ],
     figures: [
       {
-        src: "assets/figures/three-algorithms-comparison.png",
-        caption: "三种模型在 6 / 8 / 10 m/min 进给速度下的 RMSE、MAE 与 MAPE 对比：WOA-PSO-ILSO-BP 在三项指标上均优于传统 BP 与 ILSO-BP"
+        src: "assets/figures/feature-importance.png",
+        caption: "随机森林特征重要性排序（左）与累计重要性 95% 阈值（右）：从候选特征中筛选出关键输入特征"
       },
       {
         src: "assets/figures/thermal-error-prediction-6m.png",
         caption: "6 m/min 工况下三种模型预测曲线与真实热误差的对比：WOA-PSO-ILSO-BP（红色）对真实值的跟随最贴合"
       },
       {
-        src: "assets/figures/feature-importance.png",
-        caption: "随机森林特征重要性排序（左）与累计重要性 95% 阈值（右）：从候选特征中筛选出关键输入特征"
+        src: "assets/figures/three-algorithms-comparison.png",
+        caption: "三种模型在 6 / 8 / 10 m/min 进给速度下的 RMSE、MAE 与 MAPE 对比：WOA-PSO-ILSO-BP 在三项指标上均优于传统 BP 与 ILSO-BP"
       }
     ],
     takeaway: "模型效果的提升更多来自特征与优化策略同工程问题的匹配，而不是单纯叠加算法。"
