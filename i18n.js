@@ -121,6 +121,9 @@
       'proj.p2.time': '2026.01 · 独立完成',
       'proj.p2.title': '花样流水灯控制器',
       'proj.p2.body': '基于 AT89C51，用 C 语言在 Keil 中编写按键扫描与数码管动态显示模块，Proteus 完成电路仿真验证。',
+      'proj.p4.time': '2025.06 · 独立完成',
+      'proj.p4.title': '全自动洗衣机 PLC 控制系统',
+      'proj.p4.body': '基于三菱 FX 系列 PLC（GX Works2）设计全自动洗衣机控制程序：定时器与计数器实现进水—正洗—反洗—排水—脱水—报警停机的完整循环，支持标准 / 快洗 / 强洗三档模式与高、中水位选择。',
       'proj.p3.time': '2025.12 — 2026.07 · 第一作者',
       'proj.p3.title': '滚珠丝杠热误差建模研究',
       'proj.p3.body': '以多工况实测温度与热误差数据为基础，提出 WOA-PSO-ILSO 混合优化 BP 神经网络模型，预测精度较传统 BP 提升约 68%、较 ILSO-BP 提升约 15%（论文拟投）。',
@@ -345,6 +348,9 @@
       'proj.p2.time': 'Jan 2026 · Independent',
       'proj.p2.title': 'Patterned Water-Light Controller',
       'proj.p2.body': 'Built on an AT89C51 microcontroller, wrote key scanning and dynamic seven-segment display modules in C with Keil, and verified the circuit in a Proteus simulation.',
+      'proj.p4.time': 'Jun 2025 · Independent',
+      'proj.p4.title': 'Automatic Washing Machine PLC Control System',
+      'proj.p4.body': 'Designed a PLC control program on a Mitsubishi FX-series PLC with GX Works2 — timers and counters drive the full fill, wash, drain, spin and alarm sequence, with three wash modes and high/medium water-level selection.',
       'proj.p3.time': 'Dec 2025 — Jul 2026 · First Author',
       'proj.p3.title': 'Thermal Error Modeling for Ball Screws',
       'proj.p3.body': 'Based on measured temperature and thermal error data under multiple working conditions, proposed a WOA-PSO-ILSO hybrid-optimized BP neural network model, improving prediction accuracy by about 68% over a conventional BP model and about 15% over ILSO-BP (paper in preparation).',
@@ -691,6 +697,43 @@ DICT.en['d:project-1:figures'] = [
   ];
   DICT.en['d:project-3:skills'] = ['MATLAB', 'BP Neural Network', 'WOA/PSO/ILSO', 'Feature Engineering'];
   DICT.en['d:project-3:takeaway'] = 'The gain came less from stacking algorithms than from matching the right features and optimization strategy to the physical problem.';
+
+  DICT.en['d:project-4:title'] = 'Automatic Washing Machine PLC Control System';
+  DICT.en['d:project-4:meta'] = 'Jun 2025 · Independent';
+  DICT.en['d:project-4:summary'] = 'Designed a PLC control program for an automatic washing machine on a Mitsubishi FX-series PLC with GX Works2: timers and counters drive the full fill, wash, drain and spin sequence, with three wash modes and high/medium water-level selection.';
+  DICT.en['d:project-4:highlights'] = [
+    'Implemented the wash cycle in the brief: forward wash 5 s, pause 1 s, reverse wash 5 s, pause 1 s, switching to drain after 30 small cycles',
+    'Triggered a 120 s spin at the low water level, with a 10 s alarm and automatic stop after three large cycles',
+    'Added standard / quick / intensive wash modes, each with its own large-cycle count set by counters',
+    'Used BCD and SEGD instructions to drive a seven-segment display showing cycle progress'
+  ];
+  DICT.en['d:project-4:details'] = [
+    'Allocated the I/O: ten inputs and seven relay outputs, plus a 4-digit display',
+    'Built the timing and counting logic with timers T1–T7 and counters C0–C3, with interlocks between modes',
+    'Produced four pages of ladder logic and the instruction list, compiled and debugged in GX Works2'
+  ];
+  DICT.en['d:project-4:specs'] = [
+    ['Controlled object', 'Automatic washing machine: fill, wash, drain, spin, alarm stop'],
+    ['Controller', 'Mitsubishi FX-series PLC, programmed in GX Works2'],
+    ['Inputs', '10 points: power, start, stop, drain, standard / quick / intensive mode, high level, medium level, spin limit'],
+    ['Outputs', '7 relays: inlet valve, drain valve, motor forward, motor reverse, clutch, power lamp, alarm; plus a 4-digit display'],
+    ['Wash sequence', 'Forward 5 s → pause 1 s → reverse 5 s → pause 1 s; drain after 30 cycles'],
+    ['Spin and cycles', 'Low level triggers a 120 s spin; after three large cycles a 10 s alarm stops the machine'],
+    ['Key instructions', 'LD / LDP / OR / ANI / OUT / MOV / INCP / RST / BCD / SEGD / END'],
+    ['Deliverables', 'Four pages of ladder logic, instruction list, GX Works2 project file']
+  ];
+  DICT.en['d:project-4:skills'] = ['Mitsubishi FX', 'GX Works2', 'Ladder Logic', 'Timers / Counters', 'BCD Decoding'];
+  DICT.en['d:project-4:figures'] = [
+    {
+      src: 'assets/figures/plc-ladder-1.png',
+      caption: 'Ladder logic p.2: water-level detection, start and inlet valve control; the wash motor alternates forward and reverse on timers.'
+    },
+    {
+      src: 'assets/figures/plc-ladder-2.png',
+      caption: 'Ladder logic p.3: drain valve and clutch control, 120 s spin timing, and counters C1–C3 tallying large cycles per mode.'
+    }
+  ];
+  DICT.en['d:project-4:takeaway'] = 'In PLC work the value is not in exotic instructions but in tight sequencing — one missing interlock and the machine fights itself.';
 
   DICT.en['d:project-3:figures'] = [
     {
