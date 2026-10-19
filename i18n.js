@@ -606,7 +606,7 @@
   DICT.en['d:project-1:skills'] = ['Mechanical Design', 'Gear Transmission', 'Strength Verification', 'AutoCAD'];
   DICT.en['d:project-1:takeaway'] = 'A design drawing is only the final output — every selection and every check behind it has to stand on its own, which is what makes the result trustworthy.';
 
-    DICT.en['d:project-1:specs'] = [
+  DICT.en['d:project-1:specs'] = [
     ["Design input", "Belt conveyor: F = 2300 N, v = 1.5 m/s, drum Ø320 mm; single 8-hour shift, 10-year service life"],
     ["Motor", "Y132S1-2, 5.5 kW rated, 2900 r/min at full load"],
     ["Total ratio", "32.4 (V-belt 3.5 × reducer 9.26)"],
@@ -615,7 +615,7 @@
     ["Bearings", "Deep-groove ball bearings: 6206 (high-speed and intermediate shafts), 6211 (low-speed shaft)"],
     ["Coupling", "Flexible pin coupling"],
     ["Deliverables", "One A1 assembly drawing, two A3 part drawings, design report"]
-  ];
+];
 
   DICT.en['d:project-2:specs'] = [
     ["MCU", "AT89C51 with an 11.0592 MHz crystal"],
