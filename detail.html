@@ -22,8 +22,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin>
   <link href="https://fonts.googleapis.cn/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=19">
-  <script src="i18n.js?v=4"></script>
+  <link rel="stylesheet" href="styles.css?v=20">
+  <script src="i18n.js?v=6"></script>
 </head>
 <body>
 
@@ -113,7 +113,7 @@
     </div>
   </footer>
 
-  <script src="details.js?v=2"></script>
+  <script src="details.js?v=3"></script>
   <script src="script.js?v=6"></script>
   <script src="wave.js?v=24"></script>
   <script>
@@ -174,6 +174,15 @@
       var detailsHtml = details.map(function(d) { return '<li>' + d + '</li>'; }).join('');
       var skillsHtml = skills.map(function(s) { return '<span class="skill-tag">' + s + '</span>'; }).join('');
 
+      var figures = I18N.pickDetail(id, 'figures', data.figures) || [];
+      var figuresHtml = figures.length
+        ? '<div class="detail-section reveal"><h2>' + I18N.t('detail.figures') + '</h2><div class="detail-figures">' +
+          figures.map(function (f) {
+            return '<figure class="detail-figure"><img src="' + f.src + '" alt="' + (f.caption || '') + '" loading="lazy">' +
+                   (f.caption ? '<figcaption>' + f.caption + '</figcaption>' : '') + '</figure>';
+          }).join('') + '</div></div>'
+        : '';
+
       root.innerHTML =
         '<div class="detail-hero tint-' + heroTint + ' reveal">' +
           '<div class="detail-hero-header">' +
@@ -188,6 +197,7 @@
         '</div>' +
         '<div class="detail-section reveal"><h2>' + I18N.t('detail.achievements') + '</h2><ul>' + highlightsHtml + '</ul></div>' +
         '<div class="detail-section reveal reveal-delay-1"><h2>' + I18N.t('detail.details') + '</h2><ul>' + detailsHtml + '</ul></div>' +
+        figuresHtml +
         '<div class="detail-section reveal reveal-delay-2"><h2>' + I18N.t('detail.skills') + '</h2><div class="skill-tags">' + skillsHtml + '</div>' +
           '<div class="takeaway-box"><strong>' + I18N.t('detail.takeaway') + '</strong><p></p></div>' +
         '</div>';
