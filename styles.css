@@ -3123,3 +3123,8 @@ body.i18n-fade-out .chat-page {
   color: var(--color-fg-light);
   text-align: center;
 }
+
+.detail-figure-link {
+  display: block;
+  cursor: zoom-in;
+}
