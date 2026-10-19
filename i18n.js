@@ -615,7 +615,7 @@
     ["Bearings", "Deep-groove ball bearings: 6206 (high-speed and intermediate shafts), 6211 (low-speed shaft)"],
     ["Coupling", "Flexible pin coupling"],
     ["Deliverables", "One A1 assembly drawing, two A3 part drawings, design report"]
-];
+  ];
 
   DICT.en['d:project-2:specs'] = [
     ["MCU", "AT89C51 with an 11.0592 MHz crystal"],
