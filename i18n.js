@@ -200,6 +200,7 @@
       'detail.details': '详细经历',
       'detail.skills': '相关技能',
       'detail.figures': '项目图表',
+      'detail.specs': '技术参数',
       'detail.takeaway': '我的感悟',
       'detail.prev': '← 上一篇',
       'detail.next': '下一篇 →',
@@ -423,6 +424,7 @@
       'detail.details': 'Detailed Story',
       'detail.skills': 'Related Skills',
       'detail.figures': 'Figures',
+      'detail.specs': 'Technical Specs',
       'detail.takeaway': 'My Takeaway',
       'detail.prev': '← Previous',
       'detail.next': 'Next →',
@@ -604,7 +606,37 @@
   DICT.en['d:project-1:skills'] = ['Mechanical Design', 'Gear Transmission', 'Strength Verification', 'AutoCAD'];
   DICT.en['d:project-1:takeaway'] = 'A design drawing is only the final output — every selection and every check behind it has to stand on its own, which is what makes the result trustworthy.';
 
-  DICT.en['d:project-1:figures'] = [
+    DICT.en['d:project-1:specs'] = [
+    ["Design input", "Belt conveyor: F = 2300 N, v = 1.5 m/s, drum Ø320 mm; single 8-hour shift, 10-year service life"],
+    ["Motor", "Y132S1-2, 5.5 kW rated, 2900 r/min at full load"],
+    ["Total ratio", "32.4 (V-belt 3.5 × reducer 9.26)"],
+    ["High-speed stage", "i = 3.54, m = 2 mm, z = 31/110, centre distance 141 mm"],
+    ["Low-speed stage", "i = 2.62, m = 3 mm, z = 34/89, centre distance 185 mm"],
+    ["Bearings", "Deep-groove ball bearings: 6206 (high-speed and intermediate shafts), 6211 (low-speed shaft)"],
+    ["Coupling", "Flexible pin coupling"],
+    ["Deliverables", "One A1 assembly drawing, two A3 part drawings, design report"]
+  ];
+
+  DICT.en['d:project-2:specs'] = [
+    ["MCU", "AT89C51 with an 11.0592 MHz crystal"],
+    ["Display", "8-digit seven-segment display, dynamic scanning, driven through 74LS245"],
+    ["Keys", "Five independent keys: pattern / speed / count up / count down / start"],
+    ["Output", "Eight LEDs plus an end-of-run buzzer alert"],
+    ["Software", "C with Keil C51; key scanning and display encapsulated as separate modules (key.c / display.c)"],
+    ["Simulation", "Full circuit (minimum system, keys, decoding, display) built and verified in Proteus"],
+    ["Deliverables", "Keil project, Proteus simulation file, design report"]
+  ];
+
+  DICT.en['d:project-3:specs'] = [
+    ["Subject", "Thermal error of ball screws on CNC machine tools"],
+    ["Data", "Measured temperature and thermal error data under multiple conditions at 6 / 8 / 10 m/min feed speeds"],
+    ["Method", "WOA-PSO-ILSO hybrid-optimized BP neural network, with sliding-window time-series features and random-forest feature selection"],
+    ["Baselines", "Conventional BP neural network and ILSO-BP"],
+    ["Accuracy gain", "At 6 m/min: RMSE 3.029 → 0.682 μm, MAE 2.900 → 0.619 μm, MAPE 23.8% → 5.2%"],
+    ["Role", "First author; independently handled data processing, algorithm implementation and paper writing (in preparation)"]
+  ];
+
+DICT.en['d:project-1:figures'] = [
     {
       src: "assets/figures/reducer-assembly.png",
       caption: "A1 assembly drawing: front, side and sectioned top views, with technical requirements and parts list."
