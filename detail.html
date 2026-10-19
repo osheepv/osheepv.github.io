@@ -23,7 +23,7 @@
   <link href="https://fonts.googleapis.cn/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css?v=20">
-  <script src="i18n.js?v=8"></script>
+  <script src="i18n.js?v=9"></script>
 </head>
 <body>
 
@@ -113,7 +113,7 @@
     </div>
   </footer>
 
-  <script src="details.js?v=5"></script>
+  <script src="details.js?v=6"></script>
   <script src="script.js?v=6"></script>
   <script src="wave.js?v=24"></script>
   <script>
@@ -174,6 +174,15 @@
       var detailsHtml = details.map(function(d) { return '<li>' + d + '</li>'; }).join('');
       var skillsHtml = skills.map(function(s) { return '<span class="skill-tag">' + s + '</span>'; }).join('');
 
+      var specs = I18N.pickDetail(id, 'specs', data.specs) || [];
+      var specsHtml = specs.length
+        ? '<div class="detail-section reveal"><h2>' + I18N.t('detail.specs') + '</h2><table class="detail-specs"><tbody>' +
+          specs.map(function (row) { return '<tr><th>' + row[0] + '</th><td>' + row[1] + '</td></tr>'; }).join('') +
+          '</tbody></table></div>'
+        : '';
+      var detailBlock = specs.length ? '' :
+        '<div class="detail-section reveal reveal-delay-1"><h2>' + I18N.t('detail.details') + '</h2><ul>' + detailsHtml + '</ul></div>';
+
       var figures = I18N.pickDetail(id, 'figures', data.figures) || [];
       var figuresHtml = figures.length
         ? '<div class="detail-section reveal"><h2>' + I18N.t('detail.figures') + '</h2><div class="detail-figures">' +
@@ -195,8 +204,9 @@
           '</div>' +
           '<p class="detail-summary"></p>' +
         '</div>' +
+        specsHtml +
         '<div class="detail-section reveal"><h2>' + I18N.t('detail.achievements') + '</h2><ul>' + highlightsHtml + '</ul></div>' +
-        '<div class="detail-section reveal reveal-delay-1"><h2>' + I18N.t('detail.details') + '</h2><ul>' + detailsHtml + '</ul></div>' +
+        detailBlock +
         figuresHtml +
         '<div class="detail-section reveal reveal-delay-2"><h2>' + I18N.t('detail.skills') + '</h2><div class="skill-tags">' + skillsHtml + '</div>' +
           '<div class="takeaway-box"><strong>' + I18N.t('detail.takeaway') + '</strong><p></p></div>' +
