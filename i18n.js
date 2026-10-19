@@ -696,6 +696,14 @@ DICT.en['d:project-1:figures'] = [
     {
       src: "assets/figures/three-algorithms-comparison.png",
       caption: "RMSE, MAE and MAPE of three models at feed speeds of 6 / 8 / 10 m/min — the WOA-PSO-ILSO-BP model outperforms both BP and ILSO-BP on all three metrics."
+    },
+    {
+      src: "assets/figures/thermal-error-prediction-6m.png",
+      caption: "Predicted versus measured thermal error at 6 m/min: the WOA-PSO-ILSO-BP curve follows the measured values most closely."
+    },
+    {
+      src: "assets/figures/feature-importance.png",
+      caption: "Random-forest feature ranking (left) and cumulative importance with a 95% threshold (right), used to select the key input features."
     }
   ];
 
