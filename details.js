@@ -172,6 +172,20 @@ window.DETAILS = {
       "图纸与设计说明书均逐项复核后再交付",
     ],
     skills: ["机械设计", "齿轮传动", "强度校核", "AutoCAD"],
+    figures: [
+      {
+        src: "assets/figures/reducer-assembly.png",
+        caption: "A1 装配图：主视图、侧视图与俯视剖视图，含技术要求与零件明细表"
+      },
+      {
+        src: "assets/figures/reducer-low-speed-shaft.png",
+        caption: "低速轴 A3 零件图：尺寸公差、形位公差与表面粗糙度标注完整"
+      },
+      {
+        src: "assets/figures/reducer-low-speed-gear.png",
+        caption: "低速大齿轮 A3 零件图"
+      }
+    ],
     takeaway: "图纸只是最终产物，背后每一次选型与校核都要能站得住脚，设计结果才可信。"
   },
   "project-2": {

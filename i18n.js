@@ -604,6 +604,21 @@
   DICT.en['d:project-1:skills'] = ['Mechanical Design', 'Gear Transmission', 'Strength Verification', 'AutoCAD'];
   DICT.en['d:project-1:takeaway'] = 'A design drawing is only the final output — every selection and every check behind it has to stand on its own, which is what makes the result trustworthy.';
 
+  DICT.en['d:project-1:figures'] = [
+    {
+      src: "assets/figures/reducer-assembly.png",
+      caption: "A1 assembly drawing: front, side and sectioned top views, with technical requirements and parts list."
+    },
+    {
+      src: "assets/figures/reducer-low-speed-shaft.png",
+      caption: "A3 part drawing of the low-speed shaft, with complete dimensional, geometric tolerance and surface roughness callouts."
+    },
+    {
+      src: "assets/figures/reducer-low-speed-gear.png",
+      caption: "A3 part drawing of the low-speed gear."
+    }
+  ];
+
   DICT.en['d:project-2:title'] = 'Patterned Water-Light Controller';
   DICT.en['d:project-2:meta'] = 'Jan 2026 · Independent';
   DICT.en['d:project-2:summary'] = 'Designed a patterned water-light controller based on the AT89C51 microcontroller, wrote key scanning and dynamic seven-segment display modules in C with Keil, and verified the circuit with a Proteus simulation.';

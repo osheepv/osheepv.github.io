@@ -178,7 +178,7 @@
       var figuresHtml = figures.length
         ? '<div class="detail-section reveal"><h2>' + I18N.t('detail.figures') + '</h2><div class="detail-figures">' +
           figures.map(function (f) {
-            return '<figure class="detail-figure"><img src="' + f.src + '" alt="' + (f.caption || '') + '" loading="lazy">' +
+            return '<figure class="detail-figure"><a class="detail-figure-link" href="' + f.src + '" target="_blank" rel="noopener"><img src="' + f.src + '" alt="' + (f.caption || '') + '" loading="lazy"></a>' +
                    (f.caption ? '<figcaption>' + f.caption + '</figcaption>' : '') + '</figure>';
           }).join('') + '</div></div>'
         : '';
