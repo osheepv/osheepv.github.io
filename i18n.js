@@ -29,20 +29,20 @@
       /* Hero */
       'hero.eyebrow': '机械工程 · 数学建模 · AI Agent',
       'hero.title': '用数据、模型与 AI，\n让工程更精准更高效。',
-      'hero.sub': '欧阳威 · 衢州学院机械设计制造及其自动化专业。专注于将数学建模与机械工程相结合，在多场竞赛中斩获佳绩。同时熟练运用 Claude Code、n8n 等 AI Agent 工具完成开发自动化与工作流搭建，持续探索工程与智能化的融合解法。',
+      'hero.sub': '欧阳威 · 衢州学院机械设计制造及其自动化专业。擅长用数学建模解决工程问题，多场竞赛获奖；近一年转向 AI 应用落地，用 Claude Code、Codex、n8n 等 Agent 工具完成 AI 论文写作智能体、微信小程序与个人网站的完整开发，负责需求拆解、技术选型与验收。',
       'hero.cta1': '查看荣誉',
       'hero.cta2': '联系我',
       'hero.scroll': '向下滚动',
 
       /* Stats */
       'stat.1': '竞赛奖项',
-      'stat.2': '实习与校园经历',
+      'stat.2': '项目作品',
       'stat.3': '核心技能领域',
       'stat.4': '校级以上证书',
 
       /* Ticker */
       'ticker.1': '数学建模', 'ticker.2': '3D建模', 'ticker.3': '单片机开发',
-      'ticker.4': 'Python', 'ticker.5': 'Matlab', 'ticker.6': '机械设计',
+      'ticker.4': 'RAG', 'ticker.5': 'Matlab', 'ticker.6': '机械设计',
       'ticker.7': 'Claude Code', 'ticker.8': 'n8n', 'ticker.9': 'AI Agent',
       'ticker.10': '数据清洗', 'ticker.11': '运筹优化', 'ticker.12': 'SolidWorks',
       'ticker.13': 'BP 神经网络', 'ticker.14': 'WorkBuddy', 'ticker.15': 'Codex',
@@ -55,12 +55,12 @@
       /* About */
       'about.kicker': 'About',
       'about.title': '关于我',
-      'about.sub': '机械工程与数据建模的交叉探索者',
+      'about.sub': 'AI 智能体应用 × 机械工程，两条线并进',
       'about.c1t': '<span class="icon">🎓</span>教育背景',
-      'about.c1b': '衢州学院 · 机械设计制造及其自动化专业。系统学习机械设计、制造工艺与工程力学，同时自学编程与数据建模，将工程思维与数据方法结合。',
+      'about.c1b': '衢州学院 · 机械设计制造及其自动化专业。系统学习机械设计、制造工艺与工程力学，同时自学 MATLAB 与数据建模，把工程思维和数据方法结合起来。',
       'about.c1tag': '2023 — 2027（预计）',
       'about.c2t': '<span class="icon">⬢</span>自我定位',
-      'about.c2b': '擅长用数学模型解决工程问题，在数学建模竞赛中多次获奖。具备从数据清洗、特征工程到模型求解的全流程能力。同时熟练运用 AI Agent 工具（Claude Code、n8n 等）完成项目开发与自动化工作流搭建，已在个人网站部署上线、微信小程序开发等项目中落地实践。',
+      'about.c2b': '机械工程出身，擅长用数学模型解决工程问题，在数学建模竞赛中多次获奖。近一年转入 AI 应用落地：用 Claude Code、Codex、n8n 等 Agent 工具完成 AI 论文写作工作台、微信小程序与个人网站的完整开发，负责需求拆解、技术选型与逐项验收。',
       'about.c2tag': '建模 · 编程 · AI Agent',
 
       /* Quote */
@@ -75,9 +75,9 @@
       'skills.s2t': '数值建模与算法优化',
       'skills.s2b': '以 MATLAB 实现 BP 神经网络与 WOA/PSO/ILSO 混合优化算法，完成滚珠丝杠热误差建模，预测精度较传统 BP 神经网络提升约 68%。',
       'skills.s3t': '编程与数据建模',
-      'skills.s3b': 'Python + Matlab 完成数据清洗、数值计算、模型验证与可视化，具备完整的建模竞赛方法论。',
+      'skills.s3b': '以 MATLAB 完成数据清洗、数值计算、模型验证与可视化，形成一套完整的建模竞赛方法论。',
       'skills.s4t': 'AI Agent 与工作流',
-      'skills.s4b': '熟练运用 Claude Code、Codex、OpenClaw、WorkBuddy、n8n 等 AI Agent 工具完成开发自动化与工作流搭建。已落地项目包括个人网站搭建与部署上线、微信小程序开发上线等。',
+      'skills.s4b': '用 Claude Code、Codex、Cursor、n8n 等 Agent 工具跑通从需求拆解到验收的完整开发：AI 论文写作工作台（448 项测试全绿）、法狮龙小程序（体验版）、个人网站（已上线）。不靠手写业务代码，靠的是能读懂、能审、能判断方案成不成立。',
       'skills.ic1': '机械原理',
       'skills.ic2': '工程制图',
       'skills.ic3': 'BP 神经网络',
@@ -113,7 +113,7 @@
       /* Projects */
       'proj.kicker': 'Projects',
       'proj.title': '项目经历',
-      'proj.sub': '从机械设计到算法建模，完整走通从方案到交付的流程',
+      'proj.sub': 'AI 智能体与机械设计双线并进，每个项目都走到能交付',
       'proj.arrow': '查看详情 →',
       'proj.p1.time': '2025.11 · 独立完成',
       'proj.p1.title': '二级圆柱齿轮减速器设计',
@@ -127,6 +127,12 @@
       'proj.p3.time': '2025.12 — 2026.07 · 第一作者',
       'proj.p3.title': '滚珠丝杠热误差建模研究',
       'proj.p3.body': '以多工况实测温度与热误差数据为基础，提出 WOA-PSO-ILSO 混合优化 BP 神经网络模型，预测精度较传统 BP 提升约 68%、较 ILSO-BP 提升约 15%（论文拟投）。',
+      'proj.p5.time': '2026.08 — 2026.09 · 独立开发',
+      'proj.p5.title': 'Deep Thesis 论文写作辅助智能体',
+      'proj.p5.body': '面向论文写作全流程的 AI Agent 工作台：十环节状态机、本地 RAG 检索、有界 Agent Loop，448 项 pytest 回归与 CI，已发布 Windows 安装测试版。',
+      'proj.p6.time': '2026.07 — 2026.08 · 独立开发',
+      'proj.p6.title': '法狮龙眼镜店微信小程序',
+      'proj.p6.body': '微信原生小程序 + 云开发：28 个页面、34 个云函数、16 个集合，覆盖门店展示、验光预约、选购下单、会员积分与卡券核销，已发布体验版。',
 
       /* Experience */
       'exp.kicker': 'Experience',
@@ -141,7 +147,7 @@
       'e.e2.body': '协同筹办两届校园淘宝街活动，负责摊主招募、场地规划与现场管控，沉淀了一套可复用的活动应急方案。',
       'e.e3.time': '2023.10 — 2025.12',
       'e.e3.title': '数学建模社团 · 核心成员',
-      'e.e3.body': '累计参与 6 场省级及以上竞赛收获 6 项奖项，熟练运用 Python/Matlab 完成数据建模全流程，主导搭建社团知识库。',
+      'e.e3.body': '累计参与 6 场省级及以上竞赛收获 6 项奖项，用 MATLAB 完成数据清洗、数值计算与模型验证，主导搭建社团知识库。',
       'e.e4.time': '2024 — 2026',
       'e.e4.title': '荣誉 & 奖学金',
       'e.e4.body': '本科期间累计获得三等奖学金、学业奖学金、优秀学生干部，以及 10+ 项校级及以上竞赛证书。',
@@ -256,20 +262,20 @@
       /* Hero */
       'hero.eyebrow': 'Mechanical Engineering · Math Modeling · AI Agent',
       'hero.title': 'With data, models and AI,\nmake engineering more precise and efficient.',
-      'hero.sub': 'OuYang Wei · Mechanical Design, Manufacturing and Automation at Quzhou University. Focused on combining mathematical modeling with mechanical engineering, with outstanding results in multiple competitions. Also proficient in AI Agent tools such as Claude Code and n8n for development automation and workflow building, constantly exploring the fusion of engineering and intelligence.',
+      'hero.sub': 'OuYang Wei · Mechanical Design, Manufacturing and Automation at Quzhou University. Solves engineering problems with mathematical modeling and has won multiple competitions; over the past year moved into applied AI, building an AI paper-writing agent, a WeChat mini program and this site with agent tools such as Claude Code, Codex and n8n - owning requirements, technical choices and acceptance review.',
       'hero.cta1': 'View Awards',
       'hero.cta2': 'Contact Me',
       'hero.scroll': 'Scroll down',
 
       /* Stats */
       'stat.1': 'Competition Awards',
-      'stat.2': 'Internships & Campus',
+      'stat.2': 'Projects',
       'stat.3': 'Core Skill Areas',
       'stat.4': 'Certificates (Univ.+)',
 
       /* Ticker */
       'ticker.1': 'Math Modeling', 'ticker.2': '3D Modeling', 'ticker.3': 'MCU Development',
-      'ticker.4': 'Python', 'ticker.5': 'MATLAB', 'ticker.6': 'Mechanical Design',
+      'ticker.4': 'RAG', 'ticker.5': 'MATLAB', 'ticker.6': 'Mechanical Design',
       'ticker.7': 'Claude Code', 'ticker.8': 'n8n', 'ticker.9': 'AI Agent',
       'ticker.10': 'Data Cleaning', 'ticker.11': 'Optimization', 'ticker.12': 'SolidWorks',
       'ticker.13': 'BP Neural Network', 'ticker.14': 'WorkBuddy', 'ticker.15': 'Codex',
@@ -282,12 +288,12 @@
       /* About */
       'about.kicker': 'About',
       'about.title': 'About Me',
-      'about.sub': 'Explorer at the intersection of mechanical engineering and data modeling',
+      'about.sub': 'Applied AI agents x mechanical engineering - two tracks in parallel',
       'about.c1t': '<span class="icon">🎓</span>Education',
-      'about.c1b': 'Quzhou University · Mechanical Design, Manufacturing and Automation. Systematically studied mechanical design, manufacturing processes and engineering mechanics, while self-learning programming and data modeling to combine engineering thinking with data-driven methods.',
+      'about.c1b': 'Quzhou University · Mechanical Design, Manufacturing and Automation. Studied mechanical design, manufacturing processes and engineering mechanics, while self-learning MATLAB and data modeling to combine engineering thinking with data-driven methods.',
       'about.c1tag': '2023 — 2027 (expected)',
       'about.c2t': '<span class="icon">⬢</span>Self Positioning',
-      'about.c2b': 'Skilled at solving engineering problems with mathematical models, winning multiple awards in mathematical modeling competitions. Full-pipeline capability from data cleaning and feature engineering to model solving. Also proficient in AI Agent tools (Claude Code, n8n, etc.) for project development and automated workflow building — applied in projects like deploying this personal website and developing a WeChat Mini Program.',
+      'about.c2b': 'Mechanical engineering background, solving engineering problems with mathematical models and a multiple-award winner in modeling competitions. Over the past year moved into applied AI: built an AI paper-writing workspace, an eyewear WeChat mini program and this site with agent tools such as Claude Code, Codex and n8n — owning requirement breakdown, technical choices and acceptance review.',
       'about.c2tag': 'Modeling · Coding · AI Agent',
 
       /* Quote */
@@ -302,9 +308,9 @@
       'skills.s2t': 'Numerical Modeling & Optimization',
       'skills.s2b': 'Implement BP neural networks and WOA/PSO/ILSO hybrid optimization algorithms in MATLAB, and have completed thermal error modeling for ball screws, improving prediction accuracy by about 68% over a conventional BP neural network.',
       'skills.s3t': 'Programming & Data Modeling',
-      'skills.s3b': 'Python + MATLAB for data cleaning, numerical computation, model validation and visualization, with a complete competition modeling methodology.',
+      'skills.s3b': 'Uses MATLAB for data cleaning, numerical computation, model validation and visualization, with a complete competition modeling methodology.',
       'skills.s4t': 'AI Agent & Workflows',
-      'skills.s4b': 'Proficient in AI Agent tools — Claude Code, Codex, OpenClaw, WorkBuddy, n8n — for development automation and workflow building. Shipped projects include this website (built & deployed) and a WeChat Mini Program (developed & launched).',
+      'skills.s4b': 'Drives end-to-end delivery with agent tools — Claude Code, Codex, Cursor, n8n: an AI paper-writing workspace (448 tests green), the eyewear mini program (beta) and this site (live). Business code is not hand-written; reading it, reviewing it and judging whether a design holds is the job.',
       'skills.ic1': 'Mechanical Principles',
       'skills.ic2': 'Engineering Drawing',
       'skills.ic3': 'BP Neural Network',
@@ -340,7 +346,7 @@
       /* Projects */
       'proj.kicker': 'Projects',
       'proj.title': 'Projects',
-      'proj.sub': 'From mechanical design to algorithm modeling — carrying each project from concept to delivery',
+      'proj.sub': 'Two tracks in parallel — AI agents and mechanical design — each carried through to delivery',
       'proj.arrow': 'View details →',
       'proj.p1.time': 'Nov 2025 · Independent',
       'proj.p1.title': 'Two-Stage Cylindrical Gear Reducer Design',
@@ -354,6 +360,12 @@
       'proj.p3.time': 'Dec 2025 — Jul 2026 · First Author',
       'proj.p3.title': 'Thermal Error Modeling for Ball Screws',
       'proj.p3.body': 'Based on measured temperature and thermal error data under multiple working conditions, proposed a WOA-PSO-ILSO hybrid-optimized BP neural network model, improving prediction accuracy by about 68% over a conventional BP model and about 15% over ILSO-BP (paper in preparation).',
+      'proj.p5.time': 'Aug 2026 — Sep 2026 · Independent',
+      'proj.p5.title': 'Deep Thesis — AI Writing Copilot for Papers',
+      'proj.p5.body': 'An AI agent workspace for the full paper-writing workflow: ten-stage state machine, local RAG retrieval, bounded agent loop, 448 pytest cases with CI; a Windows installer beta is released.',
+      'proj.p6.time': 'Jul 2026 — Aug 2026 · Independent',
+      'proj.p6.title': 'Eyewear Store WeChat Mini Program',
+      'proj.p6.body': 'Native WeChat mini program on WeChat Cloud: 28 pages, 34 cloud functions, 16 collections — storefront, eye-exam booking, ordering, membership points and coupon redemption; beta released.',
 
       /* Experience */
       'exp.kicker': 'Experience',
@@ -368,7 +380,7 @@
       'e.e2.body': 'Co-organized two campus bazaar events, handling vendor recruitment, venue planning and on-site management, and building a reusable contingency plan.',
       'e.e3.time': '2023.10 — 2025.12',
       'e.e3.title': 'Math Modeling Club · Core Member',
-      'e.e3.body': 'Participated in 6 provincial+ competitions with 6 awards, proficient in full-pipeline data modeling with Python/MATLAB, and led the club knowledge base.',
+      'e.e3.body': 'Took part in 6 provincial+ competitions with 6 awards; handled data cleaning, numerical computation and model validation in MATLAB, and led the club knowledge base.',
       'e.e4.time': '2024 — 2026',
       'e.e4.title': 'Honors & Scholarships',
       'e.e4.body': 'Earned a Third-Class Scholarship, an Academic Scholarship, Outstanding Student Cadre, and 10+ university-level or above competition certificates during undergraduate study.',
@@ -479,7 +491,7 @@
     '3-member team with clear roles: I handled modeling and coding; teammates handled data processing and paper layout',
     '72 intense hours with repeated validation to keep the model results reliable'
   ];
-  DICT.en['d:award-1:skills'] = ['Math Modeling', 'Python', 'MATLAB', 'Paper Writing'];
+  DICT.en['d:award-1:skills'] = ['Math Modeling', 'MATLAB', 'Model Solving', 'Paper Writing'];
   DICT.en['d:award-1:takeaway'] = "This experience taught me the essence of 'models serving problems' — a good model is not the most complex one, but one that explains phenomena with the simplest assumptions and can be validated in time.";
 
   DICT.en['d:award-2:title'] = '2025 6th "Huashu Cup" National Math Modeling · Undergrad 3rd Prize';
@@ -495,7 +507,7 @@
     'Focused on handling missing values and outliers to ensure model input quality',
     'Extra work on model interpretability so results were easier for judges to understand'
   ];
-  DICT.en['d:award-2:skills'] = ['Data Cleaning', 'Feature Engineering', 'Python', 'ML Basics'];
+  DICT.en['d:award-2:skills'] = ['Data Cleaning', 'Feature Engineering', 'MATLAB', 'Model Comparison'];
   DICT.en['d:award-2:takeaway'] = 'Data quality determines the model ceiling — time spent cleaning data always pays back in model accuracy.';
 
   DICT.en['d:award-3:title'] = '2025 15th MathorCup Challenge · Regional 3rd Prize';
@@ -564,10 +576,10 @@
 
   DICT.en['d:exp-3:title'] = 'Math Modeling Club · Core Member';
   DICT.en['d:exp-3:meta'] = '2023.10 — 2025.12';
-  DICT.en['d:exp-3:summary'] = 'As a core member of the math modeling club, participated in 6 provincial+ competitions with 6 awards, proficient in Python/MATLAB for data cleaning, numerical computation and visualization, and distilled the methodology into the club knowledge base.';
+  DICT.en['d:exp-3:summary'] = 'As a core member of the math modeling club, took part in 6 provincial+ competitions with 6 awards, handling data cleaning, numerical computation and model validation in MATLAB, and distilled the methodology into the club knowledge base.';
   DICT.en['d:exp-3:highlights'] = [
     '6 provincial+ competitions with 6 awards',
-    'Proficient in Python/MATLAB for data cleaning, numerical computation, model validation and visualization',
+    'Handled data cleaning, numerical computation, model validation and visualization in MATLAB',
     'Methodology distilled into the shared club knowledge base'
   ];
   DICT.en['d:exp-3:details'] = [
@@ -575,7 +587,7 @@
     'Led the club modeling toolbox and template library to lower the entry barrier',
     'Formed a complete methodology from topic selection to paper through real contests'
   ];
-  DICT.en['d:exp-3:skills'] = ['Python', 'MATLAB', 'Data Modeling', 'Knowledge Sharing', 'Mentoring'];
+  DICT.en['d:exp-3:skills'] = ['MATLAB', 'Data Modeling', 'Knowledge Sharing', 'Mentoring'];
   DICT.en['d:exp-3:takeaway'] = 'Real growth happens the moment you write experience down and teach others — output is the most efficient input.';
 
   DICT.en['d:exp-4:title'] = 'Honors & Scholarships';
@@ -734,6 +746,56 @@ DICT.en['d:project-1:figures'] = [
     }
   ];
   DICT.en['d:project-4:takeaway'] = 'In PLC work the value is not in exotic instructions but in tight sequencing — one missing interlock and the machine fights itself.';
+
+  DICT.en['d:project-5:title'] = 'Deep Thesis — AI Writing Copilot for Papers';
+  DICT.en['d:project-5:meta'] = 'Aug 2026 — Sep 2026 · Independent';
+  DICT.en['d:project-5:summary'] = 'An AI agent workspace for the full paper-writing workflow (FastAPI + SQLite + vanilla frontend): opening topic, literature, outline, draft, polish, citation check and DOCX delivery are split into a ten-stage state machine, each stage gated by "generate, auto-verify, human approve"; tasks, artifacts and author decisions are persisted so work resumes after a refresh or restart.';
+  DICT.en['d:project-5:highlights'] = [
+    'Ten-stage state machine: every stage advances only through generate, auto-verify, human approval; skipping stages or repeating an unapproved one is rejected',
+    'Local RAG knowledge base: PDF / DOCX / TXT / Markdown extraction with vector cosine plus BM25 hybrid retrieval, falling back to keyword search when the embedding model is unavailable',
+    'Bounded agent loop: only host-registered read-only tools, with hard caps on turns, tool calls, observation length and output tokens',
+    'Engineering delivery: 448 pytest cases plus GitHub Actions CI, with a Windows installer beta released'
+  ];
+  DICT.en['d:project-5:details'] = [
+    'Tasks, stage artifacts and state machine status persist in SQLite; the current stage, pending approval gate and background jobs recover after a refresh or process restart',
+    'Citations are checked in four layers — structure, bibliographic metadata, in-text evidence and author review — and a stage fails outright when no verifiable citation exists',
+    'Section generation uses minimal per-section context, independent versions and per-section approval; upstream revisions recursively mark downstream work stale'
+  ];
+  DICT.en['d:project-5:specs'] = [
+    ['Form', 'Local web workspace + Windows installer beta'],
+    ['Stack', 'Python 3.13 / FastAPI / SQLAlchemy / SQLite / docxtpl / vanilla frontend'],
+    ['Flow control', 'Ten-stage state machine with a human approval gate per stage, rollback and resume'],
+    ['Retrieval', 'BGE-small-zh local embeddings + lightweight BM25 hybrid retrieval, zero RAG API cost'],
+    ['Agent', 'Bounded read-only agent loop with turn, tool and token caps'],
+    ['Quality', '448 pytest cases, 31 offline academic-quality rules, GitHub Actions CI']
+  ];
+  DICT.en['d:project-5:skills'] = ['AI Agent', 'RAG', 'State Machine', 'FastAPI', 'SQLite', 'pytest'];
+  DICT.en['d:project-5:takeaway'] = 'Handing a long workflow to a model is not the risk; having no gates is. Every stage can roll back and every artifact is traceable, which is what makes the confirm button safe to press.';
+
+  DICT.en['d:project-6:title'] = 'Eyewear Store WeChat Mini Program';
+  DICT.en['d:project-6:meta'] = 'Jul 2026 — Aug 2026 · Independent · Beta released';
+  DICT.en['d:project-6:summary'] = 'A native WeChat mini program for a physical eyewear store: storefront, eye-exam and fitting appointments, online ordering, membership points, coupon issuing and scan-to-redeem, built on WeChat Cloud with 28 pages, 34 cloud functions, 16 collections and roughly 11k lines of code.';
+  DICT.en['d:project-6:highlights'] = [
+    '28 pages split into a main package (8), a trade subpackage (10) and an admin subpackage (10), with preload rules keeping the main package small and the first screen fast',
+    '34 cloud functions split by business domain, all enforcing admin and parameter checks; every collection is set to "not readable or writable by any user" so data only moves through cloud functions',
+    'Subscription messages for lens-ready progress, Canvas 2D share posters, and msgSecCheck content moderation on customer reviews',
+    'Coupon flow covering issuing by the owner, claiming by customers and scan-to-redeem in store, with status and usage stats updated live'
+  ];
+  DICT.en['d:project-6:details'] = [
+    'Data model covers products, orders, appointments, members, points ledger, coupons, reviews and shop settings across 16 collections, with amounts stored in cents',
+    'Order state machine runs submitted, in fitting, ready for pickup and completed, pushing a subscription message on each transition',
+    'Iterated through real-device issues: empty-image placeholders, oversized poster scene values, and silent image-picker failures caused by undeclared privacy scopes'
+  ];
+  DICT.en['d:project-6:specs'] = [
+    ['Form', 'Native WeChat mini program + WeChat Cloud'],
+    ['Scale', '28 pages / 34 cloud functions / 16 collections / ~11k lines'],
+    ['Packaging', 'Main package 8 pages + trade subpackage 10 + admin subpackage 10, with preload rules'],
+    ['Core flows', 'Storefront, eye-exam booking, ordering, membership points, coupon issuing and redemption'],
+    ['Extras', 'Subscription messages, Canvas 2D share posters, content moderation, scan-to-redeem'],
+    ['Status', 'Beta released; WeChat Pay pending a business licence (integration point reserved)']
+  ];
+  DICT.en['d:project-6:skills'] = ['WeChat Cloud', 'Cloud Functions', 'Subpackages', 'Subscription Messages', 'Canvas 2D'];
+  DICT.en['d:project-6:takeaway'] = 'The hard part of a single-store mini program is not the feature count but making every piece of data survive a permission check — collections locked down, logic behind cloud functions, boundaries stay clean.';
 
   DICT.en['d:project-3:figures'] = [
     {
