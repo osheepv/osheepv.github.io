@@ -287,11 +287,18 @@
       }
     }
 
-    if (window.I18N) {
-      renderDetail();
-      I18N.hooks(function(){ renderDetail(); });
+    function boot(tries) {
+      if (window.DETAILS && window.I18N) {
+        renderDetail();
+        I18N.hooks(function(){ renderDetail(); });
+      } else if (tries < 200) {
+        setTimeout(function(){ boot(tries + 1); }, 25);
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ boot(0); });
     } else {
-      renderDetail();
+      boot(0);
     }
   })();
   </script>
