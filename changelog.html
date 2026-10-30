@@ -47,26 +47,57 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"更新日志 — 欧阳威","url":"https://vvosp.top/changelog.html","isPartOf":{"@type":"WebSite","name":"欧阳威 · 个人网站","url":"https://vvosp.top/"},"about":"个人网站改版与迭代记录"}</script>
 
   <style>
-    .timeline { max-width: 860px; margin: 56px auto 0; padding: 0 24px 80px; position: relative; }
+    .timeline {
+      --cl-line: rgba(59, 91, 219, .28);
+      --cl-dot: #3b5bdb;
+      --cl-dot-glow: rgba(59, 91, 219, .16);
+      --cl-soft: rgba(0, 0, 0, .62);
+      --cl-mono: rgba(0, 0, 0, .48);
+      --cl-accent: #3b5bdb;
+      --cl-accent-bg: rgba(59, 91, 219, .09);
+      --cl-accent-bd: rgba(59, 91, 219, .26);
+      --cl-code-bg: rgba(59, 91, 219, .08);
+      max-width: 860px; margin: 56px auto 0; padding: 0 24px 80px; position: relative;
+    }
+    [data-theme="dark"] .timeline {
+      --cl-line: rgba(122, 162, 255, .34);
+      --cl-dot: #7aa2ff;
+      --cl-dot-glow: rgba(122, 162, 255, .18);
+      --cl-soft: rgba(255, 255, 255, .70);
+      --cl-mono: rgba(255, 255, 255, .46);
+      --cl-accent: #9fb6ff;
+      --cl-accent-bg: rgba(122, 162, 255, .13);
+      --cl-accent-bd: rgba(122, 162, 255, .30);
+      --cl-code-bg: rgba(122, 162, 255, .12);
+    }
     .timeline::before {
       content: ""; position: absolute; left: 32px; top: 8px; bottom: 40px; width: 2px;
-      background: linear-gradient(180deg, rgba(122,162,255,.55), rgba(122,162,255,.02));
+      background: linear-gradient(180deg, var(--cl-line), transparent);
     }
     .entry { display: grid; grid-template-columns: 130px 1fr; gap: 24px; padding: 0 0 44px 0; position: relative; }
-    .entry-date { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px;
-      letter-spacing: .04em; color: var(--text-muted, #8b93a7); padding-top: 6px; text-align: right; }
+    .entry-date {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace; font-size: 13px;
+      letter-spacing: .04em; color: var(--cl-mono); padding-top: 6px; text-align: right;
+    }
     .entry-body { position: relative; padding-left: 28px; }
-    .entry-body::before { content: ""; position: absolute; left: -7px; top: 11px; width: 10px; height: 10px;
-      border-radius: 50%; background: #7aa2ff; box-shadow: 0 0 0 4px rgba(122,162,255,.16); }
-    .entry-title { font-size: 21px; font-weight: 700; margin: 0 0 10px; line-height: 1.45; }
-    .entry-tag { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 999px;
+    .entry-body::before {
+      content: ""; position: absolute; left: -7px; top: 11px; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--cl-dot);
+      box-shadow: 0 0 0 4px var(--cl-dot-glow);
+    }
+    .entry-title { font-size: 21px; font-weight: 700; margin: 0 0 10px; line-height: 1.45; color: inherit; }
+    .entry-tag {
+      display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 999px;
       font-size: 11px; font-weight: 600; letter-spacing: .03em; vertical-align: middle;
-      color: #7aa2ff; background: rgba(122,162,255,.12); border: 1px solid rgba(122,162,255,.28); }
-    .entry-desc { margin: 0 0 12px; line-height: 1.85; color: var(--text-soft, #a8b0cc); font-size: 15px; }
-    .entry-list { margin: 0; padding-left: 20px; color: var(--text-soft, #a8b0cc); font-size: 14.5px; line-height: 1.9; }
+      color: var(--cl-accent); background: var(--cl-accent-bg); border: 1px solid var(--cl-accent-bd);
+    }
+    .entry-desc { margin: 0 0 12px; line-height: 1.85; color: var(--cl-soft); font-size: 15px; }
+    .entry-list { margin: 0; padding-left: 20px; color: var(--cl-soft); font-size: 14.5px; line-height: 1.9; }
     .entry-list li { margin-bottom: 4px; }
-    .entry code, .entry-desc code { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .92em;
-      padding: 1px 6px; border-radius: 5px; background: rgba(122,162,255,.1); color: #9fb6ff; }
+    .entry code, .entry-desc code {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace; font-size: .92em;
+      padding: 1px 6px; border-radius: 5px; background: var(--cl-code-bg); color: var(--cl-accent);
+    }
     @media (max-width: 720px) {
       .timeline::before { left: 6px; }
       .entry { grid-template-columns: 1fr; gap: 8px; }
