@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>更新日志 — 欧阳威</title>
+  <meta name="description" content="欧阳威个人网站的更新日志：站点迁入自有域名 vvosp.top、详情页拆分为独立页面、图片 WebP 优化与搜索引擎收录记录。">
+
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('ow-theme');
+        if (t === 'dark' || t === 'light') {
+          document.documentElement.dataset.theme = t;
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.cn">
+  <link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin>
+  <link href="https://fonts.googleapis.cn/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css?v=19">
+  <script src="i18n.js?v=3" defer></script>
+
+  <!-- 自定义域名 + SEO / 社交分享（vvosp.top） -->
+  <link rel="canonical" href="https://vvosp.top/changelog.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0b1020">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="欧阳威 · 个人网站">
+  <meta property="og:title" content="更新日志 — 欧阳威">
+  <meta property="og:description" content="欧阳威的其他内容与链接。">
+  <meta property="og:url" content="https://vvosp.top/changelog.html">
+  <meta property="og:image" content="https://vvosp.top/assets/og-other.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="更新日志 — 欧阳威">
+  <meta name="twitter:description" content="欧阳威的其他内容与链接。">
+  <meta name="twitter:image" content="https://vvosp.top/assets/og-other.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"更新日志 — 欧阳威","url":"https://vvosp.top/changelog.html","isPartOf":{"@type":"WebSite","name":"欧阳威 · 个人网站","url":"https://vvosp.top/"},"about":"个人网站改版与迭代记录"}</script>
+
+  <style>
+    .timeline { max-width: 860px; margin: 56px auto 0; padding: 0 24px 80px; position: relative; }
+    .timeline::before {
+      content: ""; position: absolute; left: 32px; top: 8px; bottom: 40px; width: 2px;
+      background: linear-gradient(180deg, rgba(122,162,255,.55), rgba(122,162,255,.02));
+    }
+    .entry { display: grid; grid-template-columns: 130px 1fr; gap: 24px; padding: 0 0 44px 0; position: relative; }
+    .entry-date { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px;
+      letter-spacing: .04em; color: var(--text-muted, #8b93a7); padding-top: 6px; text-align: right; }
+    .entry-body { position: relative; padding-left: 28px; }
+    .entry-body::before { content: ""; position: absolute; left: -7px; top: 11px; width: 10px; height: 10px;
+      border-radius: 50%; background: #7aa2ff; box-shadow: 0 0 0 4px rgba(122,162,255,.16); }
+    .entry-title { font-size: 21px; font-weight: 700; margin: 0 0 10px; line-height: 1.45; }
+    .entry-tag { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 999px;
+      font-size: 11px; font-weight: 600; letter-spacing: .03em; vertical-align: middle;
+      color: #7aa2ff; background: rgba(122,162,255,.12); border: 1px solid rgba(122,162,255,.28); }
+    .entry-desc { margin: 0 0 12px; line-height: 1.85; color: var(--text-soft, #a8b0cc); font-size: 15px; }
+    .entry-list { margin: 0; padding-left: 20px; color: var(--text-soft, #a8b0cc); font-size: 14.5px; line-height: 1.9; }
+    .entry-list li { margin-bottom: 4px; }
+    .entry code, .entry-desc code { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .92em;
+      padding: 1px 6px; border-radius: 5px; background: rgba(122,162,255,.1); color: #9fb6ff; }
+    @media (max-width: 720px) {
+      .timeline::before { left: 6px; }
+      .entry { grid-template-columns: 1fr; gap: 8px; }
+      .entry-date { text-align: left; }
+      .entry-body { padding-left: 26px; }
+      .entry-body::before { left: -25px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link" data-i18n="skip.link">跳到主要内容</a>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a class="site-logo" href="index.html" aria-label="欧阳威 — 首页">OYW</a>
+      <nav class="nav-links" aria-label="主导航">
+        <a class="nav-link" href="index.html" data-i18n="nav.resume">个人简历</a>
+        <a class="nav-link" href="ai-assistant.html" data-i18n="nav.ai">AI助手</a>
+        <a class="nav-link active" href="other.html" data-i18n="nav.other">其他</a>
+        <a class="nav-link" href="contact.html" data-i18n="nav.contact">联系我</a>
+      </nav>
+      <div class="header-spacer"></div>
+      <div class="lang-toggle" role="group" data-i18n-aria="lang.aria" aria-label="切换语言">
+        <button type="button" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <span class="lang-slider" aria-hidden="true"></span>
+      </div>
+      <button class="theme-toggle" type="button" data-i18n-aria="theme.aria" aria-label="切换明暗主题">
+        <span class="theme-icon" aria-hidden="true">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.6v2.8M12 18.6v2.8M2.6 12h2.8M18.6 12h2.8M5.2 5.2l2 2M16.8 16.8l2 2M18.8 5.2l-2 2M7.2 16.8l-2 2"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </span>
+        <span class="theme-label">◐ 主题</span>
+      </button>
+      <button class="hamburger" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="移动端导航">
+      <a href="index.html" data-i18n="nav.resume">个人简历</a>
+      <a href="ai-assistant.html" data-i18n="nav.ai">AI助手</a>
+      <a href="other.html" class="active" data-i18n="nav.other">其他</a>
+      <a href="contact.html" data-i18n="nav.contact">联系我</a>
+    </nav>
+  </header>
+
+  <main class="page-main" id="main-content"><div class="wave-banner"><canvas id="wave-canvas" aria-hidden="true"></canvas><div class="section-head reveal" style="text-align:center; margin-bottom:0;"><span class="section-kicker">Changelog</span><h1 class="section-title">更新日志</h1><p class="section-sub">这个站点本身也在持续迭代 —— 每次改动和思考都记在这里</p></div></div><div class="timeline"><article class="entry reveal"><div class="entry-date">2026-10-30</div><div class="entry-body"><h2 class="entry-title">站点搬进自己的域名 <span class="entry-tag">域名</span><span class="entry-tag">运维</span></h2><p class="entry-desc">个人网站从 <code>osheepv.github.io</code> 迁到自有域名 <strong>vvosp.top</strong>。GitHub Pages 自动为旧地址做 301，历史链接和已有收录都没丢。</p><ul class="entry-list"><li><code>vvosp.top</code> + <code>www</code> 全站 HTTPS，证书由 Let's Encrypt 自动续期</li><li><code>www.vvosp.top</code> 在 Cloudflare 边缘 301 到主域，保留路径与查询参数</li><li>开通 <code>me@vvosp.top</code> 邮箱，转发到 Gmail</li></ul></div></article><article class="entry reveal"><div class="entry-date">2026-10-30</div><div class="entry-body"><h2 class="entry-title">详情页拆成 14 个独立页面 <span class="entry-tag">性能</span><span class="entry-tag">SEO</span></h2><p class="entry-desc">原来所有奖项、项目、经历都挤在 <code>detail.html?id=xxx</code> 一个页面上，搜索引擎基本无法区分。现在每条内容都有真实 URL 和独立标题。</p><ul class="entry-list"><li>4 个奖项 + 6 个项目 + 4 段经历，各自独立 <code>title</code> / <code>description</code> / <code>canonical</code></li><li>9 张配图 PNG → WebP，总体积 <strong>1.36 MB → 0.45 MB（-67%）</strong></li><li>全部脚本改为 <code>defer</code>，消除约 100 KB 的渲染阻塞</li></ul></div></article><article class="entry reveal"><div class="entry-date">2026-10-30</div><div class="entry-body"><h2 class="entry-title">主动推给搜索引擎 <span class="entry-tag">SEO</span></h2><p class="entry-desc">不再被动等爬虫。用 IndexNow 协议免登录把全部页面推给了 Bing，Google 侧则通过站点地图和 <code>robots.txt</code> 自动发现。</p><ul class="entry-list"><li>18 条 URL 一次性推送（Bing / DuckDuckGo / Yandex / Naver）</li><li>补齐 <code>sitemap.xml</code>、<code>robots.txt</code>、404 页面和分享卡片</li></ul></div></article><article class="entry reveal"><div class="entry-date">2026-10-21</div><div class="entry-body"><h2 class="entry-title">项目经历转向 AI 应用落地 <span class="entry-tag">内容</span></h2><p class="entry-desc">新增 Deep Thesis 论文写作智能体和法狮龙眼镜店小程序两个项目，整站文案从「机械设计」重心调整为「机械工程 + AI Agent 双线」。</p><ul class="entry-list"><li>Deep Thesis：十环节状态机、本地 RAG、448 项 pytest 回归</li><li>法狮龙小程序：28 个页面、34 个云函数、16 个集合</li></ul></div></article><article class="entry reveal"><div class="entry-date">2026-10-19</div><div class="entry-body"><h2 class="entry-title">论文项目补齐实验图表 <span class="entry-tag">内容</span></h2><p class="entry-desc">滚珠丝杠热误差建模页面补上了预测曲线与特征重要性图，把 WOA-PSO-ILSO 混合优化 BP 网络的效果差异讲清楚。</p><ul class="entry-list"><li>预测精度较传统 BP 提升约 68%，较 ILSO-BP 提升约 15%</li></ul></div></article><article class="entry reveal"><div class="entry-date">2026-08-22</div><div class="entry-body"><h2 class="entry-title">个人网站改版完成 <span class="entry-tag">设计</span></h2><p class="entry-desc">从零重写的一版：中英文切换、明暗主题、水面涟漪背景、以及完整的项目与荣誉详情页。</p><ul class="entry-list"><li>纯手写静态站点，无框架依赖</li><li>「其他」页作为后续博客与笔记的预留入口</li></ul></div></article></div></main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">OYW</div>
+        <p data-i18n="footer.brand2">欧阳威的个人简历网站。机械设计制造及其自动化专业，数学建模竞赛获奖者。</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.explore">探索</h4>
+        <ul>
+          <li><a href="index.html" data-i18n="nav.resume">个人简历</a></li>
+          <li><a href="ai-assistant.html" data-i18n="nav.ai">AI助手</a></li>
+          <li><a href="other.html" data-i18n="nav.other">其他</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">联系我</a></li><li><a href="changelog.html" data-i18n="nav.log">更新日志</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.contact">联系</h4>
+        <ul>
+          <li><a href="mailto:3402685368@qq.com">3402685368@qq.com</a></li>
+          <li><a href="mailto:oyw20041015@gmail.com">oyw20041015@gmail.com</a></li>
+          <li><a href="tel:19858807815">19858807815</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy" data-i18n="footer.copy">&copy; 2026 欧阳威 · Built with passion</span>
+    </div>
+  </footer>
+
+  <script src="script.js?v=6" defer></script>
+  <script src="wave.js?v=24" defer></script>
+</body>
+</html>
