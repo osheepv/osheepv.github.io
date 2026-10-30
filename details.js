@@ -184,15 +184,15 @@ window.DETAILS = {
     ],
     figures: [
       {
-        src: "assets/figures/reducer-assembly.png",
+        src: "assets/figures/reducer-assembly.webp",
         caption: "A1 装配图：主视图、侧视图与俯视剖视图，含技术要求与零件明细表"
       },
       {
-        src: "assets/figures/reducer-low-speed-shaft.png",
+        src: "assets/figures/reducer-low-speed-shaft.webp",
         caption: "低速轴 A3 零件图：尺寸公差、形位公差与表面粗糙度标注完整"
       },
       {
-        src: "assets/figures/reducer-low-speed-gear.png",
+        src: "assets/figures/reducer-low-speed-gear.webp",
         caption: "低速大齿轮 A3 零件图"
       }
     ],
@@ -226,7 +226,7 @@ window.DETAILS = {
     ],
     figures: [
       {
-        src: "assets/figures/proteus-simulation.jpg",
+        src: "assets/figures/proteus-simulation.webp",
         caption: "Proteus 仿真验证：AT89C51 经 74LS245 驱动 8 位 LED 与 8 位数码管，按键设置样式 / 速度 / 循环次数，数码管实时显示"
       }
     ],
@@ -260,15 +260,15 @@ window.DETAILS = {
     ],
     figures: [
       {
-        src: "assets/figures/feature-importance.png",
+        src: "assets/figures/feature-importance.webp",
         caption: "随机森林特征重要性排序（左）与累计重要性 95% 阈值（右）：从候选特征中筛选出关键输入特征"
       },
       {
-        src: "assets/figures/thermal-error-prediction-6m.png",
+        src: "assets/figures/thermal-error-prediction-6m.webp",
         caption: "6 m/min 工况下三种模型预测曲线与真实热误差的对比：WOA-PSO-ILSO-BP（红色）对真实值的跟随最贴合"
       },
       {
-        src: "assets/figures/three-algorithms-comparison.png",
+        src: "assets/figures/three-algorithms-comparison.webp",
         caption: "三种模型在 6 / 8 / 10 m/min 进给速度下的 RMSE、MAE 与 MAPE 对比：WOA-PSO-ILSO-BP 在三项指标上均优于传统 BP 与 ILSO-BP"
       }
     ],
@@ -303,11 +303,11 @@ window.DETAILS = {
     skills: ["三菱 FX", "GX Works2", "梯形图", "定时器 / 计数器", "BCD 译码"],
     figures: [
       {
-        src: "assets/figures/plc-ladder-1.png",
+        src: "assets/figures/plc-ladder-1.webp",
         caption: "梯形图第 2 页：水位检测、启动与进水阀控制，洗涤电机正反转由定时器交替驱动"
       },
       {
-        src: "assets/figures/plc-ladder-2.png",
+        src: "assets/figures/plc-ladder-2.webp",
         caption: "梯形图第 3 页：排水阀与离合器控制，脱水计时 120 s，C1–C3 按模式统计大循环次数"
       }
     ],

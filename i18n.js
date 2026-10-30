@@ -656,15 +656,15 @@
 
 DICT.en['d:project-1:figures'] = [
     {
-      src: "assets/figures/reducer-assembly.png",
+      src: "assets/figures/reducer-assembly.webp",
       caption: "A1 assembly drawing: front, side and sectioned top views, with technical requirements and parts list."
     },
     {
-      src: "assets/figures/reducer-low-speed-shaft.png",
+      src: "assets/figures/reducer-low-speed-shaft.webp",
       caption: "A3 part drawing of the low-speed shaft, with complete dimensional, geometric tolerance and surface roughness callouts."
     },
     {
-      src: "assets/figures/reducer-low-speed-gear.png",
+      src: "assets/figures/reducer-low-speed-gear.webp",
       caption: "A3 part drawing of the low-speed gear."
     }
   ];
@@ -688,7 +688,7 @@ DICT.en['d:project-1:figures'] = [
 
   DICT.en['d:project-2:figures'] = [
     {
-      src: "assets/figures/proteus-simulation.jpg",
+      src: "assets/figures/proteus-simulation.webp",
       caption: "Proteus simulation: an AT89C51 drives eight LEDs and an 8-digit display through 74LS245 buffers; keys set the pattern, speed and cycle count, with the result shown live on the display."
     }
   ];
@@ -737,11 +737,11 @@ DICT.en['d:project-1:figures'] = [
   DICT.en['d:project-4:skills'] = ['Mitsubishi FX', 'GX Works2', 'Ladder Logic', 'Timers / Counters', 'BCD Decoding'];
   DICT.en['d:project-4:figures'] = [
     {
-      src: 'assets/figures/plc-ladder-1.png',
+      src: 'assets/figures/plc-ladder-1.webp',
       caption: 'Ladder logic p.2: water-level detection, start and inlet valve control; the wash motor alternates forward and reverse on timers.'
     },
     {
-      src: 'assets/figures/plc-ladder-2.png',
+      src: 'assets/figures/plc-ladder-2.webp',
       caption: 'Ladder logic p.3: drain valve and clutch control, 120 s spin timing, and counters C1–C3 tallying large cycles per mode.'
     }
   ];
@@ -799,15 +799,15 @@ DICT.en['d:project-1:figures'] = [
 
   DICT.en['d:project-3:figures'] = [
     {
-      src: "assets/figures/feature-importance.png",
+      src: "assets/figures/feature-importance.webp",
       caption: "Random-forest feature ranking (left) and cumulative importance with a 95% threshold (right), used to select the key input features."
     },
     {
-      src: "assets/figures/thermal-error-prediction-6m.png",
+      src: "assets/figures/thermal-error-prediction-6m.webp",
       caption: "Predicted versus measured thermal error at 6 m/min: the WOA-PSO-ILSO-BP curve follows the measured values most closely."
     },
     {
-      src: "assets/figures/three-algorithms-comparison.png",
+      src: "assets/figures/three-algorithms-comparison.webp",
       caption: "RMSE, MAE and MAPE of three models at feed speeds of 6 / 8 / 10 m/min — the WOA-PSO-ILSO-BP model outperforms both BP and ILSO-BP on all three metrics."
     }
   ];
