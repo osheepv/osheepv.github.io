@@ -2357,7 +2357,7 @@ html[data-theme="dark"] .form-fail {
   }
 
   .footer-inner {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
   .footer-brand {
