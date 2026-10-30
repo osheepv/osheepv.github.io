@@ -1292,8 +1292,8 @@ html[data-theme="dark"] .site-footer {
   max-width: var(--max-width);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
 }
 
 .footer-brand .logo {

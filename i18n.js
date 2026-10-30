@@ -164,6 +164,7 @@
       'footer.brand': '欧阳威的个人简历网站。机械设计制造及其自动化专业，数学建模竞赛获奖者。用数据、模型与 AI Agent 让工程更精准、更高效。',
       'footer.brand2': '欧阳威的个人简历网站。机械设计制造及其自动化专业，数学建模竞赛获奖者。',
       'footer.explore': '探索',
+      'footer.more': '更多',
       'footer.contact': '联系',
       'footer.copy': '© 2026 欧阳威 · Built with passion',
 
@@ -401,6 +402,7 @@
       'footer.brand': 'Personal resume website of OuYang Wei. Major in Mechanical Design, Manufacturing and Automation; award winner in math modeling. Making engineering more precise and efficient with data, models and AI Agents.',
       'footer.brand2': 'Personal resume website of OuYang Wei. Mechanical Design, Manufacturing and Automation major, math modeling award winner.',
       'footer.explore': 'Explore',
+      'footer.more': 'More',
       'footer.contact': 'Contact',
       'footer.copy': '© 2026 OuYang Wei · Built with passion',
 
