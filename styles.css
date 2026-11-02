@@ -42,6 +42,14 @@ html[data-theme="dark"] body {
 }
 
 /* ===== 2. Design Tokens ===== */
+html {
+  /* 告诉浏览器页面自己处理深浅色，别用 Auto Dark 强制反色 */
+  color-scheme: light;
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
 :root {
   /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
