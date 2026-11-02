@@ -83,7 +83,13 @@
 
   var bubble = document.createElement('div');
   bubble.className = 'pet-bubble';
-  root.appendChild(stage);
+
+  // 视角跟随层：倾斜只作用在这一层，不影响外层的位移和气泡
+  var look = document.createElement('div');
+  look.className = 'pet-look';
+  look.appendChild(stage);
+
+  root.appendChild(look);
   root.appendChild(bubble);
 
   var menu = document.createElement('div');
@@ -106,6 +112,7 @@
   var whisperTimer = 0;
   var bubbleTimer = 0;
   var raf = 0;
+  var gaze = { tx: 0, ty: 0, cx: 0, cy: 0, raf: 0 };
 
   var vids = [vidA, vidB];
 
@@ -278,12 +285,54 @@
     }, 75000 + Math.random() * 60000);
   }
 
+  /* ---------- 视角跟随 ---------- */
+  var LOOK_MAX_Y = 10;     // 左右转头角度
+  var LOOK_MAX_X = 7;     // 上下点头角度
+
+  function aimGaze(e) {
+    if (drag || flying || REDUCED) return;
+    var r = root.getBoundingClientRect();
+    if (!r.width) return;
+    var cx = r.left + r.width / 2;
+    var cy = r.top + r.height / 2;
+    // 固定参考半径：宠物周围 420px 内线性转头，再远就饱和
+    var REF = 420;
+    gaze.tx = clamp((e.clientX - cx) / REF, -1, 1);
+    gaze.ty = clamp((e.clientY - cy) / REF, -1, 1);
+    if (!gaze.raf) gaze.raf = requestAnimationFrame(stepGaze);
+  }
+
+  function stepGaze() {
+    gaze.raf = 0;
+    gaze.cx += (gaze.tx - gaze.cx) * 0.12;
+    gaze.cy += (gaze.ty - gaze.cy) * 0.12;
+    look.style.transform =
+      'rotateY(' + (gaze.cx * LOOK_MAX_Y).toFixed(2) + 'deg) ' +
+      'rotateX(' + (-gaze.cy * LOOK_MAX_X).toFixed(2) + 'deg) ' +
+      'translate3d(' + (gaze.cx * 4).toFixed(1) + 'px,' + (gaze.cy * 3).toFixed(1) + 'px,0)';
+
+    if (Math.abs(gaze.tx - gaze.cx) > 0.004 || Math.abs(gaze.ty - gaze.cy) > 0.004) {
+      gaze.raf = requestAnimationFrame(stepGaze);
+    } else {
+      // 稳住后把最终角度的常驻状态保留，避免下一帧抖动
+      gaze.cx = gaze.tx;
+      gaze.cy = gaze.ty;
+    }
+  }
+
+  function relaxGaze() {
+    gaze.tx = 0;
+    gaze.ty = 0;
+    if (!gaze.raf) gaze.raf = requestAnimationFrame(stepGaze);
+  }
+
   /* ---------- 拖拽 ---------- */
   function pointer(e) { return { x: e.clientX, y: e.clientY }; }
 
   function onDown(e) {
     if (e.button !== 0) return;
     hideMenu();
+    relaxGaze();
     var p = pointer(e);
     drag = {
       startX: p.x,
@@ -525,6 +574,8 @@
     }
     window.addEventListener('resize', queueReflow);
     window.addEventListener('scroll', queueReflow, { passive: true });
+    document.addEventListener('mousemove', aimGaze, { passive: true });
+    document.addEventListener('mouseleave', relaxGaze);
 
     // 预取常用动作，点击时不至于卡一下
     window.setTimeout(function () {
