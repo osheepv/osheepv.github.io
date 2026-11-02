@@ -3350,7 +3350,26 @@ html[data-theme="dark"] .pet-bubble {
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-@media (max-width: 768px), (max-height: 560px) {
+.pet-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 50%;
+  filter: drop-shadow(0 6px 14px rgba(20, 40, 80, 0.22));
+}
+
+/* 手机：缩小但不隐藏 */
+@media (max-width: 768px) {
+  .site-pet { width: clamp(104px, 30vw, 168px); }
+  .pet-bubble { max-width: 180px; font-size: 12px; }
+  .pet-menu { min-width: 128px; }
+  .pet-menu-sub { min-width: 132px; }
+  .pet-menu-sub2 { min-width: 156px; }
+}
+
+/* 太矮的横屏仍隐藏，避免盖住内容 */
+@media (max-height: 560px) {
   .site-pet { display: none; }
 }
 

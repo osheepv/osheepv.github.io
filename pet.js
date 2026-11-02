@@ -15,11 +15,11 @@
 (function () {
   'use strict';
 
-  if (window.matchMedia && window.matchMedia('(max-width: 768px)').matches) return;
-
   var probe = document.createElement('video');
   var canWebm = !!(probe.canPlayType && probe.canPlayType('video/webm; codecs="vp9"'));
-  if (!canWebm) return;
+  /* iOS Safari 播不了透明 webm：退回静态形象，而不是整个消失 */
+  var STATIC_ONLY = !canWebm;
+  var NARROW = !!(window.matchMedia && window.matchMedia('(max-width: 768px)').matches);
 
   var REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
@@ -97,17 +97,30 @@
   var stage = document.createElement('div');
   stage.className = 'pet-stage';
 
-  var vidA = document.createElement('video');
-  var vidB = document.createElement('video');
-  [vidA, vidB].forEach(function (v) {
-    v.className = 'pet-video';
-    v.muted = true;
-    v.playsInline = true;
-    v.autoplay = true;
-    v.preload = 'auto';
-    v.disablePictureInPicture = true;
-    stage.appendChild(v);
-  });
+  var vids = [];
+  var vidA = null;
+  var vidB = null;
+
+  if (STATIC_ONLY) {
+    var still = document.createElement('img');
+    still.className = 'pet-img';
+    still.src = '/assets/pet/avatar-256.png';
+    still.alt = '';
+    stage.appendChild(still);
+  } else {
+    vidA = document.createElement('video');
+    vidB = document.createElement('video');
+    [vidA, vidB].forEach(function (v) {
+      v.className = 'pet-video';
+      v.muted = true;
+      v.playsInline = true;
+      v.autoplay = true;
+      v.preload = 'auto';
+      v.disablePictureInPicture = true;
+      stage.appendChild(v);
+    });
+    vids = [vidA, vidB];
+  }
 
   var bubble = document.createElement('div');
   bubble.className = 'pet-bubble';
@@ -141,8 +154,8 @@
   var bubbleTimer = 0;
   var raf = 0;
   var gaze = { tx: 0, ty: 0, cx: 0, cy: 0, raf: 0 };
+  var longFired = false;
 
-  var vids = [vidA, vidB];
 
   function elW() { return root.offsetWidth || 220; }
   function elH() { return root.offsetHeight || 124; }
@@ -239,6 +252,7 @@
   var clipToken = 0;
 
   function setClip(name, loop) {
+    if (STATIC_ONLY) { current = name; return; }
     if (current === name) {
       var cur = vids[active];
       if (cur && cur.paused) cur.play().catch(function () {});
@@ -433,7 +447,11 @@
     drag = null;
     root.classList.remove('dragging');
 
-    if (!moved) { react(); return; }
+    if (!moved) {
+      if (longFired) { longFired = false; return; }
+      react();
+      return;
+    }
 
     // 只用松手前 300ms 的轨迹估速：末尾停顿会被算成 0，不会因为整段拖拽的平均速度误判成甩出
     var now = performance.now();
@@ -727,10 +745,30 @@
     buildMenu();
 
     setClip(IDLE_CLIP, true);
-    scheduleIdleChain();
+    if (!STATIC_ONLY) {
+      scheduleIdleChain();
+    }
     scheduleWhisper();
 
     root.addEventListener('pointerdown', onDown);
+
+    // 触屏没有右键：长按 550ms 弹菜单
+    var longTimer = 0;
+    root.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse') return;
+      longFired = false;
+      window.clearTimeout(longTimer);
+      longTimer = window.setTimeout(function () {
+        longFired = true;
+        showMenu(e.clientX, e.clientY);
+      }, 550);
+    });
+    root.addEventListener('pointermove', function () {
+      if (drag && drag.moved) { window.clearTimeout(longTimer); }
+    });
+    ['pointerup', 'pointercancel'].forEach(function (evt) {
+      root.addEventListener(evt, function () { window.clearTimeout(longTimer); });
+    });
     window.addEventListener('pointermove', onMove, { passive: false });
     window.addEventListener('pointerup', onUp);
     window.addEventListener('pointercancel', onUp);
@@ -768,6 +806,7 @@
       })();
     }
     window.setTimeout(function () {
+      if (STATIC_ONLY) return;
       prefetch(['点击回应-元气挥手', '点击回应-害羞惊讶', '原地小憩沉眠'], 600);
       window.setTimeout(function () {
         prefetch(['工作状态-思考冒泡', '碎碎念-发呆碎碎念', '吃白饭', '东张西望', '轻快摇摆舞'], 2000);
