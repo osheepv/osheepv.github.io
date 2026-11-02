@@ -2120,6 +2120,20 @@ html[data-theme="dark"] .form-fail {
   animation: fadeInUp 0.3s ease;
 }
 
+.chat-avatar img,
+.msg-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+.chat-avatar,
+.msg-avatar {
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--color-border);
+}
+
 .msg-avatar {
   width: 32px;
   height: 32px;
