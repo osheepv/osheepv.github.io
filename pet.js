@@ -24,28 +24,46 @@
   var REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
   var BASE = '/assets/pet/';
-  var CLIPS = {
-    idle: 'idle.webm', doze: 'doze.webm', think: 'think.webm', mumble: 'mumble.webm',
-    eat: 'eat.webm', hum: 'hum.webm', stretch: 'stretch.webm', look: 'look.webm',
-    mirror: 'mirror.webm', cat: 'cat.webm', watergun: 'watergun.webm', rubik: 'rubik.webm',
-    whale: 'whale.webm', bubbles: 'bubbles.webm', yawn: 'yawn.webm', shock: 'shock.webm',
-    dance: 'dance.webm', dance2: 'dance2.webm', dance3: 'dance3.webm',
-    wave: 'wave.webm', shy: 'shy.webm', angry: 'angry.webm', happy: 'happy.webm', tickle: 'tickle.webm',
-    drag: 'drag.webm', land: 'land.webm'
-  };
-  /* 素材统一 10 秒长，播完再切回待机会拖太久，按剪辑各自定时 */
-  var CLIP_MS = {
-    wave: 2600, shy: 2600, angry: 2600, happy: 2800, tickle: 2600, land: 900,
-    doze: 6000, think: 6000, mumble: 3200,
-    eat: 5000, hum: 4500, stretch: 2800, look: 4000, mirror: 4000, cat: 5000,
-    watergun: 4000, rubik: 5000, whale: 5000, bubbles: 3200, yawn: 2600, shock: 2200,
-    dance: 6500, dance2: 6500, dance3: 6500
-  };
+  /* 动作名 = 素材文件名（中文原名，和 dsh-pet 一致） */
+  var IDLE_CLIP = '待机呼吸休闲';
+  var DRAG_CLIP = '被鼠标拖拽悬空反馈';
+  var LAND_CLIP = '原地重力下蹲压缩';
+  var MUMBLE_CLIP = '碎碎念-发呆碎碎念';
+
+  function clipSrc(name) {
+    return BASE + encodeURIComponent(name) + '.webm';
+  }
 
   /* 待机时随机抽一个演，点击时随机抽一个回应 */
-  var IDLE_ACTS = ['doze', 'think', 'eat', 'hum', 'stretch', 'look', 'mirror', 'cat',
-    'watergun', 'rubik', 'bubbles', 'yawn', 'shock', 'whale', 'dance', 'dance2', 'dance3'];
-  var CLICK_ACTS = ['wave', 'shy', 'happy', 'angry', 'tickle', 'shock'];
+  var IDLE_ACTS = ['原地小憩沉眠', '哈欠连天', '超大伸懒腰', '东张西望', '照镜子', '撸猫',
+    '被吓一跳', '吃白饭', '吃西瓜', '写代码', '原地漂浮踏步', '鲸鱼吐泡泡特效', '轻快记录',
+    '原地敲击桌面互动', '悠闲哼歌', '工作状态-思考冒泡'];
+  var CLICK_ACTS = ['点击回应-元气挥手', '点击回应-害羞惊讶', '点击回应-开心跃动',
+    '点击回应-傲娇生气', '点击回应-挠痒咯咯笑'];
+
+  /* 右键「动作」分支：分类 → 动作名，和 dsh-pet 的菜单同构 */
+  var ACTIONS = [
+    ['待机', ['待机呼吸休闲', '原地小憩沉眠', '哈欠连天', '打瞌睡被惊醒']],
+    ['拖拽', ['被鼠标拖拽悬空反馈', '原地重力下蹲压缩']],
+    ['点击回应', ['点击回应-元气挥手', '点击回应-害羞惊讶', '点击回应-开心跃动', '点击回应-傲娇生气', '点击回应-挠痒咯咯笑']],
+    ['移动', ['原地左转奔跑', '原地漂浮踏步', '螃蟹走路', '原地跳跃抓碎头顶物品']],
+    ['小动作', ['超大伸懒腰', '东张西望', '照镜子', '原地敲击桌面互动', '小幅度原地360度旋转展示',
+      '女仆屈膝礼仪', '被吓一跳', '撸猫', '轻快记录', '整体换装试色', '悠闲哼歌']],
+    ['玩耍', ['玩水枪', '原地专心玩魔方', '扑克魔术', '荡秋千', '骑木马', '吹气球', '踢毽子', '抽陀螺',
+      '原地蹲下玩玩具汽车', '三球抛接', '下五子棋', '玩游戏气急败坏', '吹笛子', '小提琴演奏', '舞狮头',
+      '变鸽子', '萌化小幽灵', '动物环绕', '凭空生花', '蝴蝶蜜蜂环绕头顶开花', '蓝鲸现世',
+      '鲸鱼吐泡泡特效', '用鲸鱼尾巴拍打地面']],
+    ['吃什么', ['吃白饭', '吃早餐', '吃午餐', '吃晚餐', '吃西瓜', '吃冰淇淋融化', '吃大闸蟹', '吃年糕',
+      '吃汤圆', '吃粽子', '吃糖葫芦', '吃腊八粥', '吃重阳糕', '吃长寿面', '吃青团', '吃饺子',
+      '大口吃零食', '偷吃零食被抓住', '吃Token', '涮火锅', '是啊，吃什么', '晨间刷牙']],
+    ['时节', ['中秋赏月吃月饼', '装点圣诞树', '讨糖南瓜灯', '放烟花', '放孔明灯', '放河灯', '堆雪人',
+      '插茱萸赏菊', '穿针乞巧', '写福字', '收红包', '摇扇纳凉', '放风筝', '被落叶淹没', '拆礼物']],
+    ['跳舞', ['轻快摇摆舞', '优雅女仆舞', '可爱宅舞']],
+    ['碎碎念', ['碎碎念-发呆碎碎念', '碎碎念-对屏碎碎念', '碎碎念-擦桌碎碎念', '深度思考碎碎念']],
+    ['工作状态', ['工作状态-原地踱步张望', '工作状态-垂头叹气冒汗', '工作状态-忙碌点按',
+      '工作状态-思考冒泡', '工作状态-清点归档', '工作状态-雀跃庆祝', '写代码']],
+    ['余额档位', ['余额-分文不剩', '余额-数金皱眉', '余额-袋空如洗', '余额-金袋叮当', '余额-钱袋如常', '余额-钱袋满溢']]
+  ];
 
   var MARGIN = 24;          // 视口四周留白
   var INSET = 8;            // 卡片内留白
@@ -229,7 +247,7 @@
 
     if (next.getAttribute('data-clip') !== name) {
       next.setAttribute('data-clip', name);
-      next.src = BASE + CLIPS[name];
+      next.src = clipSrc(name);
     }
     next.loop = !!loop;
     try { next.currentTime = 0; } catch (e) { /* 未就绪 */ }
@@ -253,18 +271,18 @@
     }, 8000 + Math.random() * 10000);
   }
 
-  function playOnce(name) {
+  function playOnce(name, ms) {
     mode = 'act';
     setClip(name, false);
     window.clearTimeout(actTimer);
     actTimer = window.setTimeout(function () {
       if (mode === 'act') returnToIdle();
-    }, CLIP_MS[name] || 2600);
+    }, ms || DEFAULT_CLIP_MS[name] || 2600);
   }
 
   function returnToIdle() {
     mode = 'idle';
-    setClip('idle', true);
+    setClip(IDLE_CLIP, true);
     scheduleIdleChain();
   }
 
@@ -290,7 +308,7 @@
     window.clearTimeout(whisperTimer);
     whisperTimer = window.setTimeout(function () {
       if (document.hidden || drag || flying || mode !== 'idle') { scheduleWhisper(); return; }
-      playOnce('mumble');
+      playOnce(MUMBLE_CLIP);
       say(LINES[Math.floor(Math.random() * LINES.length)], 7000);
       scheduleWhisper();
     }, 75000 + Math.random() * 60000);
@@ -357,7 +375,7 @@
     window.clearTimeout(actTimer);
     if (flying) stopFly();
     mode = 'drag';
-    setClip('drag', true);
+    setClip(DRAG_CLIP, true);
     root.classList.add('dragging');
     if (root.setPointerCapture) { try { root.setPointerCapture(e.pointerId); } catch (err) {} }
     e.preventDefault();
@@ -439,7 +457,7 @@
   function startFly(vx, vy, r) {
     flying = { vx: vx, vy: vy, region: r };
     mode = 'fly';
-    setClip('drag', true);
+    setClip(DRAG_CLIP, true);
     var lastT = performance.now();
 
     function step(now) {
@@ -492,7 +510,7 @@
     savePos();
     mode = 'act';
     squish(0.62);
-    setClip('land', false);
+    setClip(LAND_CLIP, false);
     window.clearTimeout(actTimer);
     actTimer = window.setTimeout(function () {
       if (mode === 'act') returnToIdle();
@@ -507,32 +525,98 @@
   }
 
   /* ---------- 菜单 ---------- */
-  function buildMenu() {
-    [
-      ['回到初始位置', function () {
-        setRegion(viewportRegion());
-        root.classList.remove('in-card');
-        parkInitial();
-      }],
-      ['换个动作', function () { playOnce(IDLE_ACTS[Math.floor(Math.random() * IDLE_ACTS.length)]); }],
-      ['跳个舞', function () { playOnce(['dance', 'dance2', 'dance3'][Math.floor(Math.random() * 3)]); }],
-      ['卖个萌', function () { playOnce(['happy', 'shy', 'tickle'][Math.floor(Math.random() * 3)]); }],
-      ['说句话', function () { say(LINES[Math.floor(Math.random() * LINES.length)], 6000); }]
-    ].forEach(function (item) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.textContent = item[0];
-      b.addEventListener('click', function (e) {
-        e.stopPropagation();
-        hideMenu();
-        item[1]();
-      });
-      menu.appendChild(b);
+  /** 子菜单超出视口时向上挪，避免在屏幕底部点不到 */
+  function fitSub(host, sub) {
+    sub.style.top = '0px';
+    requestAnimationFrame(function () {
+      var hr = host.getBoundingClientRect();
+      var h = Math.min(window.innerHeight * 0.7, sub.scrollHeight + 12);
+      var over = hr.top + h - (window.innerHeight - 12);
+      sub.style.top = (over > 0 ? -over : 0) + 'px';
     });
+  }
+
+  function buildMenu() {
+    // 「动作」分支：分类 → 具体动画，层级和 dsh-pet 一致
+    var group = document.createElement('div');
+    group.className = 'pet-menu-group';
+
+    var head = document.createElement('button');
+    head.type = 'button';
+    head.className = 'pet-menu-cat';
+    head.innerHTML = '<span>动作</span><i>›</i>';
+    head.addEventListener('click', function (e) {
+      e.stopPropagation();
+      sub.classList.toggle('open');
+      if (sub.classList.contains('open')) fitSub(group, sub);
+    });
+
+    var sub = document.createElement('div');
+    sub.className = 'pet-menu-sub';
+
+    ACTIONS.forEach(function (cat) {
+      var row = document.createElement('div');
+      row.className = 'pet-menu-cat-row';
+
+      var catBtn = document.createElement('button');
+      catBtn.type = 'button';
+      catBtn.className = 'pet-menu-cat';
+      catBtn.innerHTML = '<span>' + cat[0] + '</span><i>›</i>';
+      catBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        sub2.classList.toggle('open');
+        if (sub2.classList.contains('open')) fitSub(row, sub2);
+      });
+
+      var sub2 = document.createElement('div');
+      sub2.className = 'pet-menu-sub2';
+      cat[1].forEach(function (name) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'pet-menu-item';
+        b.textContent = name;
+        b.addEventListener('click', function (e) {
+          e.stopPropagation();
+          hideMenu();
+          playOnce(name, 10000);      // 点播就完整播一段
+        });
+        sub2.appendChild(b);
+      });
+
+      row.appendChild(catBtn);
+      row.appendChild(sub2);
+      sub.appendChild(row);
+    });
+
+    group.appendChild(head);
+    group.appendChild(sub);
+    menu.appendChild(group);
+
+    // 子菜单在视口底部/右侧溢出时纠偏（宠物常在左下角，二级菜单会顶出屏幕）
+    menu.addEventListener('mouseover', function (e) {
+      var host = e.target && e.target.closest ? e.target.closest('.pet-menu-group, .pet-menu-cat-row') : null;
+      if (!host) return;
+      var sub = host.querySelector(':scope > .pet-menu-sub, :scope > .pet-menu-sub2');
+      if (!sub) return;
+      fitSub(host, sub);
+    });
+
+    var home = document.createElement('button');
+    home.type = 'button';
+    home.className = 'pet-menu-plain';
+    home.textContent = '回到初始位置';
+    home.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideMenu();
+      setRegion(viewportRegion());
+      parkInitial();
+    });
+    menu.appendChild(home);
   }
 
   function showMenu(x, y) {
     menu.hidden = false;
+    menu.classList.toggle('flip', x > window.innerWidth * 0.62);
     var r = menu.getBoundingClientRect();
     menu.style.left = Math.max(12, Math.min(x, window.innerWidth - r.width - 12)) + 'px';
     menu.style.top = Math.max(12, Math.min(y, window.innerHeight - r.height - 12)) + 'px';
@@ -562,7 +646,7 @@
     render();
     buildMenu();
 
-    setClip('idle', true);
+    setClip(IDLE_CLIP, true);
     scheduleIdleChain();
     scheduleWhisper();
 

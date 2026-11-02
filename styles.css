@@ -3292,6 +3292,53 @@ body.i18n-fade-out .chat-page {
 }
 .pet-menu button:hover { background: var(--color-accent-light); color: var(--color-accent); }
 
+.pet-menu-group,
+.pet-menu-cat-row { position: relative; }
+.pet-menu-cat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.pet-menu-cat i {
+  font-style: normal;
+  opacity: 0.45;
+}
+.pet-menu-sub,
+.pet-menu-sub2 {
+  display: none;
+  position: absolute;
+  top: -6px;
+  left: calc(100% + 6px);
+  min-width: 150px;
+  padding: 6px;
+  border-radius: 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 14px 34px rgba(20, 40, 80, 0.18);
+}
+/* 二级不能被 overflow 裁剪，否则右侧的三级面板会消失；滚动只给叶子层 */
+.pet-menu-sub { overflow: visible; }
+.pet-menu-sub2 {
+  min-width: 176px;
+  max-height: 68vh;
+  overflow-y: auto;
+}
+.pet-menu.flip .pet-menu-sub,
+.pet-menu.flip .pet-menu-sub2 {
+  left: auto;
+  right: calc(100% + 6px);
+}
+.pet-menu-sub.open,
+.pet-menu-sub2.open { display: block; }
+.pet-menu-sub::-webkit-scrollbar,
+.pet-menu-sub2::-webkit-scrollbar { width: 6px; }
+.pet-menu-sub::-webkit-scrollbar-thumb,
+.pet-menu-sub2::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
 html[data-theme="dark"] .site-pet {
   filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.45));
 }
