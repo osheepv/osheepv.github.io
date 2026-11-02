@@ -176,6 +176,9 @@
   var raf = 0;
   var gaze = { tx: 0, ty: 0, cx: 0, cy: 0, raf: 0 };
   var longFired = false;
+  /* 低配设备：关掉视角跟随、拉长待机动作间隔，优先保证视频本身流畅 */
+  var LOW_END = ((navigator.hardwareConcurrency || 4) <= 4) &&
+                ((navigator.deviceMemory || 4) <= 4);
 
 
   function elW() { return root.offsetWidth || 220; }
@@ -297,7 +300,11 @@
       if (token !== clipToken) return;
       if (next.readyState < 2) return;
       next.classList.add('on');
-      if (prev) prev.classList.remove('on');
+      if (prev) {
+        prev.classList.remove('on');
+        // 立刻暂停：暂停后画面停在当前帧，淡出过程看不出差别，但少一个解码器
+        try { prev.pause(); } catch (e) {}
+      }
       active = 1 - active;
       current = name;
     }
@@ -336,7 +343,7 @@
       } else {
         scheduleIdleChain();
       }
-    }, 8000 + Math.random() * 10000);
+    }, (LOW_END ? 16000 : 8000) + Math.random() * (LOW_END ? 14000 : 10000));
   }
 
   function playOnce(name, ms) {
@@ -402,8 +409,14 @@
   var LOOK_MAX_Y = 10;     // 左右转头角度
   var LOOK_MAX_X = 7;     // 上下点头角度
 
+  var lastAim = 0;
+
   function aimGaze(e) {
-    if (drag || flying || REDUCED) return;
+    if (drag || flying || REDUCED || LOW_END) return;
+    if (mode !== 'idle') return;              // 播动作时别再改 transform
+    var now = performance.now();
+    if (now - lastAim < 33) return;           // 30fps 够了
+    lastAim = now;
     var r = root.getBoundingClientRect();
     if (!r.width) return;
     var cx = r.left + r.width / 2;
@@ -458,8 +471,6 @@
     window.clearTimeout(idleTimer);
     window.clearTimeout(actTimer);
     if (flying) stopFly();
-    mode = 'drag';
-    setClip(DRAG_CLIP, true);
     root.classList.add('dragging');
     if (root.setPointerCapture) { try { root.setPointerCapture(e.pointerId); } catch (err) {} }
     e.preventDefault();
@@ -470,7 +481,11 @@
     var p = pointer(e);
     var dx = p.x - drag.startX;
     var dy = p.y - drag.startY;
-    if (!drag.moved && Math.abs(dx) + Math.abs(dy) > DRAG_THRESHOLD) drag.moved = true;
+    if (!drag.moved && Math.abs(dx) + Math.abs(dy) > DRAG_THRESHOLD) {
+      drag.moved = true;
+      mode = 'drag';
+      setClip(DRAG_CLIP, true);      // 确认在拖了才切动画，纯点击不再闪一次拖拽
+    }
     if (!drag.moved) return;
 
     // 拖拽阶段只受视口限制：拖进/拖出聊天卡片都靠这一步
@@ -872,7 +887,7 @@
     }, 2500);
 
     window.setTimeout(function () {
-      if (STATIC_ONLY) return;
+      if (STATIC_ONLY || LOW_END) return;      // 低配设备别抢带宽和解码
       prefetch(['点击回应-元气挥手', '点击回应-害羞惊讶', '原地小憩沉眠'], 600);
       window.setTimeout(function () {
         prefetch(['工作状态-思考冒泡', '碎碎念-发呆碎碎念', '吃白饭', '东张西望', '轻快摇摆舞'], 2000);
