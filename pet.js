@@ -130,11 +130,20 @@
     var r = el.getBoundingClientRect();
     if (r.width < 160 || r.height < 160) return null;
     if (r.bottom < 0 || r.top > window.innerHeight) return null;
+
+    // 地面取输入区上边线：宠物站在输入框上方，不压住打字区域
+    var floor = r.bottom;
+    var input = document.querySelector('.chat-input');
+    if (input) {
+      var ir = input.getBoundingClientRect();
+      if (ir.top > r.top + 60) floor = ir.top;
+    }
+
     return {
       left: Math.max(0, r.left + INSET),
       top: Math.max(0, r.top + INSET),
       right: Math.min(window.innerWidth, r.right - INSET),
-      bottom: Math.min(window.innerHeight, r.bottom - INSET),
+      bottom: Math.min(window.innerHeight, floor - INSET),
       card: true
     };
   }
@@ -316,19 +325,24 @@
   function onUp() {
     if (!drag) return;
     var moved = drag.moved;
-    var startX = drag.startX, startY = drag.startY, trail = drag.trail;
+    var trail = drag.trail;
     drag = null;
     root.classList.remove('dragging');
 
     if (!moved) { react(); return; }
 
+    // 只用松手前 300ms 的轨迹估速：末尾停顿会被算成 0，不会因为整段拖拽的平均速度误判成甩出
     var now = performance.now();
-    var first = trail[0] || { x: startX, y: startY, t: now - 16 };
-    var last = trail[trail.length - 1] || { x: startX, y: startY, t: now };
-    var dt = Math.max(16, now - first.t) / 1000;
-    var vx = (last.x - first.x) / dt;
-    var vy = (last.y - first.y) / dt;
-    var speed = Math.sqrt(vx * vx + vy * vy);
+    var recent = trail.filter(function (p) { return now - p.t <= 300; });
+    var vx = 0, vy = 0, speed = 0;
+    if (recent.length >= 2) {
+      var f = recent[0];
+      var l = recent[recent.length - 1];
+      var dt = Math.max(16, l.t - f.t) / 1000;
+      vx = (l.x - f.x) / dt;
+      vy = (l.y - f.y) / dt;
+      speed = Math.sqrt(vx * vx + vy * vy);
+    }
 
     var cx = pos.x + elW() / 2;
     var cy = pos.y + elH() / 2;
@@ -337,7 +351,20 @@
     clampToRegion(r);
 
     if (speed < 260 || REDUCED) {
-      // 温柔放下：停在当前位置（桌宠同款手感），不强制落地
+      // 卡片内取消「温柔放下」：一律落到输入框上方的地面
+      if (r.card) {
+        if (REDUCED) {
+          pos.y = Math.max(r.top, r.bottom - elH());
+          render();
+          savePos();
+          squish(0.8);
+          returnToIdle();
+          return;
+        }
+        startFly(vx * 0.12, vy * 0.12, r);
+        return;
+      }
+      // 卡片外保持桌宠手感：停在当前位置
       render();
       savePos();
       squish(0.8);
