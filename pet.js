@@ -15,16 +15,18 @@
 (function () {
   'use strict';
 
-  var probe = document.createElement('video');
-  var canWebm = !!(probe.canPlayType && probe.canPlayType('video/webm; codecs="vp9"'));
-
-  /* iOS 上 canPlayType 会返回 maybe，但透明通道根本不生效，播出来是个黑底方块。
-     所以 iOS 一律走静态形象，不看 canPlayType 的脸色。 */
+  /* 移动端（窄屏 / iOS / iPadOS）不出现宠物：透明视频在 iOS 上只能显示黑底，
+     换成静态图又和整体风格不搭，干脆不打扰小屏。 */
   var ua = navigator.userAgent || '';
   var isIOS = /iPad|iPhone|iPod/.test(ua) ||
     (navigator.platform === 'MacIntel' && (navigator.maxTouchPoints || 0) > 1);
-  var STATIC_ONLY = !canWebm || isIOS;
   var NARROW = !!(window.matchMedia && window.matchMedia('(max-width: 768px)').matches);
+  if (NARROW || isIOS) return;
+
+  var probe = document.createElement('video');
+  var canWebm = !!(probe.canPlayType && probe.canPlayType('video/webm; codecs="vp9"'));
+  /* 桌面端万一播不了透明视频，退回静态头像，而不是整个消失 */
+  var STATIC_ONLY = !canWebm;
 
   var REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 

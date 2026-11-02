@@ -3378,13 +3378,9 @@ html[data-theme="dark"] .pet-bubble {
   filter: drop-shadow(0 6px 14px rgba(20, 40, 80, 0.22));
 }
 
-/* 手机：缩小但不隐藏 */
+/* 手机：不显示宠物（透明视频在 iOS 上只能黑底，静态图也不搭） */
 @media (max-width: 768px) {
-  .site-pet { width: clamp(120px, 34vw, 180px); }
-  .pet-bubble { max-width: 180px; font-size: 12px; }
-  .pet-menu { min-width: 128px; }
-  .pet-menu-sub { min-width: 132px; }
-  .pet-menu-sub2 { min-width: 156px; }
+  .site-pet { display: none; }
 }
 
 /* 太矮的横屏仍隐藏，避免盖住内容 */
