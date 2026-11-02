@@ -204,6 +204,7 @@
       'log.tag.seo': 'SEO',
       'log.tag.content': '内容',
       'log.tag.design': '设计',
+      'log.tag.pet': '宠物',
       'log.tag.arch': '架构',
       'log.tag.cost': '成本',
       'log.e1.title': '站点搬进自己的域名',
@@ -237,6 +238,12 @@
       'log.e7.l2': '回复改成流式输出，首字从「等一整段」变成逐字出现',
       'log.e7.l3': '后端只做三件事：校验来源、限流、转发；密钥存在 Worker 的 secret 里，前端碰不到',
       'log.e7.l4': '关掉模型的 thinking 模式，回答更快也更省 token',
+      'log.e8.title': '网站养了只大肥鱼',
+      'log.e8.desc': '把 DSH 的桌宠 dsh-pet 搬到了站点：透明动画、点击回应、拖起来能甩飞、落地会弹一下，位置还记得住。',
+      'log.e8.l1': '挑 8 段动画共 3.2 MB，其余按需预取，不拖慢首屏',
+      'log.e8.l2': 'VP9 透明视频，Chrome / Edge / Firefox 正常；Safari 与窄屏自动不显示，不降级成黑框',
+      'log.e8.l3': '拖拽带弹簧跟手与抛物线，甩出去撞边反弹、落地挤压回弹',
+      'log.e8.l4': '右键有「回到初始位置 / 换个动作 / 说句话」，偶尔自己冒一句碎碎念',
 
       /* Other page */
       'other.kicker': 'More',
@@ -485,6 +492,7 @@
       'log.tag.seo': 'SEO',
       'log.tag.content': 'Content',
       'log.tag.design': 'Design',
+      'log.tag.pet': 'Pet',
       'log.tag.arch': 'Architecture',
       'log.tag.cost': 'Cost',
       'log.e1.title': 'Moved the site onto its own domain',
@@ -518,6 +526,12 @@
       'log.e7.l2': 'Replies stream in token by token instead of arriving as one block',
       'log.e7.l3': 'The backend only checks the origin, rate limits and forwards; the key stays in a Worker secret',
       'log.e7.l4': 'Thinking mode is disabled, so answers start faster and cost fewer tokens',
+      'log.e8.title': 'The site adopted a whale-girl pet',
+      'log.e8.desc': 'The dsh-pet desktop companion now lives on the site: transparent animation, click reactions, throwable with real physics, and it remembers where you left it.',
+      'log.e8.l1': 'Eight clips totalling 3.2 MB ship with the site; the rest are prefetched on demand',
+      'log.e8.l2': 'VP9 alpha video works in Chrome, Edge and Firefox; Safari and small screens get no pet rather than a black box',
+      'log.e8.l3': 'Dragging follows a damped spring; release and it flies, bounces off edges and squashes on landing',
+      'log.e8.l4': 'Right-click for reset / another action / say something, and it occasionally mutters to itself',
 
       /* Other page */
       'other.kicker': 'More',

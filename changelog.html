@@ -23,8 +23,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin>
   <link href="https://fonts.googleapis.cn/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=22">
-  <script src="i18n.js?v=17" defer></script>
+  <link rel="stylesheet" href="styles.css?v=23">
+  <script src="i18n.js?v=18" defer></script>
 
   <!-- 自定义域名 + SEO / 社交分享（vvosp.top） -->
   <link rel="canonical" href="https://vvosp.top/changelog.html">
@@ -158,6 +158,19 @@
       <article class="entry reveal">
         <div class="entry-date">2026-11-02</div>
         <div class="entry-body">
+          <h2 class="entry-title"><span data-i18n="log.e8.title">网站养了只大肥鱼</span> <span class="entry-tag" data-i18n="log.tag.pet">宠物</span><span class="entry-tag" data-i18n="log.tag.design">设计</span></h2>
+          <p class="entry-desc" data-i18n="log.e8.desc">把 DSH 的桌宠 dsh-pet 搬到了站点：透明动画、点击回应、拖起来能甩飞、落地会弹一下，位置还记得住。</p>
+          <ul class="entry-list">
+            <li data-i18n="log.e8.l1">挑 8 段动画共 3.2 MB，其余按需预取，不拖慢首屏</li>
+            <li data-i18n="log.e8.l2">VP9 透明视频，Chrome / Edge / Firefox 正常；Safari 与窄屏自动不显示，不降级成黑框</li>
+            <li data-i18n="log.e8.l3">拖拽带弹簧跟手与抛物线，甩出去撞边反弹、落地挤压回弹</li>
+            <li data-i18n="log.e8.l4">右键有「回到初始位置 / 换个动作 / 说句话」，偶尔自己冒一句碎碎念</li>
+          </ul>
+        </div>
+      </article>
+      <article class="entry reveal">
+        <div class="entry-date">2026-11-02</div>
+        <div class="entry-body">
           <h2 class="entry-title"><span data-i18n="log.e7.title">AI 助手搬进 Cloudflare Worker</span> <span class="entry-tag" data-i18n="log.tag.arch">架构</span><span class="entry-tag" data-i18n="log.tag.perf">性能</span></h2>
           <p class="entry-desc" data-i18n="log.e7.desc">原来的链路是「浏览器 → cpolar 隧道 → 本机 n8n → DeepSeek」，电脑一关助手就离线。现在换成 Cloudflare Worker 直连 DeepSeek：不再依赖本机，也不用每次重开隧道后改一遍地址。</p>
           <ul class="entry-list">
@@ -280,5 +293,6 @@
 
   <script src="script.js?v=6" defer></script>
   <script src="wave.js?v=24" defer></script>
+  <script src="/pet.js?v=1" defer></script>
 </body>
 </html>

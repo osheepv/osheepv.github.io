@@ -131,6 +131,8 @@ npx serve
 ├── script.js                  # 共享脚本（主题/动画/导航/表单/EmailJS）
 ├── i18n.js                    # 中英双语字典与切换逻辑
 ├── wave.js                    # 水面涟漪背景（Canvas2D）
+├── pet.js                     # 站点宠物（移植自 dsh-pet）
+├── assets/pet/                # 宠物动画（VP9-alpha webm，8 段 3.2 MB）
 ├── details.js                 # 详情页数据（奖项 / 项目 / 经历）
 ├── resume.pdf                 # 简历（AI 方向）
 ├── resume-mech.pdf            # 简历（机械方向）
@@ -200,6 +202,24 @@ cd _worker && npm test                  # 29 项不依赖网络的单元测试
 ```
 
 > 早先的 cpolar 隧道 + 本机 Docker/n8n 方案已停用，相关配置不用再维护。
+
+## 站点宠物
+
+```
+ai-assistant.html 等全站页面 → pet.js → assets/pet/*.webm
+```
+
+移植自 [dsh-pet](https://github.com/PC2005-cloud/dsh-pet)（MIT）的网页精简版，去掉了桌面壁纸、系统通知、余额展示等依赖 Electron / DSH 宿主的能力：
+
+- **动画**：双 `<video>` 交叉淡入，待机 / 瞌睡 / 思考随机轮换，点击播「挥手 / 害羞」，拖拽与落地各有专属动画
+- **交互**：点击回应 + Q 弹挤压；拖拽是过阻尼弹簧跟手，松手按轨迹估速 → 抛物线飞行、撞边反弹、落地摩擦，落地位置写进 `localStorage`
+- **碎碎念**：本地台词池，75–135 秒随机冒一句（零成本，不调模型）
+- **右键菜单**：回到初始位置 / 换个动作 / 说句话
+- **不做降级**：Safari 不支持 VP9-alpha，直接不显示宠物；≤768px 或视口过矮同样隐藏
+
+加新动作：把 VP9-alpha `.webm` 放进 `assets/pet/`，在 `pet.js` 的 `CLIPS` 里登记，再把文件名加进 `CLIP_MS`（素材统一 10 秒长，需按动作截断）。
+
+选素材的两个坑：容器是 16:9 且按 `object-fit: contain` 铺满，素材比例不一致会有留白；动画文件普遍 10 秒，不能等 `ended` 才切回待机。
 
 ## 设计系统
 
