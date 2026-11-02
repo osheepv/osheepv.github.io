@@ -360,8 +360,12 @@
     if (img) {
       var pic = document.createElement('img');
       pic.className = 'pet-bubble-img';
-      pic.src = MEME_BASE + encodeURIComponent(img) + '.webp';
       pic.alt = '';
+      // 图挂了就只留文字，不要留一个空灰块
+      pic.onerror = function () {
+        if (pic.parentNode) pic.parentNode.removeChild(pic);
+      };
+      pic.src = MEME_BASE + encodeURIComponent(img) + '.webp';
       bubble.appendChild(pic);
     }
     var line = document.createElement('span');
