@@ -3361,12 +3361,20 @@ html[data-theme="dark"] .pet-bubble {
   border-color: rgba(255, 255, 255, 0.12);
 }
 
+.site-pet.static {
+  width: auto;
+  height: clamp(104px, 26vw, 152px);
+  aspect-ratio: 1 / 1;
+}
+
 .pet-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
   border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--color-border);
   filter: drop-shadow(0 6px 14px rgba(20, 40, 80, 0.22));
 }
 

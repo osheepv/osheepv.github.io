@@ -17,8 +17,13 @@
 
   var probe = document.createElement('video');
   var canWebm = !!(probe.canPlayType && probe.canPlayType('video/webm; codecs="vp9"'));
-  /* iOS Safari 播不了透明 webm：退回静态形象，而不是整个消失 */
-  var STATIC_ONLY = !canWebm;
+
+  /* iOS 上 canPlayType 会返回 maybe，但透明通道根本不生效，播出来是个黑底方块。
+     所以 iOS 一律走静态形象，不看 canPlayType 的脸色。 */
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+    (navigator.platform === 'MacIntel' && (navigator.maxTouchPoints || 0) > 1);
+  var STATIC_ONLY = !canWebm || isIOS;
   var NARROW = !!(window.matchMedia && window.matchMedia('(max-width: 768px)').matches);
 
   var REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -115,6 +120,7 @@
   var vidB = null;
 
   if (STATIC_ONLY) {
+    root.classList.add('static');
     var still = document.createElement('img');
     still.className = 'pet-img';
     still.src = '/assets/pet/avatar-256.png';
