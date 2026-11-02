@@ -25,17 +25,27 @@
 
   var BASE = '/assets/pet/';
   var CLIPS = {
-    idle: 'idle.webm',
-    doze: 'doze.webm',
-    think: 'think.webm',
-    wave: 'wave.webm',
-    shy: 'shy.webm',
-    drag: 'drag.webm',
-    land: 'land.webm',
-    mumble: 'mumble.webm'
+    idle: 'idle.webm', doze: 'doze.webm', think: 'think.webm', mumble: 'mumble.webm',
+    eat: 'eat.webm', hum: 'hum.webm', stretch: 'stretch.webm', look: 'look.webm',
+    mirror: 'mirror.webm', cat: 'cat.webm', watergun: 'watergun.webm', rubik: 'rubik.webm',
+    whale: 'whale.webm', bubbles: 'bubbles.webm', yawn: 'yawn.webm', shock: 'shock.webm',
+    dance: 'dance.webm', dance2: 'dance2.webm', dance3: 'dance3.webm',
+    wave: 'wave.webm', shy: 'shy.webm', angry: 'angry.webm', happy: 'happy.webm', tickle: 'tickle.webm',
+    drag: 'drag.webm', land: 'land.webm'
   };
   /* 素材统一 10 秒长，播完再切回待机会拖太久，按剪辑各自定时 */
-  var CLIP_MS = { wave: 2600, shy: 2600, land: 900, doze: 6000, think: 6000, mumble: 3200 };
+  var CLIP_MS = {
+    wave: 2600, shy: 2600, angry: 2600, happy: 2800, tickle: 2600, land: 900,
+    doze: 6000, think: 6000, mumble: 3200,
+    eat: 5000, hum: 4500, stretch: 2800, look: 4000, mirror: 4000, cat: 5000,
+    watergun: 4000, rubik: 5000, whale: 5000, bubbles: 3200, yawn: 2600, shock: 2200,
+    dance: 6500, dance2: 6500, dance3: 6500
+  };
+
+  /* 待机时随机抽一个演，点击时随机抽一个回应 */
+  var IDLE_ACTS = ['doze', 'think', 'eat', 'hum', 'stretch', 'look', 'mirror', 'cat',
+    'watergun', 'rubik', 'bubbles', 'yawn', 'shock', 'whale', 'dance', 'dance2', 'dance3'];
+  var CLICK_ACTS = ['wave', 'shy', 'happy', 'angry', 'tickle', 'shock'];
 
   var MARGIN = 24;          // 视口四周留白
   var INSET = 8;            // 卡片内留白
@@ -235,11 +245,12 @@
     if (REDUCED) return;
     idleTimer = window.setTimeout(function () {
       if (mode !== 'idle' || drag || flying) { scheduleIdleChain(); return; }
-      var pick = Math.random();
-      if (pick < 0.45) playOnce('doze');
-      else if (pick < 0.75) playOnce('think');
-      else scheduleIdleChain();
-    }, 14000 + Math.random() * 12000);
+      if (Math.random() < 0.8) {
+        playOnce(IDLE_ACTS[Math.floor(Math.random() * IDLE_ACTS.length)]);
+      } else {
+        scheduleIdleChain();
+      }
+    }, 8000 + Math.random() * 10000);
   }
 
   function playOnce(name) {
@@ -492,7 +503,7 @@
   function react() {
     mode = 'act';
     squish(0.55);
-    playOnce(Math.random() < 0.6 ? 'wave' : 'shy');
+    playOnce(CLICK_ACTS[Math.floor(Math.random() * CLICK_ACTS.length)]);
   }
 
   /* ---------- 菜单 ---------- */
@@ -503,7 +514,9 @@
         root.classList.remove('in-card');
         parkInitial();
       }],
-      ['换个动作', function () { playOnce(Math.random() < 0.5 ? 'doze' : 'think'); }],
+      ['换个动作', function () { playOnce(IDLE_ACTS[Math.floor(Math.random() * IDLE_ACTS.length)]); }],
+      ['跳个舞', function () { playOnce(['dance', 'dance2', 'dance3'][Math.floor(Math.random() * 3)]); }],
+      ['卖个萌', function () { playOnce(['happy', 'shy', 'tickle'][Math.floor(Math.random() * 3)]); }],
       ['说句话', function () { say(LINES[Math.floor(Math.random() * LINES.length)], 6000); }]
     ].forEach(function (item) {
       var b = document.createElement('button');
@@ -577,16 +590,25 @@
     document.addEventListener('mousemove', aimGaze, { passive: true });
     document.addEventListener('mouseleave', relaxGaze);
 
-    // 预取常用动作，点击时不至于卡一下
-    window.setTimeout(function () {
-      ['wave', 'shy', 'mumble'].forEach(function (name) {
+    // 预取：先补常用的两个回应，空闲后再慢慢补齐其它动作，避免一口气拉十几兆
+    function prefetch(names, gap) {
+      var i = 0;
+      (function next() {
+        if (i >= names.length) return;
         var link = document.createElement('link');
         link.rel = 'prefetch';
         link.as = 'video';
-        link.href = BASE + CLIPS[name];
+        link.href = BASE + CLIPS[names[i++]];
         document.head.appendChild(link);
-      });
-    }, 4000);
+        window.setTimeout(next, gap);
+      })();
+    }
+    window.setTimeout(function () {
+      prefetch(['wave', 'shy', 'doze'], 600);
+      window.setTimeout(function () {
+        prefetch(['think', 'mumble', 'eat', 'look', 'dance'], 2000);
+      }, 5000);
+    }, 3000);
   }
 
   if (document.readyState === 'loading') {
