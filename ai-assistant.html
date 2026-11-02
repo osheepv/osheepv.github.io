@@ -240,14 +240,20 @@
     /* ===== 在线状态检测 ===== */
     var statusEl = document.getElementById('chat-status');
     var HEALTH_URL = API_BASE + '/api/health';
+    var statusState = 'connecting';
 
-    function setStatus(state) {
+    function renderStatus() {
       if (!statusEl) return;
       statusEl.classList.remove('connecting', 'online', 'offline');
-      statusEl.classList.add(state);
-      if (state === 'connecting') statusEl.textContent = I18N.t('chat.statusConn');
-      else if (state === 'online') statusEl.textContent = I18N.t('chat.statusOn');
-      else statusEl.textContent = I18N.t('chat.statusOff');
+      statusEl.classList.add(statusState);
+      var key = statusState === 'online' ? 'chat.statusOn' : (statusState === 'offline' ? 'chat.statusOff' : 'chat.statusConn');
+      var fallback = statusState === 'online' ? 'Online' : (statusState === 'offline' ? 'Offline' : '连接中…');
+      statusEl.textContent = (window.I18N && I18N.t) ? I18N.t(key, fallback) : fallback;
+    }
+
+    function setStatus(state) {
+      statusState = state;
+      renderStatus();
     }
 
     async function checkStatus() {
@@ -263,9 +269,22 @@
       }
     }
 
-    setStatus('connecting');
-    checkStatus();
-    setInterval(checkStatus, 15000);
+    /* i18n.js 是 defer 加载的：defer 脚本要等文档解析完才执行，而这段内联脚本在解析时就跑了。
+       所以解析阶段直接调 I18N 会抛 ReferenceError，把整段聊天逻辑连根拔掉——状态灯永远停在“连接中”。
+       改成等 DOMContentLoaded：defer 脚本一定早于它执行完。 */
+    function startChat() {
+      setStatus('connecting');
+      checkStatus();
+      setInterval(checkStatus, 15000);
+      // 切换语言时 i18n 的 apply() 会把状态灯文字重置成“连接中…”，这里补回来
+      if (window.I18N && I18N.hooks) I18N.hooks(renderStatus);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', startChat);
+    } else {
+      startChat();
+    }
 
     /* ===== 发送消息（流式） ===== */
     async function sendMessage() {
