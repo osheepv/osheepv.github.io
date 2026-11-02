@@ -236,14 +236,18 @@
   }
 
   /* ---------- 动画 ---------- */
+  var clipToken = 0;
+
   function setClip(name, loop) {
     if (current === name) {
       var cur = vids[active];
       if (cur && cur.paused) cur.play().catch(function () {});
       return;
     }
+
     var next = vids[1 - active];
     var prev = vids[active];
+    var token = ++clipToken;
 
     if (next.getAttribute('data-clip') !== name) {
       next.setAttribute('data-clip', name);
@@ -251,11 +255,33 @@
     }
     next.loop = !!loop;
     try { next.currentTime = 0; } catch (e) { /* 未就绪 */ }
-    next.play().catch(function () {});
-    next.classList.add('on');
-    if (prev) prev.classList.remove('on');
-    active = 1 - active;
-    current = name;
+
+    // 等新素材真正画出第一帧再交叉，否则旧帧已经淡出、新帧还没来，会空白闪一下
+    function reveal() {
+      if (token !== clipToken) return;
+      next.classList.add('on');
+      if (prev) prev.classList.remove('on');
+      active = 1 - active;
+      current = name;
+    }
+
+    var settled = false;
+    function once() {
+      if (settled || token !== clipToken) return;
+      settled = true;
+      reveal();
+    }
+
+    if (next.requestVideoFrameCallback) {
+      next.requestVideoFrameCallback(once);
+      window.setTimeout(once, 900);        // 网络慢时的兜底
+    } else {
+      next.addEventListener('playing', once, { once: true });
+      window.setTimeout(once, 600);
+    }
+
+    var played = next.play();
+    if (played && played.catch) played.catch(once);
   }
 
   function scheduleIdleChain() {
@@ -736,15 +762,15 @@
         var link = document.createElement('link');
         link.rel = 'prefetch';
         link.as = 'video';
-        link.href = BASE + CLIPS[names[i++]];
+        link.href = clipSrc(names[i++]);
         document.head.appendChild(link);
         window.setTimeout(next, gap);
       })();
     }
     window.setTimeout(function () {
-      prefetch(['wave', 'shy', 'doze'], 600);
+      prefetch(['点击回应-元气挥手', '点击回应-害羞惊讶', '原地小憩沉眠'], 600);
       window.setTimeout(function () {
-        prefetch(['think', 'mumble', 'eat', 'look', 'dance'], 2000);
+        prefetch(['工作状态-思考冒泡', '碎碎念-发呆碎碎念', '吃白饭', '东张西望', '轻快摇摆舞'], 2000);
       }, 5000);
     }, 3000);
   }
