@@ -140,6 +140,7 @@ npx serve
 ├── favicon.svg                # 矢量图标
 ├── apple-touch-icon.png       # iOS 主屏图标
 ├── indexnow-<key>.txt         # IndexNow 验证文件
+├── _worker/                   # AI 助手后端（Cloudflare Worker，下划线目录会被 Jekyll 跳过）
 └── README.md
 ```
 
@@ -149,9 +150,10 @@ npx serve
 2. **改共享资源后必须升版本号**（关键）：
    ```html
    <link rel="stylesheet" href="styles.css?v=22">   <!-- 改成 23 -->
-   <script src="i18n.js?v=15"></script>             <!-- 改成 16 -->
+   <script src="i18n.js?v=17"></script>             <!-- 改成 18 -->
    ```
-   否则浏览器会一直用缓存里的旧文件（表现为：新文案不生效、新版式不生效，甚至 i18n key 原样显示成 `FOOTER.MORE`）
+   否则浏览器会一直用缓存里的旧文件（表现为：新文案不生效、新版式不生效，甚至 i18n key 原样显示成 `FOOTER.MORE`）。
+   全站 20 个页面请保持同一个版本号，改的时候 `find . -name "*.html" -not -path "./.claude/*"` 一起替换，别只改一部分。
 3. **新增项目 / 荣誉页**：
    - 在 `details.js` 的 `DETAILS` 对象里加一条数据（`id` 作为 URL）
    - 复制 `projects/project-5.html`，改 `<meta name="detail-id" content="新 id">`，以及 title / description / canonical / og 相关标签
@@ -164,13 +166,40 @@ npx serve
 ## AI 助手架构
 
 ```
-浏览者 → 页面 JS → cpolar 公网隧道 → 本地 n8n → DeepSeek
+浏览者 → ai-assistant.html → Cloudflare Worker (api.vvosp.top) → DeepSeek
 ```
 
-- 在线状态灯三态检测（连接中 / 在线 / 离线），走 n8n 轻量 health 端点
-- 会话隔离：每个浏览者独立 `sessionId`，互不串记忆
+- 页面：`ai-assistant.html`，SSE 流式渲染，回复逐字出现；状态灯走 `GET /api/health`
+- 后端：`_worker/`，只做三件事 —— 校验 Origin、按 IP 限流、转发请求；密钥只存在 Worker secret，前端碰不到
+- 无状态：多轮上下文由前端维护最近 8 条，服务端不存会话，换设备也不会串记忆
+- 提示词在 `_worker/src/prompt.js`，改了要重新 `npm run deploy`
+- 模型请求显式关掉 thinking 模式：简历问答不需要推理链，首字更快、token 更省
 
-> ⚠️ AI 助手依赖本机 n8n + cpolar 隧道运行，隧道 URL 变更时需同步更新 `ai-assistant.html` 中的 `API_URL`。
+### 部署 / 更新后端
+
+```bash
+cd _worker
+npm install
+npx wrangler login                      # 只需一次
+npx wrangler secret put DEEPSEEK_API_KEY
+npx wrangler deploy                     # 自动创建并绑定 api.vvosp.top
+```
+
+验证：
+
+```bash
+curl https://api.vvosp.top/api/health
+```
+
+本地联调：
+
+```bash
+cd _worker && npm run dev               # MOCK=1，跑在 http://127.0.0.1:8787
+# 把 ai-assistant.html 里的 API_BASE 临时改成 http://127.0.0.1:8787
+cd _worker && npm test                  # 29 项不依赖网络的单元测试
+```
+
+> 早先的 cpolar 隧道 + 本机 Docker/n8n 方案已停用，相关配置不用再维护。
 
 ## 设计系统
 

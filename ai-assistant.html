@@ -24,8 +24,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin>
   <link href="https://fonts.googleapis.cn/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=20">
-  <script src="i18n.js?v=4" defer></script>
+  <link rel="stylesheet" href="styles.css?v=22">
+  <script src="i18n.js?v=17" defer></script>
 
   <!-- 自定义域名 + SEO / 社交分享（vvosp.top） -->
   <link rel="canonical" href="https://vvosp.top/ai-assistant.html">
@@ -137,8 +137,10 @@
     var text = document.getElementById('chat-text');
     var sendBtn = document.getElementById('chat-send');
 
-    var sessionId = Date.now() + '-' + Math.random().toString(36).slice(2,10);
-    var API_URL = 'https://7c93621c.r7.cpolar.cn/webhook/resume-agent-chat';
+    /* 后端：Cloudflare Worker（源码见 _worker/）。本地调试改成 http://127.0.0.1:8787 即可 */
+    var API_BASE = 'https://api.vvosp.top';
+    var API_URL = API_BASE + '/api/chat';
+    var history = [];   // 多轮上下文由前端维护，服务端无状态
 
     function appendMsg(role, content) {
       var isUser = role === 'user';
@@ -162,35 +164,82 @@
       messages.scrollTop = messages.scrollHeight;
     }
 
-    function showTyping() {
+    /* 先插入一个带“正在输入”动画的气泡，流式内容到达时逐字填进去 */
+    function createBotBubble() {
       var row = document.createElement('div');
       row.className = 'msg bot';
-      row.id = 'typing-row';
       var av = document.createElement('div');
       av.className = 'msg-avatar';
       av.textContent = 'AI';
       var wrap = document.createElement('div');
       var bubble = document.createElement('div');
       bubble.className = 'msg-bubble';
-      var t = document.createElement('div');
-      t.className = 'typing';
-      t.innerHTML = '<span></span><span></span><span></span>';
-      bubble.appendChild(t);
+      var typing = document.createElement('div');
+      typing.className = 'typing';
+      typing.innerHTML = '<span></span><span></span><span></span>';
+      bubble.appendChild(typing);
       wrap.appendChild(bubble);
       row.appendChild(av);
       row.appendChild(wrap);
       messages.appendChild(row);
       messages.scrollTop = messages.scrollHeight;
+      return { wrap: wrap, bubble: bubble, typing: typing, text: '' };
     }
 
-    function removeTyping() {
-      var r = document.getElementById('typing-row');
-      if (r) r.remove();
+    function stampTime(node) {
+      var time = document.createElement('div');
+      time.className = 'msg-time';
+      time.textContent = new Date().toLocaleTimeString(I18N.current() === 'en' ? 'en-US' : 'zh-CN', {hour:'2-digit', minute:'2-digit'});
+      node.wrap.appendChild(time);
+    }
+
+    function pushChunk(node, chunk) {
+      if (node.typing) { node.typing.remove(); node.typing = null; }
+      node.text += chunk;
+      node.bubble.textContent = node.text;
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function finishBubble(node, fallback) {
+      if (node.typing) { node.typing.remove(); node.typing = null; }
+      if (!node.text) node.text = fallback;
+      node.bubble.textContent = node.text;
+      stampTime(node);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    /* 解析 OpenAI 格式的 SSE：data: {"choices":[{"delta":{"content":"..."}}]} … data: [DONE] */
+    async function consumeStream(resp, onChunk) {
+      var reader = resp.body.getReader();
+      var decoder = new TextDecoder();
+      var buffer = '';
+      while (true) {
+        var step = await reader.read();
+        if (step.done) break;
+        buffer += decoder.decode(step.value, { stream: true });
+        var cut;
+        while ((cut = buffer.indexOf('\n\n')) >= 0) {
+          var frame = buffer.slice(0, cut);
+          buffer = buffer.slice(cut + 2);
+          var lines = frame.split('\n');
+          for (var i = 0; i < lines.length; i++) {
+            var line = lines[i].trim();
+            if (line.indexOf('data:') !== 0) continue;
+            var payload = line.slice(5).trim();
+            if (!payload || payload === '[DONE]') continue;
+            try {
+              var obj = JSON.parse(payload);
+              var delta = obj.choices && obj.choices[0] && obj.choices[0].delta;
+              if (delta && delta.content) onChunk(delta.content);
+            } catch (err) { /* 不完整的帧，跳过 */ }
+          }
+        }
+      }
     }
 
     /* ===== 在线状态检测 ===== */
     var statusEl = document.getElementById('chat-status');
-    var HEALTH_URL = API_URL.replace('/webhook/resume-agent-chat', '/webhook/health');
+    var HEALTH_URL = API_BASE + '/api/health';
 
     function setStatus(state) {
       if (!statusEl) return;
@@ -218,29 +267,51 @@
     checkStatus();
     setInterval(checkStatus, 15000);
 
-    /* ===== 发送消息 ===== */
+    /* ===== 发送消息（流式） ===== */
     async function sendMessage() {
       var content = text.value.trim();
       if (!content || sendBtn.disabled) return;
+
       appendMsg('user', content);
       text.value = '';
       text.style.height = 'auto';
       sendBtn.disabled = true;
-      showTyping();
+
+      var node = createBotBubble();
+
       try {
         var resp = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type':'application/json' },
-          body: JSON.stringify({ message: content, sessionId: sessionId })
+          body: JSON.stringify({ message: content, history: history.slice(-8) })
         });
-        if (!resp.ok) throw new Error('HTTP ' + resp.status);
-        var data = await resp.json();
-        removeTyping();
-        appendMsg('bot', data.reply || I18N.t('chat.noReply'));
-      } catch(e) {
-        removeTyping();
-        appendMsg('bot', I18N.t('chat.fail'));
+
+        if (!resp.ok) {
+          var errBody = null;
+          try { errBody = await resp.json(); } catch (e) {}
+          throw new Error((errBody && errBody.message) || I18N.t('chat.fail'));
+        }
+
+        var type = resp.headers.get('content-type') || '';
+        if (type.indexOf('text/event-stream') >= 0 && resp.body) {
+          await consumeStream(resp, function (chunk) { pushChunk(node, chunk); });
+          finishBubble(node, I18N.t('chat.noReply'));
+        } else {
+          var data = await resp.json();
+          node.text = data.reply || '';
+          finishBubble(node, I18N.t('chat.noReply'));
+        }
+
+        if (node.text && node.text !== I18N.t('chat.noReply')) {
+          history.push({ role:'user', content: content });
+          history.push({ role:'assistant', content: node.text });
+          if (history.length > 16) history = history.slice(-16);
+        }
+        setStatus('online');
+      } catch (e) {
+        finishBubble(node, (e && e.message) || I18N.t('chat.fail'));
       }
+
       sendBtn.disabled = false;
       text.focus();
     }

@@ -1,0 +1,16 @@
+{
+  "name": "vvosp-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "欧阳威个人网站的 AI 助手后端（Cloudflare Worker + DeepSeek）",
+  "scripts": {
+    "dev": "wrangler dev --var MOCK:1",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "test": "node test/local.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

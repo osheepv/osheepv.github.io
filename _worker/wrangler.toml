@@ -1,0 +1,23 @@
+name = "vvosp-api"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+# 只通过 api.vvosp.top 提供访问，不申请 xxx.workers.dev 子域
+workers_dev = false
+
+[vars]
+MODEL = "deepseek-flash"
+# 只允许站点自己的源；本地调试的端口按需往里加
+ALLOWED_ORIGINS = "https://vvosp.top,https://www.vvosp.top,http://127.0.0.1:8080,http://localhost:8080"
+
+# 部署后自动创建并绑定的自定义域（需要 vvosp.top 这个 zone 在本账号下）
+[[routes]]
+pattern = "api.vvosp.top"
+custom_domain = true
+
+# 每 IP 每分钟 12 次，超出返回 429。
+# 如果 wrangler 报 unknown field "ratelimits" 或提示需要新版本，先 `npx wrangler@latest deploy`；
+# 仍然不行就把下面 4 行注释掉，代码会自动跳过限流（记得在面板里加一条 Rate Limiting 规则）。
+[[ratelimits]]
+name = "CHAT_RATE"
+namespace_id = "1001"
+simple = { limit = 12, period = 60 }

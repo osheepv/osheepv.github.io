@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /_worker/
 
 Sitemap: https://vvosp.top/sitemap.xml

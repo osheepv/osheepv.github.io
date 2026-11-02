@@ -204,6 +204,8 @@
       'log.tag.seo': 'SEO',
       'log.tag.content': '内容',
       'log.tag.design': '设计',
+      'log.tag.arch': '架构',
+      'log.tag.cost': '成本',
       'log.e1.title': '站点搬进自己的域名',
       'log.e1.desc': '个人网站从 <code>osheepv.github.io</code> 迁到自有域名 <strong>vvosp.top</strong>。GitHub Pages 自动为旧地址做 301，历史链接和已有收录都没丢。',
       'log.e1.l1': '<code>vvosp.top</code> + <code>www</code> 全站 HTTPS，证书由 Let\'s Encrypt 自动续期',
@@ -229,6 +231,12 @@
       'log.e6.desc': '从零重写的一版：中英文切换、明暗主题、水面涟漪背景、以及完整的项目与荣誉详情页。',
       'log.e6.l1': '纯手写静态站点，无框架依赖',
       'log.e6.l2': '「其他」页作为后续博客与笔记的预留入口',
+      'log.e7.title': 'AI 助手搬进 Cloudflare Worker',
+      'log.e7.desc': '原来的链路是「浏览器 → cpolar 隧道 → 本机 n8n → DeepSeek」，电脑一关助手就离线。现在换成 Cloudflare Worker 直连 DeepSeek：不再依赖本机，也不用每次重开隧道后改一遍地址。',
+      'log.e7.l1': '助手常驻云端，访客不会再撞上「离线」状态灯',
+      'log.e7.l2': '回复改成流式输出，首字从「等一整段」变成逐字出现',
+      'log.e7.l3': '后端只做三件事：校验来源、限流、转发；密钥存在 Worker 的 secret 里，前端碰不到',
+      'log.e7.l4': '关掉模型的 thinking 模式，回答更快也更省 token',
 
       /* Other page */
       'other.kicker': 'More',
@@ -477,6 +485,8 @@
       'log.tag.seo': 'SEO',
       'log.tag.content': 'Content',
       'log.tag.design': 'Design',
+      'log.tag.arch': 'Architecture',
+      'log.tag.cost': 'Cost',
       'log.e1.title': 'Moved the site onto its own domain',
       'log.e1.desc': 'The site moved from <code>osheepv.github.io</code> to its own domain <strong>vvosp.top</strong>. GitHub Pages issues a 301 from the old address, so existing links and indexed pages survive.',
       'log.e1.l1': '<code>vvosp.top</code> and <code>www</code> serve HTTPS site-wide, with certificates auto-renewed by Let\'s Encrypt',
@@ -502,6 +512,12 @@
       'log.e6.desc': 'A rewrite from scratch: Chinese and English switching, light and dark themes, a water-ripple background, and complete detail pages for projects and honours.',
       'log.e6.l1': 'Hand-written static site with no framework dependencies',
       'log.e6.l2': 'The "Other" page is reserved for future posts and notes',
+      'log.e7.title': 'Moved the AI assistant onto Cloudflare Workers',
+      'log.e7.desc': 'The assistant used to run browser → cpolar tunnel → local n8n → DeepSeek, so it went offline whenever the laptop did. It now runs on a Cloudflare Worker talking straight to DeepSeek: no local machine to keep awake, no tunnel URL to re-paste after every restart.',
+      'log.e7.l1': 'The assistant lives in the cloud, so visitors no longer hit an offline status light',
+      'log.e7.l2': 'Replies stream in token by token instead of arriving as one block',
+      'log.e7.l3': 'The backend only checks the origin, rate limits and forwards; the key stays in a Worker secret',
+      'log.e7.l4': 'Thinking mode is disabled, so answers start faster and cost fewer tokens',
 
       /* Other page */
       'other.kicker': 'More',

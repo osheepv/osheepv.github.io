@@ -23,8 +23,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin>
   <link href="https://fonts.googleapis.cn/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=20">
-  <script src="i18n.js?v=16" defer></script>
+  <link rel="stylesheet" href="styles.css?v=22">
+  <script src="i18n.js?v=17" defer></script>
 
   <!-- 自定义域名 + SEO / 社交分享（vvosp.top） -->
   <link rel="canonical" href="https://vvosp.top/changelog.html">
@@ -155,6 +155,19 @@
       </div>
     </div>
     <div class="timeline">
+      <article class="entry reveal">
+        <div class="entry-date">2026-11-02</div>
+        <div class="entry-body">
+          <h2 class="entry-title"><span data-i18n="log.e7.title">AI 助手搬进 Cloudflare Worker</span> <span class="entry-tag" data-i18n="log.tag.arch">架构</span><span class="entry-tag" data-i18n="log.tag.perf">性能</span></h2>
+          <p class="entry-desc" data-i18n="log.e7.desc">原来的链路是「浏览器 → cpolar 隧道 → 本机 n8n → DeepSeek」，电脑一关助手就离线。现在换成 Cloudflare Worker 直连 DeepSeek：不再依赖本机，也不用每次重开隧道后改一遍地址。</p>
+          <ul class="entry-list">
+            <li data-i18n="log.e7.l1">助手常驻云端，访客不会再撞上「离线」状态灯</li>
+            <li data-i18n="log.e7.l2">回复改成流式输出，首字从「等一整段」变成逐字出现</li>
+            <li data-i18n="log.e7.l3">后端只做三件事：校验来源、限流、转发；密钥存在 Worker 的 secret 里，前端碰不到</li>
+            <li data-i18n="log.e7.l4">关掉模型的 thinking 模式，回答更快也更省 token</li>
+          </ul>
+        </div>
+      </article>
       <article class="entry reveal">
         <div class="entry-date">2026-10-30</div>
         <div class="entry-body">
