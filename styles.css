@@ -3361,7 +3361,7 @@ html[data-theme="dark"] .pet-bubble {
 
 /* 手机：缩小但不隐藏 */
 @media (max-width: 768px) {
-  .site-pet { width: clamp(104px, 30vw, 168px); }
+  .site-pet { width: clamp(120px, 34vw, 180px); }
   .pet-bubble { max-width: 180px; font-size: 12px; }
   .pet-menu { min-width: 128px; }
   .pet-menu-sub { min-width: 132px; }

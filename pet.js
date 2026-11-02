@@ -242,7 +242,8 @@
   }
 
   function parkInitial() {
-    pos.x = MARGIN;
+    // 手机竖屏：贴右下角，避开聊天输入框和「试试问」那一行
+    pos.x = NARROW ? Math.max(MARGIN, window.innerWidth - elW() - 16) : MARGIN;
     pos.y = window.innerHeight - elH() - MARGIN;
     render();
     savePos();
