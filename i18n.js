@@ -13,7 +13,7 @@
     zh: {
       /* Nav */
       'nav.resume': '个人简历',
-      'nav.ai': 'AI助手',
+      'nav.ai': '大肥鱼',
       'nav.other': '其他',
       'nav.contact': '联系我',
       'nav.log': '更新日志',
@@ -278,7 +278,7 @@
 
       /* AI Assistant */
       'chat.kicker': 'AI Assistant',
-      'chat.pageTitle': 'AI助手 — 欧阳威',
+      'chat.pageTitle': '大肥鱼 — 欧阳威',
       'chat.title': '欧阳威的 AI 助手',
       'chat.sub': '问我任何关于欧阳威的问题 —— 经历、技能、作品、竞赛',
       'chat.name': '欧阳威 · AI 助手',
@@ -301,7 +301,7 @@
     en: {
       /* Nav */
       'nav.resume': 'Resume',
-      'nav.ai': 'AI Assistant',
+      'nav.ai': 'Da Fei Yu',
       'nav.other': 'More',
       'nav.contact': 'Contact',
       'nav.log': 'Changelog',
@@ -566,7 +566,7 @@
 
       /* AI Assistant */
       'chat.kicker': 'AI Assistant',
-      'chat.pageTitle': 'AI Assistant — OuYang Wei',
+      'chat.pageTitle': 'Da Fei Yu — OuYang Wei',
       'chat.title': "OuYang Wei's AI Assistant",
       'chat.sub': 'Ask me anything about OuYang Wei — experience, skills, projects, competitions',
       'chat.name': 'OuYang Wei · AI Assistant',
