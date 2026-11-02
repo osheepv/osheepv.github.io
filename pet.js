@@ -693,6 +693,18 @@
       fitSub(host, sub);
     });
 
+    var mumble = document.createElement('button');
+    mumble.type = 'button';
+    mumble.className = 'pet-menu-plain';
+    mumble.textContent = '碎碎念';
+    mumble.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideMenu();
+      playOnce(MUMBLE_CLIP, 6000);
+      say(LINES[Math.floor(Math.random() * LINES.length)], 7000);
+    });
+    menu.appendChild(mumble);
+
     var home = document.createElement('button');
     home.type = 'button';
     home.className = 'pet-menu-plain';
