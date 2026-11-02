@@ -271,9 +271,10 @@
     next.loop = !!loop;
     try { next.currentTime = 0; } catch (e) { /* 未就绪 */ }
 
-    // 等新素材真正画出第一帧再交叉，否则旧帧已经淡出、新帧还没来，会空白闪一下
+    // 等新素材真正画出第一帧再交叉；数据没到就继续让旧画面撑着，绝不切到空白
     function reveal() {
       if (token !== clipToken) return;
+      if (next.readyState < 2) return;
       next.classList.add('on');
       if (prev) prev.classList.remove('on');
       active = 1 - active;
@@ -283,17 +284,22 @@
     var settled = false;
     function once() {
       if (settled || token !== clipToken) return;
+      if (next.readyState < 2) { window.setTimeout(once, 400); return; }
       settled = true;
       reveal();
     }
 
-    if (next.requestVideoFrameCallback) {
-      next.requestVideoFrameCallback(once);
-      window.setTimeout(once, 900);        // 网络慢时的兜底
-    } else {
-      next.addEventListener('playing', once, { once: true });
-      window.setTimeout(once, 600);
+    next.addEventListener('loadeddata', function () {
+      if (token !== clipToken || settled) return;
+      if (next.requestVideoFrameCallback) next.requestVideoFrameCallback(once);
+      else once();
+    }, { once: true });
+
+    if (next.readyState >= 2) {
+      if (next.requestVideoFrameCallback) next.requestVideoFrameCallback(once);
+      else once();
     }
+    window.setTimeout(once, 2500);
 
     var played = next.play();
     if (played && played.catch) played.catch(once);
