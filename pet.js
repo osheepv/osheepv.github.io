@@ -350,9 +350,19 @@
     mode = 'act';
     setClip(name, false);
     window.clearTimeout(actTimer);
-    actTimer = window.setTimeout(function () {
-      if (mode === 'act') returnToIdle();
-    }, ms || DEFAULT_CLIP_MS[name] || 2600);
+
+    // 素材播完立刻回待机；定时器只作兜底（网络慢或视频卡住时）
+    var target = vids[active];
+    function settle() {
+      if (mode === 'act' && current === name) returnToIdle();
+    }
+    if (target) {
+      target.addEventListener('ended', function onEnd() {
+        target.removeEventListener('ended', onEnd);
+        settle();
+      });
+    }
+    actTimer = window.setTimeout(settle, ms || DEFAULT_CLIP_MS[name] || 2600);
   }
 
   function returnToIdle() {
