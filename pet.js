@@ -337,16 +337,11 @@
     clampToRegion(r);
 
     if (speed < 260 || REDUCED) {
-      // 温柔放下也要落地：宠物永远贴着它所在区域的地面，不悬在半空
-      if (REDUCED) {
-        pos.y = Math.max(r.top, r.bottom - elH());
-        render();
-        savePos();
-        squish(0.8);
-        returnToIdle();
-        return;
-      }
-      startFly(vx * 0.18, vy * 0.18, r);
+      // 温柔放下：停在当前位置（桌宠同款手感），不强制落地
+      render();
+      savePos();
+      squish(0.8);
+      returnToIdle();
       return;
     }
 
