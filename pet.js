@@ -300,6 +300,7 @@
       if (token !== clipToken) return;
       if (next.readyState < 2) return;
       next.classList.add('on');
+      root.classList.remove('loading');
       if (prev) {
         prev.classList.remove('on');
         // 立刻暂停：暂停后画面停在当前帧，淡出过程看不出差别，但少一个解码器
@@ -310,10 +311,28 @@
     }
 
     var settled = false;
+    var startedAt = performance.now();
+    root.classList.add('loading');           // 等素材时给个视觉反馈
+
+    function finishWait() {
+      root.classList.remove('loading');
+    }
+
     function once() {
       if (settled || token !== clipToken) return;
-      if (next.readyState < 2) { window.setTimeout(once, 400); return; }
+      if (next.readyState < 2) {
+        if (performance.now() - startedAt > 5000) {
+          // 5 秒还没下下来：放弃这次切换，保持旧画面，清掉标记让下次重试
+          settled = true;
+          finishWait();
+          next.removeAttribute('data-clip');
+          return;
+        }
+        window.setTimeout(once, 300);
+        return;
+      }
       settled = true;
+      finishWait();
       reveal();
     }
 
@@ -687,6 +706,20 @@
     });
   }
 
+  /** 预取一串动作素材，间隔 gap 毫秒 */
+  function prefetchClips(names, gap) {
+    var i = 0;
+    (function next() {
+      if (i >= names.length) return;
+      var link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.as = 'video';
+      link.href = clipSrc(names[i++]);
+      document.head.appendChild(link);
+      window.setTimeout(next, gap || 400);
+    })();
+  }
+
   function buildMenu() {
     // 「动作」分支：分类 → 具体动画，层级和 dsh-pet 一致
     var group = document.createElement('div');
@@ -717,6 +750,10 @@
       catBtn.type = 'button';
       catBtn.className = 'pet-menu-cat';
       catBtn.innerHTML = '<span>' + cat[0] + '</span><i>›</i>';
+      catBtn.addEventListener('mouseenter', function () {
+        prefetchClips(cat[1].slice(0, 5), 260);   // 悬停就把这一类的头几个拉下来
+      }, { once: true });
+
       catBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         var opening = !sub2.classList.contains('open');
@@ -874,19 +911,6 @@
     document.addEventListener('mousemove', aimGaze, { passive: true });
     document.addEventListener('mouseleave', relaxGaze);
 
-    // 预取：先补常用的两个回应，空闲后再慢慢补齐其它动作，避免一口气拉十几兆
-    function prefetch(names, gap) {
-      var i = 0;
-      (function next() {
-        if (i >= names.length) return;
-        var link = document.createElement('link');
-        link.rel = 'prefetch';
-        link.as = 'video';
-        link.href = clipSrc(names[i++]);
-        document.head.appendChild(link);
-        window.setTimeout(next, gap);
-      })();
-    }
     // 碎碎念配图一共不到 200KB，提前全拉下来，气泡出来就有图
     window.setTimeout(function () {
       LINES.forEach(function (l) {
@@ -898,9 +922,9 @@
 
     window.setTimeout(function () {
       if (STATIC_ONLY || LOW_END) return;      // 低配设备别抢带宽和解码
-      prefetch(['点击回应-元气挥手', '点击回应-害羞惊讶', '原地小憩沉眠'], 600);
+      prefetchClips(['点击回应-元气挥手', '点击回应-害羞惊讶', '原地小憩沉眠'], 600);
       window.setTimeout(function () {
-        prefetch(['工作状态-思考冒泡', '碎碎念-发呆碎碎念', '吃白饭', '东张西望', '轻快摇摆舞'], 2000);
+        prefetchClips(['工作状态-思考冒泡', '碎碎念-发呆碎碎念', '吃白饭', '东张西望', '轻快摇摆舞'], 2000);
       }, 5000);
     }, 3000);
   }
