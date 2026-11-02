@@ -3271,8 +3271,11 @@ body.i18n-fade-out .chat-page {
   display: block;
   width: 100%;
   max-width: 152px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   margin: 0 auto 7px;
   border-radius: 10px;
+  background: rgba(120, 140, 180, 0.08);
 }
 
 .pet-menu {

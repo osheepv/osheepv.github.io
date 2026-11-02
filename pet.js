@@ -24,6 +24,7 @@
   var REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
   var BASE = '/assets/pet/';
+  var MEME_BASE = '/assets/pet/memes/';
   /* 动作名 = 素材文件名（中文原名，和 dsh-pet 一致） */
   var IDLE_CLIP = '待机呼吸休闲';
   var DRAG_CLIP = '被鼠标拖拽悬空反馈';
@@ -359,7 +360,7 @@
     if (img) {
       var pic = document.createElement('img');
       pic.className = 'pet-bubble-img';
-      pic.src = '/assets/pet/memes/' + encodeURIComponent(img) + '.png';
+      pic.src = MEME_BASE + encodeURIComponent(img) + '.webp';
       pic.alt = '';
       bubble.appendChild(pic);
     }
@@ -849,6 +850,15 @@
         window.setTimeout(next, gap);
       })();
     }
+    // 碎碎念配图一共不到 200KB，提前全拉下来，气泡出来就有图
+    window.setTimeout(function () {
+      LINES.forEach(function (l) {
+        if (!l.img) return;
+        var pic = new Image();
+        pic.src = MEME_BASE + encodeURIComponent(l.img) + '.webp';
+      });
+    }, 2500);
+
     window.setTimeout(function () {
       if (STATIC_ONLY) return;
       prefetch(['点击回应-元气挥手', '点击回应-害羞惊讶', '原地小憩沉眠'], 600);
