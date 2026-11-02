@@ -3267,6 +3267,14 @@ body.i18n-fade-out .chat-page {
   transform: translate(-50%, 0) scale(1);
 }
 
+.pet-bubble-img {
+  display: block;
+  width: 100%;
+  max-width: 152px;
+  margin: 0 auto 7px;
+  border-radius: 10px;
+}
+
 .pet-menu {
   position: fixed;
   z-index: 1000;

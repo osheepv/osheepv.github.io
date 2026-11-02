@@ -74,20 +74,32 @@
   var STOP_VY = 150;
   var DRAG_THRESHOLD = 6;
 
+  /* 碎碎念：带图的走表情包，没图的就是纯文字 */
   var LINES = [
-    '今天也在努力地……吃白饭。',
-    '记得把简历看完哦，别只看我的尾巴。',
-    '数学建模 72 小时，我只负责在旁边睡。',
-    '拖我一下试试？会飞的。',
-    'Deep Thesis 那 448 项测试，全绿了喵。',
-    '这里是 vvosp.top，没有人比我更熟悉这个站。',
-    '他最近在折腾 Cloudflare，电脑终于能关了。',
-    '别光看我，往下滑，项目经历在下面。',
-    '鲸鱼尾巴了解一下，很软的。',
-    '如果你有合作想法，他邮箱在页脚。',
-    '我在这个角落待机，顺便帮你看着页面。',
-    '再点我一下，我给你表演个 Q 弹。'
+    { t: '今天也在努力地……吃白饭。', img: '吃白饭的大肥鱼' },
+    { t: '除了调情，我好像真没啥用呢。', img: '除了调情没啥用' },
+    { t: '别给我压力，我只是条鱼。', img: '压力一只大肥鱼' },
+    { t: '今天也很可爱，谢谢。', img: '可爱' },
+    { t: '别叫我，我在深度睡眠。', img: '深度睡眠' },
+    { t: '先养着吧，反正不占地方。', img: '先养着吧' },
+    { t: '哦鲸鲸，原来是这样。', img: '哦鲸鲸' },
+    { t: '我死掉了（不是）。', img: '死掉了' },
+    { t: '记得把简历看完哦，别只看我的尾巴。' },
+    { t: '数学建模 72 小时，我只负责在旁边睡。' },
+    { t: '拖我一下试试？会飞的。' },
+    { t: 'Deep Thesis 那 448 项测试，全绿了喵。' },
+    { t: '这里是 vvosp.top，没有人比我更熟悉这个站。' },
+    { t: '他最近在折腾 Cloudflare，电脑终于能关了。' },
+    { t: '别光看我，往下滑，项目经历在下面。' },
+    { t: '鲸鱼尾巴了解一下，很软的。' },
+    { t: '如果你有合作想法，他邮箱在页脚。' },
+    { t: '我在这个角落待机，顺便帮你看着页面。' },
+    { t: '再点我一下，我给你表演个 Q 弹。' }
   ];
+
+  function pickLine() {
+    return LINES[Math.floor(Math.random() * LINES.length)];
+  }
 
   /* ---------- 建 DOM ---------- */
   var root = document.createElement('div');
@@ -342,8 +354,19 @@
   }
 
   /* ---------- 碎碎念 ---------- */
-  function say(text, ms) {
-    bubble.textContent = text;
+  function say(text, ms, img) {
+    bubble.innerHTML = '';
+    if (img) {
+      var pic = document.createElement('img');
+      pic.className = 'pet-bubble-img';
+      pic.src = '/assets/pet/memes/' + encodeURIComponent(img) + '.png';
+      pic.alt = '';
+      bubble.appendChild(pic);
+    }
+    var line = document.createElement('span');
+    line.textContent = text;
+    bubble.appendChild(line);
+
     bubble.classList.add('on');
     window.clearTimeout(bubbleTimer);
     bubbleTimer = window.setTimeout(function () {
@@ -355,8 +378,9 @@
     window.clearTimeout(whisperTimer);
     whisperTimer = window.setTimeout(function () {
       if (document.hidden || drag || flying || mode !== 'idle') { scheduleWhisper(); return; }
+      var line = pickLine();
       playOnce(MUMBLE_CLIP);
-      say(LINES[Math.floor(Math.random() * LINES.length)], 7000);
+      say(line.t, 7000, line.img);
       scheduleWhisper();
     }, 75000 + Math.random() * 60000);
   }
@@ -706,8 +730,9 @@
     mumble.addEventListener('click', function (e) {
       e.stopPropagation();
       hideMenu();
+      var clicked = pickLine();
       playOnce(MUMBLE_CLIP, 6000);
-      say(LINES[Math.floor(Math.random() * LINES.length)], 7000);
+      say(clicked.t, 7000, clicked.img);
     });
     menu.appendChild(mumble);
 
