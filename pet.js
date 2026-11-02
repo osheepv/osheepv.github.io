@@ -525,6 +525,14 @@
   }
 
   /* ---------- 菜单 ---------- */
+  /** 同一层级只允许展开一个面板，否则多个三级面板会叠在一起 */
+  function closeSiblings(selector, keep) {
+    var list = menu.querySelectorAll(selector);
+    for (var i = 0; i < list.length; i++) {
+      if (list[i] !== keep) list[i].classList.remove('open');
+    }
+  }
+
   /** 子菜单超出视口时向上挪，避免在屏幕底部点不到 */
   function fitSub(host, sub) {
     sub.style.top = '0px';
@@ -547,8 +555,12 @@
     head.innerHTML = '<span>动作</span><i>›</i>';
     head.addEventListener('click', function (e) {
       e.stopPropagation();
-      sub.classList.toggle('open');
-      if (sub.classList.contains('open')) fitSub(group, sub);
+      var opening = !sub.classList.contains('open');
+      sub.classList.toggle('open', opening);
+      if (opening) {
+        closeSiblings('.pet-menu-sub2');     // 收起所有三级
+        fitSub(group, sub);
+      }
     });
 
     var sub = document.createElement('div');
@@ -564,8 +576,12 @@
       catBtn.innerHTML = '<span>' + cat[0] + '</span><i>›</i>';
       catBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-        sub2.classList.toggle('open');
-        if (sub2.classList.contains('open')) fitSub(row, sub2);
+        var opening = !sub2.classList.contains('open');
+        sub2.classList.toggle('open', opening);
+        if (opening) {
+          closeSiblings('.pet-menu-sub2', sub2);
+          fitSub(row, sub2);
+        }
       });
 
       var sub2 = document.createElement('div');
@@ -622,7 +638,14 @@
     menu.style.top = Math.max(12, Math.min(y, window.innerHeight - r.height - 12)) + 'px';
   }
 
-  function hideMenu() { menu.hidden = true; }
+  function hideMenu() {
+    menu.hidden = true;
+    // 回收所有展开的面板，下次右键从干净状态开始
+    var opened = menu.querySelectorAll('.open');
+    for (var i = 0; i < opened.length; i++) opened[i].classList.remove('open');
+    var subs = menu.querySelectorAll('.pet-menu-sub, .pet-menu-sub2');
+    for (var j = 0; j < subs.length; j++) subs[j].style.top = '';
+  }
 
   /* ---------- 视口变化 ---------- */
   function reflow() {
