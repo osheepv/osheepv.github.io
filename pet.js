@@ -544,6 +544,36 @@
     });
   }
 
+  /** 二级分类悬停即展开对应三级，移开切到别的分类 */
+  function bindHover(host, panel) {
+    var timer = 0;
+    function openPanel() {
+      window.clearTimeout(timer);
+      closeSiblings('.pet-menu-sub2', panel);
+      panel.classList.add('open');
+      fitSub(host, panel);
+    }
+    function closePanel() {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(function () {
+        panel.classList.remove('open');
+      }, 180);
+    }
+    host.addEventListener('mouseenter', function (e) {
+      if (panel.contains(e.relatedTarget)) return;
+      openPanel();
+    });
+    host.addEventListener('mouseleave', function (e) {
+      if (panel.contains(e.relatedTarget)) return;
+      closePanel();
+    });
+    panel.addEventListener('mouseenter', function () { window.clearTimeout(timer); });
+    panel.addEventListener('mouseleave', function (e) {
+      if (host.contains(e.relatedTarget)) return;
+      closePanel();
+    });
+  }
+
   function buildMenu() {
     // 「动作」分支：分类 → 具体动画，层级和 dsh-pet 一致
     var group = document.createElement('div');
@@ -601,6 +631,7 @@
 
       row.appendChild(catBtn);
       row.appendChild(sub2);
+      bindHover(row, sub2);
       sub.appendChild(row);
     });
 
